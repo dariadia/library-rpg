@@ -1,0 +1,44 @@
+:root {
+  --border-color: #291D4D;
+  --dialog-background: #5e3e17;
+  --menu-background: #5e3e17;
+  --menu-border-color: #FFD700;
+  --text-message-action: #FFD700;
+  --menu-font-color: #d6b575;
+  --menu-selected-background: #36220b;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  background: #0a0602;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Oldenburg', cursive;
+}
+.how-to-play {
+  position: absolute;
+  left:0; right:0;
+  bottom: 0;
+  text-align:center;
+  font-size: 14px;
+  color: #fff;
+}
+
+.game-container {
+  position: relative; 
+  top: -80px;
+  background: #d9f4ff;
+  width: 352px;
+  height: 100%;
+  margin: 0 auto;
+  outline: 1px solid #fff;
+  transform: scale(3) translateY(50%);
+}
+
+.game-container canvas {
+  image-rendering: pixelated;
+}
