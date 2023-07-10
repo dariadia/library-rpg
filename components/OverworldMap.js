@@ -241,11 +241,11 @@ window.OverworldMaps = {
         x: utils.withGrid(9),
         y: utils.withGrid(5),
         direction: "up",
-        src: "/images/characters/people/npc8.png",
+        src: "/images/characters/people/milos.png",
         talking: [
           {
             events: [
-              { type: "textMessage", text: "** They don't want to talk to you **",},
+              { type: "textMessage", text: "Hey! Wanna hear of the 62th time we...",},
             ]
           }
         ]
