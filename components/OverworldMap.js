@@ -1,3 +1,5 @@
+import { getRandomJoke } from "./TextAssets"
+
 class OverworldMap {
   constructor(config) {
     this.overworld = null
@@ -18,7 +20,7 @@ class OverworldMap {
       this.lowerImage, 
       utils.withGrid(10.5) - cameraPerson.x, 
       utils.withGrid(6) - cameraPerson.y
-      )
+    )
   }
 
   drawUpperImage(ctx, cameraPerson) {
@@ -103,128 +105,6 @@ class OverworldMap {
 }
 
 window.OverworldMaps = {
-  DemoRoom: {
-    id: "DemoRoom",
-    lowerSrc: "/images/maps/DemoLower.png",
-    upperSrc: "/images/maps/DemoUpper.png",
-    configObjects: {
-      hero: {
-        type: "Person",
-        isPlayerControlled: true,
-        x: utils.withGrid(5),
-        y: utils.withGrid(6),
-      },
-      npcA: {
-        type: "Person",
-        x: utils.withGrid(10),
-        y: utils.withGrid(8),
-        src: "/images/characters/people/npc1.png",
-        behaviorLoop: [
-          { type: "walk", direction: "left", },
-          { type: "walk", direction: "down", },
-          { type: "walk", direction: "right", },
-          { type: "walk", direction: "up", },
-          { type: "stand", direction: "up", time: 400, },
-        ],
-        talking: [
-          {
-            required: ["TALKED_TO_ERIO"],
-            events: [
-              { type: "textMessage", text: "Isn't Erio the coolest?", faceHero: "npcA" },
-            ]
-          },
-          {
-            events: [
-              { type: "textMessage", text: "I'm going to crush you!", faceHero: "npcA" },
-              { type: "battle", enemyId: "beth" },
-              { type: "addStoryFlag", flag: "DEFEATED_BETH"},
-              { type: "textMessage", text: "You crushed me like weak pepper.", faceHero: "npcA" },
-              { type: "textMessage", text: "Go away!"},
-               //{ who: "npcB", type: "walk",  direction: "up" },
-            ]
-          }
-        ]
-      },
-      npcC: {
-        type: "Person",
-        x: utils.withGrid(4),
-        y: utils.withGrid(8),
-        src: "/images/characters/people/npc1.png",
-        behaviorLoop: [
-          { type: "stand", direction: "left", time: 500, },
-          { type: "stand", direction: "down", time: 500, },
-          { type: "stand", direction: "right", time: 500, },
-          { type: "stand", direction: "up", time: 500, },
-          { type: "walk", direction: "left",  },
-          { type: "walk", direction: "down",  },
-          { type: "walk", direction: "right",  },
-          { type: "walk", direction: "up",  },
-        ],
-      },
-      npcB: {
-        type: "Person",
-        x: utils.withGrid(8),
-        y: utils.withGrid(5),
-        src: "/images/characters/people/erio.png",
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "Bahaha!", faceHero: "npcB" },
-              { type: "addStoryFlag", flag: "TALKED_TO_ERIO"}
-              //{ type: "battle", enemyId: "erio" }
-            ]
-          }
-        ]
-        // behaviorLoop: [
-        //   { type: "walk",  direction: "left" },
-        //   { type: "stand",  direction: "up", time: 800 },
-        //   { type: "walk",  direction: "up" },
-        //   { type: "walk",  direction: "right" },
-        //   { type: "walk",  direction: "down" },
-        // ]
-      },
-      pizzaStone: {
-        type: "PizzaStone",
-        x: utils.withGrid(2),
-        y: utils.withGrid(7),
-        storyFlag: "USED_PIZZA_STONE",
-        pizzas: ["v001", "f001"],
-      },
-    },
-    walls: {
-      [utils.asGridCoord(7,6)] : true,
-      [utils.asGridCoord(8,6)] : true,
-      [utils.asGridCoord(7,7)] : true,
-      [utils.asGridCoord(8,7)] : true,
-    },
-    cutsceneSpaces: {
-      [utils.asGridCoord(7,4)]: [
-        {
-          events: [
-            { who: "npcB", type: "walk",  direction: "left" },
-            { who: "npcB", type: "stand",  direction: "up", time: 500 },
-            { type: "textMessage", text:"You can't be in there!"},
-            { who: "npcB", type: "walk",  direction: "right" },
-            { who: "hero", type: "walk",  direction: "down" },
-            { who: "hero", type: "walk",  direction: "left" },
-          ]
-        }
-      ],
-      [utils.asGridCoord(5,10)]: [
-        {
-          events: [
-            { 
-              type: "changeMap", 
-              map: "ReadingRoom",
-              x: utils.withGrid(2),
-              y: utils.withGrid(2), 
-              direction: "down"
-            }
-          ]
-        }
-      ]
-    }
-  },
   ReadingRoom: {
     id: "ReadingRoom",
     lowerSrc: "/images/maps/ReadingRoomLower.png",
@@ -236,7 +116,7 @@ window.OverworldMaps = {
         x: utils.withGrid(10),
         y: utils.withGrid(5),
       },
-      readingRoomNpcA: {
+      Milos: {
         type: "Person",
         x: utils.withGrid(9),
         y: utils.withGrid(5),
@@ -245,7 +125,7 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "Hey! Wanna hear of the 62th time we...",},
+              { type: "textMessage", text: getRandomJoke() },
             ]
           }
         ]
@@ -295,16 +175,16 @@ window.OverworldMaps = {
         events: [
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
           { type: "textMessage", text: "* You fall asleep in the library only to realise you've been locked in *"},
-          { type: "walk", who: "readingRoomNpcA", direction: "down"},
-          { type: "stand", who: "readingRoomNpcA", direction: "right", time: 200},
+          { type: "walk", who: "Milos", direction: "down"},
+          { type: "stand", who: "Milos", direction: "right", time: 200},
           { type: "stand", who: "hero", direction: "left", time: 200},
           { type: "textMessage", text: "Ahem. Is this your best work?"},
           { type: "textMessage", text: "These pepperonis are completely unstable! The pepper shapes are all wrong!"},
           { type: "textMessage", text: "Don't even get me started on the mushrooms."},
           { type: "textMessage", text: "You will never make it in pizza!"},
-          { type: "stand", who: "readingRoomNpcA", direction: "right", time: 200},
-          { type: "walk", who: "readingRoomNpcA", direction: "up"},
-          { type: "stand", who: "readingRoomNpcA", direction: "up", time: 300},
+          { type: "stand", who: "Milos", direction: "right", time: 200},
+          { type: "walk", who: "Milos", direction: "up"},
+          { type: "stand", who: "Milos", direction: "up", time: 300},
           { type: "stand", who: "hero", direction: "down", time: 400},
           { type: "textMessage", text: "* The competition is fierce! You should spend some time leveling up your Pizza lineup and skills. *"},
           {
