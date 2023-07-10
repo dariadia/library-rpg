@@ -1,21 +1,16 @@
 class OverworldMap {
   constructor(config) {
-    this.overworld = null;
-    this.gameObjects = {}; // Live objects are in here
-    this.configObjects = config.configObjects; // Configuration content
-
-    
-    this.cutsceneSpaces = config.cutsceneSpaces || {};
-    this.walls = config.walls || {};
-
-    this.lowerImage = new Image();
-    this.lowerImage.src = config.lowerSrc;
-
-    this.upperImage = new Image();
-    this.upperImage.src = config.upperSrc;
-
-    this.isCutscenePlaying = false;
-    this.isPaused = false;
+    this.overworld = null
+    this.gameObjects = {}
+    this.configObjects = config.configObjects
+    this.cutsceneSpaces = config.cutsceneSpaces || {}
+    this.walls = config.walls || {}
+    this.lowerImage = new Image()
+    this.lowerImage.src = config.lowerSrc
+    this.upperImage = new Image()
+    this.upperImage.src = config.upperSrc
+    this.isCutscenePlaying = false
+    this.isPaused = false
   }
 
   drawLowerImage(ctx, cameraPerson) {
@@ -35,62 +30,58 @@ class OverworldMap {
   } 
 
   isSpaceTaken(currentX, currentY, direction) {
-    const {x,y} = utils.nextPosition(currentX, currentY, direction);
-    if (this.walls[`${x},${y}`]) {
-      return true;
-    }
-    //Check for game objects at this position
+    const {x,y} = utils.nextPosition(currentX, currentY, direction)
+    if (this.walls[`${x},${y}`]) return true
     return Object.values(this.gameObjects).find(obj => {
-      if (obj.x === x && obj.y === y) { return true; }
-      if (obj.intentPosition && obj.intentPosition[0] === x && obj.intentPosition[1] === y ) {
-        return true;
-      }
-      return false;
+      if (obj.x === x && obj.y === y) { return true }
+      if (obj.intentPosition 
+        && obj.intentPosition[0] === x 
+        && obj.intentPosition[1] === y ) return true
+      return false
     })
 
   }
 
   mountObjects() {
     Object.keys(this.configObjects).forEach(key => {
-
-      let object = this.configObjects[key];
-      object.id = key;
-
-      let instance;
-      if (object.type === "Person") {
-        instance = new Person(object);
+      let object = this.configObjects[key]
+      object.id = key
+      let instance
+      switch(object.type) {
+        case 'Person':
+          instance = new Person(object)
+          break
+        case 'PizzaStone':
+          instance = new PizzaStone(object)
       }
-      if (object.type === "PizzaStone") {
-        instance = new PizzaStone(object);
-      }
-      this.gameObjects[key] = instance;
-      this.gameObjects[key].id = key;
-      instance.mount(this);
+      this.gameObjects[key] = instance
+      this.gameObjects[key].id = key
+      instance.mount(this)
     })
   }
 
   async startCutscene(events) {
-    this.isCutscenePlaying = true;
+    this.isCutscenePlaying = true
 
     for (let i=0; i<events.length; i++) {
       const eventHandler = new OverworldEvent({
         event: events[i],
         map: this,
       })
-      const result = await eventHandler.init();
+      const result = await eventHandler.init()
       if (result === "LOST_BATTLE") {
-        break;
+        break
       }
     }
-    this.isCutscenePlaying = false;
+    this.isCutscenePlaying = false
   }
 
   checkForActionCutscene() {
-    const hero = this.gameObjects["hero"];
-    const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction);
+    const hero = this.gameObjects["hero"]
+    const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction)
     const match = Object.values(this.gameObjects).find(object => {
       return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
-    });
+    })
     if (!this.isCutscenePlaying && match && match.talking.length) {
 
       const relevantScenario = match.talking.find(scenario => {
@@ -103,8 +94,8 @@ class OverworldMap {
   }
 
   checkForFootstepCutscene() {
-    const hero = this.gameObjects["hero"];
-    const match = this.cutsceneSpaces[ `${hero.x},${hero.y}` ];
+    const hero = this.gameObjects["hero"]
+    const match = this.cutsceneSpaces[ `${hero.x},${hero.y}` ]
     if (!this.isCutscenePlaying && match) {
       this.startCutscene( match[0].events )
     }
@@ -224,7 +215,7 @@ window.OverworldMaps = {
           events: [
             { 
               type: "changeMap", 
-              map: "Kitchen",
+              map: "ReadingRoom",
               x: utils.withGrid(2),
               y: utils.withGrid(2), 
               direction: "down"
@@ -234,10 +225,10 @@ window.OverworldMaps = {
       ]
     }
   },
-  Kitchen: {
-    id: "Kitchen",
-    lowerSrc: "/images/maps/KitchenLower.png",
-    upperSrc: "/images/maps/KitchenUpper.png",
+  ReadingRoom: {
+    id: "ReadingRoom",
+    lowerSrc: "/images/maps/ReadingRoomLower.png",
+    upperSrc: "/images/maps/ReadingRoomUpper.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -245,7 +236,7 @@ window.OverworldMaps = {
         x: utils.withGrid(10),
         y: utils.withGrid(5),
       },
-      kitchenNpcA: {
+      readingRoomNpcA: {
         type: "Person",
         x: utils.withGrid(9),
         y: utils.withGrid(5),
@@ -259,7 +250,7 @@ window.OverworldMaps = {
           }
         ]
       },
-      kitchenNpcB: {
+      readingRoomNpcB: {
         type: "Person",
         x: utils.withGrid(3),
         y: utils.withGrid(6),
@@ -267,7 +258,7 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "People take their jobs here very seriously.", faceHero: "kitchenNpcB" },
+              { type: "textMessage", text: "People take their jobs here very seriously.", faceHero: "readingRoomNpcB" },
             ]
           }
         ],
@@ -303,17 +294,17 @@ window.OverworldMaps = {
         disqualify: ["SEEN_INTRO"],
         events: [
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          { type: "textMessage", text: "* You are chopping ingredients on your first day as a Pizza Chef at a famed establishment in town. *"},
-          { type: "walk", who: "kitchenNpcA", direction: "down"},
-          { type: "stand", who: "kitchenNpcA", direction: "right", time: 200},
+          { type: "textMessage", text: "* You fall asleep in the library only to realise you've been locked in *"},
+          { type: "walk", who: "readingRoomNpcA", direction: "down"},
+          { type: "stand", who: "readingRoomNpcA", direction: "right", time: 200},
           { type: "stand", who: "hero", direction: "left", time: 200},
           { type: "textMessage", text: "Ahem. Is this your best work?"},
           { type: "textMessage", text: "These pepperonis are completely unstable! The pepper shapes are all wrong!"},
           { type: "textMessage", text: "Don't even get me started on the mushrooms."},
           { type: "textMessage", text: "You will never make it in pizza!"},
-          { type: "stand", who: "kitchenNpcA", direction: "right", time: 200},
-          { type: "walk", who: "kitchenNpcA", direction: "up"},
-          { type: "stand", who: "kitchenNpcA", direction: "up", time: 300},
+          { type: "stand", who: "readingRoomNpcA", direction: "right", time: 200},
+          { type: "walk", who: "readingRoomNpcA", direction: "up"},
+          { type: "stand", who: "readingRoomNpcA", direction: "up", time: 300},
           { type: "stand", who: "hero", direction: "down", time: 400},
           { type: "textMessage", text: "* The competition is fierce! You should spend some time leveling up your Pizza lineup and skills. *"},
           {
@@ -448,12 +439,12 @@ window.OverworldMaps = {
         "4,14", "5,14", "6,14", "7,14", "8,14", "9,14", "10,14", "11,14", "12,14", "13,14", "14,14", "15,14", "16,14", "17,14", "18,14", "19,14", "20,14", "21,14", "22,14", "23,14",
         "24,14", "25,14", "26,14", "27,14", "28,14", "29,14", "30,14", "31,14", "32,14", "33,14",
         "3,10", "3,11", "3,12", "3,13", "34,10", "34,11", "34,12", "34,13",
-          "29,8","25,4",
+          "29,8","25,4"
       ].forEach(coord => {
-        let [x,y] = coord.split(",");
-        walls[utils.asGridCoord(x,y)] = true;
+        let [x,y] = coord.split(",")
+        walls[utils.asGridCoord(x,y)] = true
       })
-      return walls;
+      return walls
     }(),
     cutsceneSpaces: {
       [utils.asGridCoord(5,9)]: [
@@ -622,10 +613,10 @@ window.OverworldMaps = {
       [utils.asGridCoord(5,13)]: true,
     }
   },
-  GreenKitchen: {
-    id: "GreenKitchen",
-    lowerSrc: "/images/maps/GreenKitchenLower.png",
-    upperSrc: "/images/maps/GreenKitchenUpper.png",
+  DarkHall: {
+    id: "DarkHall",
+    lowerSrc: "/images/maps/DarkHallLower.png",
+    upperSrc: "/images/maps/DarkHallUpper.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -633,7 +624,7 @@ window.OverworldMaps = {
         x: utils.withGrid(3),
         y: utils.withGrid(8),
       },
-      greenKitchenNpcA: {
+      darkHallNpcA: {
         type: "Person",
         x: utils.withGrid(8),
         y: utils.withGrid(8),
@@ -647,12 +638,12 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "Chef Rootie uses the best seasoning.", faceHero: "greenKitchenNpcA" },
+              { type: "textMessage", text: "Chef Rootie uses the best seasoning.", faceHero: "darkHallNpcA" },
             ]
           }
         ]
       },
-      greenKitchenNpcB: {
+      darkHallNpcB: {
         type: "Person",
         x: utils.withGrid(1),
         y: utils.withGrid(8),
@@ -672,12 +663,12 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "Finally... a pizza place that gets me!", faceHero: "greenKitchenNpcB" },
+              { type: "textMessage", text: "Finally... a pizza place that gets me!", faceHero: "darkHallNpcB" },
             ]
           }
         ]
       },
-      greenKitchenNpcC: {
+      darkHallNpcC: {
         type: "Person",
         x: utils.withGrid(3),
         y: utils.withGrid(5),
@@ -685,12 +676,12 @@ window.OverworldMaps = {
         talking: [
           {
             required: ["chefRootie"],
-            events: [ {type: "textMessage", faceHero:["greenKitchenNpcC"], text: "My veggies need more growth."} ]
+            events: [ {type: "textMessage", faceHero:["darkHallNpcC"], text: "My veggies need more growth."} ]
           },
           {
             events: [
-              { type: "textMessage", text: "Veggies are the fuel for the heart and soul!", faceHero: "greenKitchenNpcC" },
-              { type: "battle", enemyId: "chefRootie", arena: "green-kitchen" },
+              { type: "textMessage", text: "Veggies are the fuel for the heart and soul!", faceHero: "darkHallNpcC" },
+              { type: "battle", enemyId: "chefRootie", arena: "dark-hall" },
               { type: "addStoryFlag", flag: "chefRootie"},
             ]
           }
@@ -902,7 +893,7 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "GreenKitchen",
+              map: "DarkHall",
               x: utils.withGrid(5),
               y: utils.withGrid(12),
               direction: "up"
@@ -1016,7 +1007,7 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "Kitchen",
+              map: "ReadingRoom",
               x: utils.withGrid(5),
               y: utils.withGrid(10),
               direction: "up"
