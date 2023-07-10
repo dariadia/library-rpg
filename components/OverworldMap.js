@@ -1,4 +1,11 @@
-import { getRandomJoke } from "./TextAssets"
+const MILOS_JOKES = [
+  `What room does a ghost not need in a house? A living room. Aha-ha! Get it? 'Cause they're dead!`,
+  `When do ghosts drink coffee? In the moaning. Ugh, I'd kill for a good cup for breakfast...`,
+  `Do you have any cigarettes? I can't smoke but I sure can smell!`,
+  `Which ghost is the best dancer? The Boogie Man.`
+]
+
+const getRandomJoke = () => Math.floor(Math.random() * (MILOS_JOKES.lengt + 1))
 
 class OverworldMap {
   constructor(config) {
@@ -118,7 +125,7 @@ window.OverworldMaps = {
       },
       Milos: {
         type: "Person",
-        x: utils.withGrid(9),
+        x: utils.withGrid(6),
         y: utils.withGrid(5),
         direction: "up",
         src: "/images/characters/people/milos.png",
@@ -176,17 +183,24 @@ window.OverworldMaps = {
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
           { type: "textMessage", text: "* You fall asleep in the library only to realise you've been locked in *"},
           { type: "walk", who: "Milos", direction: "down"},
+          { type: "walk", who: "Milos", direction: "right"},
+          { type: "walk", who: "Milos", direction: "right"},
+          { type: "walk", who: "Milos", direction: "right"},
           { type: "stand", who: "Milos", direction: "right", time: 200},
           { type: "stand", who: "hero", direction: "left", time: 200},
-          { type: "textMessage", text: "Ahem. Is this your best work?"},
-          { type: "textMessage", text: "These pepperonis are completely unstable! The pepper shapes are all wrong!"},
-          { type: "textMessage", text: "Don't even get me started on the mushrooms."},
-          { type: "textMessage", text: "You will never make it in pizza!"},
+          { type: "textMessage", text: "Howdy! First time dead?"},
+          { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill."},
+          { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts."},
+          { type: "textMessage", text: "Like Miss Tussy over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort."},
           { type: "stand", who: "Milos", direction: "right", time: 200},
           { type: "walk", who: "Milos", direction: "up"},
           { type: "stand", who: "Milos", direction: "up", time: 300},
           { type: "stand", who: "hero", direction: "down", time: 400},
-          { type: "textMessage", text: "* The competition is fierce! You should spend some time leveling up your Pizza lineup and skills. *"},
+          { type: "stand", who: "Milos", direction: "down", time: 300},
+          { type: "textMessage", text: "*shouts after you*  Also, you're stuck with till the morning. Have fun!"},
+          { type: "stand", who: "Milos", direction: "up", time: 300},
+          { type: "textMessage", text: "This is just a dream. A really weird dream *you tell yourself*"},
+          { type: "textMessage", text: "Might as well explore."},
           {
             type: "changeMap",
             map: "Street",
