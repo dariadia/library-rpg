@@ -3,7 +3,6 @@ class RevealingText {
     this.element = config.element;
     this.text = config.text;
     this.speed = config.speed || 60;
-
     this.timeout = null;
     this.isDone = false;
   }
@@ -31,9 +30,8 @@ class RevealingText {
 
   init() {
     let characters = [];
+    console.log(this)
     this.text.split("").forEach(character => {
-
-      //Create each span, add to element in DOM
       let span = document.createElement("span");
       span.textContent = character;
       this.element.appendChild(span);

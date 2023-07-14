@@ -2,10 +2,10 @@ const MILOS_JOKES = [
   `What room does a ghost not need in a house? A living room. Aha-ha! Get it? 'Cause they're dead!`,
   `When do ghosts drink coffee? In the moaning. Ugh, I'd kill for a good cup for breakfast...`,
   `Do you have any cigarettes? I can't smoke but I sure can smell!`,
-  `Which ghost is the best dancer? The Boogie Man.`
+  `Which ghost is the best dancer? The Boogie Man!`
 ]
 
-const getRandomJoke = () => Math.floor(Math.random() * (MILOS_JOKES.lengt + 1))
+const getRandomJoke = () => MILOS_JOKES[Math.floor(Math.random() * (MILOS_JOKES.length))] 
 
 class OverworldMap {
   constructor(config) {
@@ -137,31 +137,31 @@ window.OverworldMaps = {
           }
         ]
       },
-      readingRoomNpcB: {
-        type: "Person",
-        x: utils.withGrid(3),
-        y: utils.withGrid(6),
-        src: "/images/characters/people/npc3.png",
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "People take their jobs here very seriously.", faceHero: "readingRoomNpcB" },
-            ]
-          }
-        ],
-        behaviorLoop: [
-          { type: "walk", direction: "right", },
-          { type: "walk", direction: "right", },
-          { type: "walk", direction: "down", },
-          { type: "walk", direction: "down", },
-          { type: "walk", direction: "left", },
-          { type: "walk", direction: "left", },
-          { type: "walk", direction: "up", },
-          { type: "walk", direction: "up", },
-          { type: "stand", direction: "up", time: 500 },
-          { type: "stand", direction: "left", time: 500 },
-        ]
-      },
+      // readingRoomNpcB: {
+      //   type: "Person",
+      //   x: utils.withGrid(3),
+      //   y: utils.withGrid(6),
+      //   src: "/images/characters/people/npc3.png",
+      //   talking: [
+      //     {
+      //       events: [
+      //         { type: "textMessage", text: "People take their jobs here very seriously.", faceHero: "readingRoomNpcB" },
+      //       ]
+      //     }
+      //   ],
+      //   behaviorLoop: [
+      //     { type: "walk", direction: "right", },
+      //     { type: "walk", direction: "right", },
+      //     { type: "walk", direction: "down", },
+      //     { type: "walk", direction: "down", },
+      //     { type: "walk", direction: "left", },
+      //     { type: "walk", direction: "left", },
+      //     { type: "walk", direction: "up", },
+      //     { type: "walk", direction: "up", },
+      //     { type: "stand", direction: "up", time: 500 },
+      //     { type: "stand", direction: "left", time: 500 },
+      //   ]
+      // },
     },
     cutsceneSpaces: {
       [utils.asGridCoord(5,10)]: [
@@ -177,13 +177,11 @@ window.OverworldMaps = {
           ]
         }
       ],
-      [utils.asGridCoord(10,6)]: [{
+      [utils.asGridCoord(9,5)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
           { type: "textMessage", text: "* You fall asleep in the library only to realise you've been locked in *"},
-          { type: "walk", who: "Milos", direction: "down"},
-          { type: "walk", who: "Milos", direction: "right"},
           { type: "walk", who: "Milos", direction: "right"},
           { type: "walk", who: "Milos", direction: "right"},
           { type: "stand", who: "Milos", direction: "right", time: 200},
@@ -192,18 +190,19 @@ window.OverworldMaps = {
           { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill."},
           { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts."},
           { type: "textMessage", text: "Like Miss Tussy over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort."},
-          { type: "stand", who: "Milos", direction: "right", time: 200},
-          { type: "walk", who: "Milos", direction: "up"},
-          { type: "stand", who: "Milos", direction: "up", time: 300},
+          { type: "stand", who: "Milos", direction: "up", time: 200},
+          { type: "walk", who: "Milos", direction: "down"},
+          { type: "walk", who: "Milos", direction: "left"},
+          { type: "walk", who: "Milos", direction: "left"},
           { type: "stand", who: "hero", direction: "down", time: 400},
-          { type: "stand", who: "Milos", direction: "down", time: 300},
+          { type: "stand", who: "Milos", direction: "right", time: 300},
           { type: "textMessage", text: "*shouts after you*  Also, you're stuck with till the morning. Have fun!"},
-          { type: "stand", who: "Milos", direction: "up", time: 300},
+          { type: "stand", who: "Milos", direction: "left", time: 300},
           { type: "textMessage", text: "This is just a dream. A really weird dream *you tell yourself*"},
-          { type: "textMessage", text: "Might as well explore."},
+          { type: "textMessage", text: "Might as well explore it. For research purposes."},
           {
             type: "changeMap",
-            map: "Street",
+            map: "Hall",
             x: utils.withGrid(5),
             y: utils.withGrid(10),
             direction: "down"
@@ -229,7 +228,7 @@ window.OverworldMaps = {
       [utils.asGridCoord(6,7)]: true,
       [utils.asGridCoord(7,7)]: true,
       [utils.asGridCoord(9,7)]: true,
-      [utils.asGridCoord(10,7)]: true,
+     // [utils.asGridCoord(10,7)]: true,
       [utils.asGridCoord(9,9)]: true,
       [utils.asGridCoord(10,9)]: true,
       [utils.asGridCoord(3,10)]: true,
@@ -254,10 +253,10 @@ window.OverworldMaps = {
 
     }
   },
-  Street: {
-    id: "Street",
-    lowerSrc: "/images/maps/StreetLower.png",
-    upperSrc: "/images/maps/StreetUpper.png",
+  Hall: {
+    id: "Hall",
+    lowerSrc: "/images/maps/HallLower.png",
+    upperSrc: "/images/maps/HallUpper.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -265,7 +264,7 @@ window.OverworldMaps = {
         x: utils.withGrid(30),
         y: utils.withGrid(10),
       },
-      streetNpcA: {
+      hallNpcA: {
         type: "Person",
         x: utils.withGrid(9),
         y: utils.withGrid(11),
@@ -277,12 +276,12 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "All ambitious pizza chefs gather on Anchovy Avenue.", faceHero: "streetNpcA" },
+              { type: "textMessage", text: "All ambitious pizza chefs gather on Anchovy Avenue.", faceHero: "hallNpcA" },
             ]
           }
         ]
       },
-      streetNpcB: {
+      hallNpcB: {
         type: "Person",
         x: utils.withGrid(31),
         y: utils.withGrid(12),
@@ -297,28 +296,28 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "I can't decide on my favorite toppings.", faceHero: "streetNpcB" },
+              { type: "textMessage", text: "I can't decide on my favorite toppings.", faceHero: "hallNpcB" },
             ]
           }
         ]
       },
-      streetNpcC: {
+      hallNpcC: {
         type: "Person",
         x: utils.withGrid(22),
         y: utils.withGrid(10),
         src: "/images/characters/people/npc8.png",
         talking: [
           {
-            required: ["streetBattle"],
+            required: ["hallBattle"],
             events: [
-              { type: "textMessage", text: "You are quite capable.", faceHero: "streetNpcC" },
+              { type: "textMessage", text: "You are quite capable.", faceHero: "hallNpcC" },
             ]
           },
           {
             events: [
-              { type: "textMessage", text: "You should have just stayed home!", faceHero: "streetNpcC" },
-              { type: "battle", enemyId: "streetBattle" },
-              { type: "addStoryFlag", flag: "streetBattle"},
+              { type: "textMessage", text: "You should have just stayed home!", faceHero: "hallNpcC" },
+              { type: "battle", enemyId: "hallBattle" },
+              { type: "addStoryFlag", flag: "hallBattle"},
             ]
           },
         ]
@@ -372,7 +371,7 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "StreetNorth",
+              map: "HallNorth",
               x: utils.withGrid(7),
               y: utils.withGrid(16),
               direction: "up"
@@ -436,7 +435,7 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "Street",
+              map: "Hall",
               x: utils.withGrid(29),
               y: utils.withGrid(9),
               direction: "down"
@@ -588,7 +587,7 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "StreetNorth",
+              map: "HallNorth",
               x: utils.withGrid(7),
               y: utils.withGrid(5),
               direction: "down"
@@ -645,10 +644,10 @@ window.OverworldMaps = {
       [utils.asGridCoord(5,13)]: true,
     }
   },
-  StreetNorth: {
-    id: "StreetNorth",
-    lowerSrc: "/images/maps/StreetNorthLower.png",
-    upperSrc: "/images/maps/StreetNorthUpper.png",
+  HallNorth: {
+    id: "HallNorth",
+    lowerSrc: "/images/maps/HallNorthLower.png",
+    upperSrc: "/images/maps/HallNorthUpper.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -800,7 +799,7 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "Street",
+              map: "Hall",
               x: utils.withGrid(25),
               y: utils.withGrid(5),
               direction: "down"
@@ -914,7 +913,7 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "Street",
+              map: "Hall",
               x: utils.withGrid(5),
               y: utils.withGrid(9),
               direction: "down"
