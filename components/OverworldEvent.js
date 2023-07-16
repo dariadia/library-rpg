@@ -13,8 +13,6 @@ class OverworldEvent {
       direction: this.event.direction,
       time: this.event.time
     })
-    
-    //Set up a handler to complete when correct person is done walking, then resolve the event
     const completeHandler = e => {
       if (e.detail.whoId === this.event.who) {
         document.removeEventListener("PersonStandComplete", completeHandler);
@@ -33,8 +31,6 @@ class OverworldEvent {
       direction: this.event.direction,
       retry: true
     })
-
-    //Set up a handler to complete when correct person is done walking, then resolve the event
     const completeHandler = e => {
       if (e.detail.whoId === this.event.who) {
         document.removeEventListener("PersonWalkingComplete", completeHandler);
@@ -42,7 +38,6 @@ class OverworldEvent {
       }
     }
     document.addEventListener("PersonWalkingComplete", completeHandler)
-
   }
 
   textMessage(resolve) {
@@ -60,8 +55,6 @@ class OverworldEvent {
   }
 
   changeMap(resolve) {
-
-    //Deactivate old objects
     Object.values(this.map.gameObjects).forEach(obj => {
       obj.isMounted = false;
     })
