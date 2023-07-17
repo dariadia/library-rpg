@@ -135,6 +135,23 @@ window.OverworldMaps = {
               { type: "textMessage", text: getRandomJoke() },
             ]
           }
+        ],
+        behaviorLoop: [
+          { type: "stand", direction: "up", time: 2000 },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "right", },
+          { type: "stand", direction: "right", time: 500 },
+          { type: "stand", direction: "left", time: 1000 },
+          { type: "walk", direction: "down", },
+          { type: "walk", direction: "left", },
+          { type: "walk", direction: "left", },
+          { type: "walk", direction: "left", },
+          { type: "walk", direction: "left", },
+          { type: "walk", direction: "up", },
+          { type: "stand", direction: "up", time: 1000 },
+          { type: "stand", direction: "left", time: 500 },
         ]
       },
       // readingRoomNpcB: {
