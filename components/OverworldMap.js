@@ -222,7 +222,7 @@ window.OverworldMaps = {
             type: "changeMap",
             map: "Hall",
             x: utils.withGrid(9),
-            y: utils.withGrid(9),
+            y: utils.withGrid(10),
             direction: "down"
           },
         ]
@@ -277,9 +277,9 @@ window.OverworldMaps = {
     },
     walls: function() {
       let walls = {};
-      ["8,7","7,7","6,7","5,7","4,7",
+      ["8,9","7,9","6,9","5,9","4,9",
       "10,8","11,8","12,8","13,8","14,8","15,8","16,8","17,8","18,8","19,8",
-      "20,7","21,7","22,7","23,7","24,7","25,7","26,7","27,7",
+      "20,7","21,7","22,7","23,7","24,7","25,7","26,6","27,6",
       ].forEach(coord => {
         let [x,y] = coord.split(",")
         walls[utils.asGridCoord(x,y)] = true
@@ -287,7 +287,7 @@ window.OverworldMaps = {
       return walls
     }(),
     cutsceneSpaces: {
-      [utils.asGridCoord(9,8)]: [
+      [utils.asGridCoord(9,9)]: [
         {
           events: [
             { 
