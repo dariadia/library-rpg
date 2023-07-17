@@ -277,7 +277,9 @@ window.OverworldMaps = {
     },
     walls: function() {
       let walls = {};
-      ["8,9","7,9","6,9","5,9","4,9"
+      ["8,7","7,7","6,7","5,7","4,7",
+      "10,8","11,8","12,8","13,8","14,8","15,8","16,8","17,8","18,8","19,8",
+      "20,7","21,7","22,7","23,7","24,7","25,7","26,7","27,7",
       ].forEach(coord => {
         let [x,y] = coord.split(",")
         walls[utils.asGridCoord(x,y)] = true
@@ -285,13 +287,13 @@ window.OverworldMaps = {
       return walls
     }(),
     cutsceneSpaces: {
-      [utils.asGridCoord(5,9)]: [
+      [utils.asGridCoord(9,8)]: [
         {
           events: [
             { 
               type: "changeMap",
               map: "DiningRoom",
-              x: utils.withGrid(6),
+              x: utils.withGrid(7),
               y: utils.withGrid(12),
               direction: "up"
             }
