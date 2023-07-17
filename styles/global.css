@@ -1,4 +1,5 @@
 :root {
+  --main: #050301;
   --border-color: #291D4D;
   --dialog-background: #5e3e17;
   --menu-background: #5e3e17;
@@ -32,7 +33,7 @@ body {
 .game-container {
   position: relative; 
   top: -90px;
-  background: #d9f4ff;
+  background: var(--main);
   width: 352px;
   height: 100%;
   margin: 0 auto;
