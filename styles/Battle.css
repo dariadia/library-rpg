@@ -4,12 +4,12 @@
   right:0;
   top:0;
   bottom:0;
-  background-image: url(/images/maps/StreetBattle.png);
+  background-image: url(/images/maps/HallBattle.png);
   background-size: cover;
   image-rendering: pixelated;
 }
-.Battle.green-kitchen {
-  background-image: url(/images/maps/GreenKitchenBattle.png);
+.Battle.dark-hall {
+  background-image: url(/images/maps/DarkHallBattle.png);
 }
 .Battle.dining-room {
   background-image: url(/images/maps/DiningRoomBattle.png);

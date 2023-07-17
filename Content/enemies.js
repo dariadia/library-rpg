@@ -65,7 +65,7 @@ window.Enemies = {
       }
     }
   },
-  "streetBattle": {
+  "hallBattle": {
     name: "Pizza Thug",
     src: "/images/characters/people/npc8.png",
     pizzas: {
