@@ -7,6 +7,13 @@ const MILOS_JOKES = [
 
 const getRandomJoke = () => MILOS_JOKES[Math.floor(Math.random() * (MILOS_JOKES.length))] 
 
+const CHARACTERS = {
+  MILOS: {
+    name: 'Miloš Lukić',
+    avatar: ''
+  }
+}
+
 class OverworldMap {
   constructor(config) {
     this.overworld = null
@@ -132,7 +139,7 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: getRandomJoke() },
+              { type: "textMessage", text: () => getRandomJoke() },
             ]
           }
         ],
@@ -198,13 +205,13 @@ window.OverworldMaps = {
         disqualify: ["SEEN_INTRO"],
         events: [
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          // { type: "textMessage", text: "* You fall asleep in the library only to realise you've been locked in *"},
-          // { type: "walk", who: "Milos", direction: "right"},
-          // { type: "walk", who: "Milos", direction: "right"},
-          // { type: "walk", who: "Milos", direction: "right"},
-          // { type: "stand", who: "Milos", direction: "right", time: 200},
-          // { type: "stand", who: "hero", direction: "left", time: 200},
-          // { type: "textMessage", text: "Howdy! First time dead?"},
+          { type: "textMessage", text: "* You fall asleep in the library only to realise you've been locked in *"},
+          { type: "walk", who: "Milos", direction: "right"},
+          { type: "walk", who: "Milos", direction: "right"},
+          { type: "walk", who: "Milos", direction: "right"},
+          { type: "stand", who: "Milos", direction: "right", time: 200},
+          { type: "stand", who: "hero", direction: "left", time: 200},
+          { type: "textMessage", text: "Howdy! First time dead?", character: CHARACTERS.MILOS},
           // { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill."},
           // { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts."},
           // { type: "textMessage", text: "Like Miss Tussy over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort."},

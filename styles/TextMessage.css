@@ -13,6 +13,11 @@
   margin: 0;
   font-size: 10px;
 }
+.TextMessage_character {
+  position: absolute;
+  top: -20px;
+  font-size: 12px;
+}
 .TextMessage span {
   opacity: 0;
 }
