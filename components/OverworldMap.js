@@ -1,14 +1,8 @@
-const MILOS_JOKES = [
-  `What room does a ghost not need in a house? A living room. Aha-ha! Get it? 'Cause they're dead!`,
-  `When do ghosts drink coffee? In the moaning. Ugh, I'd kill for a good cup for breakfast...`,
-  `Do you have any cigarettes? I can't smoke but I sure can smell!`,
-  `Which ghost is the best dancer? The Boogie Man!`
-]
-
-const getRandomJoke = () => MILOS_JOKES[Math.floor(Math.random() * (MILOS_JOKES.length))] 
+const MILOS = 'Miloš'
 
 const CHARACTERS = {
   MILOS: {
+    id: MILOS,
     name: 'Miloš Lukić',
     avatar: ''
   }
@@ -139,7 +133,7 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: () => getRandomJoke() },
+              { type: "textMessage", character: CHARACTERS.MILOS, sayRandom: true },
             ]
           }
         ],
@@ -193,7 +187,7 @@ window.OverworldMaps = {
           events: [
             { 
               type: "changeMap", 
-              map: "DiningRoom",
+              map: "ReadingRoom",
               x: utils.withGrid(7),
               y: utils.withGrid(3),
               direction: "down"
@@ -211,7 +205,7 @@ window.OverworldMaps = {
           { type: "walk", who: "Milos", direction: "right"},
           { type: "stand", who: "Milos", direction: "right", time: 200},
           { type: "stand", who: "hero", direction: "left", time: 200},
-          { type: "textMessage", text: "Howdy! First time dead?", character: CHARACTERS.MILOS},
+          { type: "textMessage", text: "Howdy! First time dead?", character: CHARACTERS.MILOS },
           // { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill."},
           // { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts."},
           // { type: "textMessage", text: "Like Miss Tussy over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort."},
@@ -303,9 +297,9 @@ window.OverworldMaps = {
           events: [
             { 
               type: "changeMap",
-              map: "DiningRoom",
-              x: utils.withGrid(7),
-              y: utils.withGrid(12),
+              map: "ReadingRoom",
+              x: utils.withGrid(5),
+              y: utils.withGrid(10),
               direction: "up"
             }
           ]

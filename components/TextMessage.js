@@ -1,9 +1,25 @@
+const MILOS_JOKES = [
+  `What room does a ghost not need in a house? A living room. Aha-ha! Get it? 'Cause they're dead!`,
+  `When do ghosts drink coffee? In the moaning. Ugh, I'd kill for a good cup for breakfast...`,
+  `Do you have any cigarettes? I can't smoke but I sure can smell!`,
+  `Which ghost is the best dancer? The Boogie Man!`
+]
+
+const getRandomJoke = (character) => {
+  switch (character) {
+    case MILOS: {
+      return MILOS_JOKES[Math.floor(Math.random() * (MILOS_JOKES.length))] 
+    }
+  }
+}
+
 class TextMessage {
-  constructor({ text, character, onComplete }) {
+  constructor({ text, character, onComplete, sayRandom }) {
     this.text = text
     this.character = character
     this.onComplete = onComplete
     this.element = null
+    this.sayRandom = sayRandom
   }
 
   createElement() {
@@ -25,7 +41,7 @@ class TextMessage {
 
     this.revealingText = new RevealingText({
       element: this.element.querySelector(".TextMessage_p"),
-      text: this.text
+      text: this.sayRandom ? getRandomJoke(this.character.id) : this.text
     })
 
     this.element.querySelector("button").addEventListener("click", () => {

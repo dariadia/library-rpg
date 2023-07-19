@@ -50,6 +50,7 @@ class OverworldEvent {
     const message = new TextMessage({
       text: this.event.text,
       character: this.event.character,
+      sayRandom: this.event.sayRandom,
       onComplete: () => resolve()
     })
     message.init( document.querySelector(".game-container") )

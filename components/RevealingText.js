@@ -30,13 +30,10 @@ class RevealingText {
 
   init() {
     let characters = [];
-    console.log(this)
     this.text.split("").forEach(character => {
       let span = document.createElement("span");
       span.textContent = character;
       this.element.appendChild(span);
-
-      //Add this span to our internal state Array
       characters.push({
         span,
         delayAfter: character === " " ? 0 : this.speed         
