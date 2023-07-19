@@ -208,7 +208,7 @@ window.OverworldMaps = {
           { type: "textMessage", text: "Howdy! First time dead?", character: CHARACTERS.MILOS },
           // { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill."},
           // { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts."},
-          // { type: "textMessage", text: "Like Miss Tussy over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort."},
+          // { type: "textMessage", text: "Like Miss T over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort."},
           // { type: "stand", who: "Milos", direction: "up", time: 200},
           // { type: "walk", who: "Milos", direction: "down"},
           // { type: "walk", who: "Milos", direction: "left"},
