@@ -4,7 +4,7 @@ const CHARACTERS = {
   MILOS: {
     id: MILOS,
     name: 'Miloš Lukić',
-    avatar: ''
+    avatar: '/images/characters/avatars/milos.png'
   }
 }
 
@@ -148,6 +148,7 @@ window.OverworldMaps = {
           { type: "walk", direction: "down", },
           { type: "walk", direction: "left", },
           { type: "walk", direction: "left", },
+          { type: "textMessage", character: CHARACTERS.MILOS, sayRandom: true },
           { type: "walk", direction: "left", },
           { type: "walk", direction: "left", },
           { type: "walk", direction: "up", },
@@ -206,16 +207,16 @@ window.OverworldMaps = {
           { type: "stand", who: "Milos", direction: "right", time: 200},
           { type: "stand", who: "hero", direction: "left", time: 200},
           { type: "textMessage", text: "Howdy! First time dead?", character: CHARACTERS.MILOS },
-          // { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill."},
-          // { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts."},
-          // { type: "textMessage", text: "Like Miss T over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort."},
+          // { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill.", character: CHARACTERS.MILOS },
+          // { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts.", character: CHARACTERS.MILOS},
+          // { type: "textMessage", text: "Like Miss T over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort.", character: CHARACTERS.MILOS},
           // { type: "stand", who: "Milos", direction: "up", time: 200},
           // { type: "walk", who: "Milos", direction: "down"},
           // { type: "walk", who: "Milos", direction: "left"},
           // { type: "walk", who: "Milos", direction: "left"},
           // { type: "stand", who: "hero", direction: "down", time: 400},
           // { type: "stand", who: "Milos", direction: "right", time: 300},
-          // { type: "textMessage", text: "*shouts after you*  Also, you're stuck with till the morning. Have fun!"},
+          // { type: "textMessage", text: "*shouts after you*  Also, you're stuck with till the morning. Have fun!", character: CHARACTERS.MILOS},
           // { type: "stand", who: "Milos", direction: "left", time: 300},
           // { type: "textMessage", text: "This is just a dream. A really weird dream *you tell yourself*"},
           // { type: "textMessage", text: "Might as well explore it. For research purposes."},

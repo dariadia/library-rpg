@@ -38,7 +38,7 @@ class TextMessage {
     if (this.character) {
       const characterBox = document.createElement("div")
       characterBox.classList.add("TextMessage_character")
-      characterBox.innerHTML = `${this.character?.name}<img height="180" width="180" src="${this.character?.avatar}" alt="${this.character?.name} speaking" />`
+      characterBox.innerHTML = `<div class="TextMessage_character-name">${this.character?.name}<img class="TextMessage_character-avatar" src="${this.character?.avatar}" alt="${this.character?.name} speaking" /></div>`
 
       this.element.insertBefore(characterBox, this.element.firstChild)
     }

@@ -18,6 +18,18 @@
   top: -20px;
   font-size: 12px;
 }
+.TextMessage_character-name {
+  position: relative;
+  z-index: 2;
+}
+.TextMessage_character-avatar {
+  width: 95px;
+  height: 95px;
+  position: absolute;
+  z-index: -1;
+  top: -76px;
+  left: 0;
+}
 .TextMessage span {
   opacity: 0;
 }
