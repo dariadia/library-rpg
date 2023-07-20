@@ -228,6 +228,13 @@ window.OverworldMaps = {
             direction: "down"
           },
         ]
+      }],
+      [utils.asGridCoord(4,4)]: [{
+        disqualify: ["SEEN_INTRO"],
+        events: [
+          { type: "addStoryFlag", flag: "SEEN_INTRO"},
+          { type: "textMessage", text: "Ugh, it's locked. The security guard should come by the morning."},
+        ]
       }]
     },
     walls: function() {
@@ -306,32 +313,32 @@ window.OverworldMaps = {
           ]
         }
       ],
-      [utils.asGridCoord(29,9)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "Shop",
-              x: utils.withGrid(5),
-              y: utils.withGrid(12),
-              direction: "up"
-            }
-          ]
-        }
-      ],
-      [utils.asGridCoord(25,5)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "HallNorth",
-              x: utils.withGrid(7),
-              y: utils.withGrid(16),
-              direction: "up"
-            }
-          ]
-        }
-      ]
+      // [utils.asGridCoord(29,9)]: [
+      //   {
+      //     events: [
+      //       {
+      //         type: "changeMap",
+      //         map: "Shop",
+      //         x: utils.withGrid(5),
+      //         y: utils.withGrid(12),
+      //         direction: "up"
+      //       }
+      //     ]
+      //   }
+      // ],
+      // [utils.asGridCoord(25,5)]: [
+      //   {
+      //     events: [
+      //       {
+      //         type: "changeMap",
+      //         map: "HallNorth",
+      //         x: utils.withGrid(7),
+      //         y: utils.withGrid(16),
+      //         direction: "up"
+      //       }
+      //     ]
+      //   }
+      // ]
     }
   },
   Shop: {
