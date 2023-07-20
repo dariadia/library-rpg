@@ -63,7 +63,6 @@ class Combatant {
       this[key] = changes[key]
     });
 
-    //Update active flag to show the correct pizza & hud
     this.hudElement.setAttribute("data-active", this.isActive);
     this.pizzaElement.setAttribute("data-active", this.isActive);
 

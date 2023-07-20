@@ -71,6 +71,13 @@ class OverworldMap {
   }
 
   async startCutscene(events) {
+    const seenScenes = events.filter(item => item.type === "addStoryFlag")
+      .map(item => item.flag)
+    const isSeenScene = seenScenes
+      .filter(scene => window.playerState.storyFlags.hasOwnProperty(scene))
+
+    if (isSeenScene.length) return
+
     this.isCutscenePlaying = true
 
     for (let i=0; i<events.length; i++) {
@@ -200,16 +207,16 @@ window.OverworldMaps = {
         disqualify: ["SEEN_INTRO"],
         events: [
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          { type: "textMessage", text: "* You fall asleep in the library only to realise you've been locked in *"},
-          { type: "walk", who: "Milos", direction: "right"},
-          { type: "walk", who: "Milos", direction: "right"},
-          { type: "walk", who: "Milos", direction: "right"},
-          { type: "stand", who: "Milos", direction: "right", time: 200},
-          { type: "stand", who: "hero", direction: "left", time: 200},
-          { type: "textMessage", text: "Howdy! First time dead?", character: CHARACTERS.MILOS },
-          // { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill.", character: CHARACTERS.MILOS },
-          // { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts.", character: CHARACTERS.MILOS},
-          // { type: "textMessage", text: "Like Miss T over there. The name is Miloš, by the way. That's a 'sh' at the end, make an effort.", character: CHARACTERS.MILOS},
+          { type: "textMessage", text: "*You fall asleep in the library only to realise you've been locked in*"},
+          // { type: "walk", who: "Milos", direction: "right"},
+          // { type: "walk", who: "Milos", direction: "right"},
+          // { type: "walk", who: "Milos", direction: "right"},
+          // { type: "stand", who: "Milos", direction: "right", time: 200},
+          // { type: "stand", who: "hero", direction: "left", time: 200},
+          // { type: "textMessage", text: "Howdy! First time dead?", character: { name: "???", avatar: CHARACTERS.MILOS.avatar } },
+          // { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill.", character: { name: "???", avatar: CHARACTERS.MILOS.avatar } },
+          // { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts. Like Miss T over there.", character: { name: "???", avatar: CHARACTERS.MILOS.avatar }},
+          // { type: "textMessage", text: "The name is Miloš, by the way. That's a 'sh' at the end, make an effort.", character: CHARACTERS.MILOS},
           // { type: "stand", who: "Milos", direction: "up", time: 200},
           // { type: "walk", who: "Milos", direction: "down"},
           // { type: "walk", who: "Milos", direction: "left"},
@@ -230,9 +237,7 @@ window.OverworldMaps = {
         ]
       }],
       [utils.asGridCoord(4,4)]: [{
-        disqualify: ["SEEN_INTRO"],
         events: [
-          { type: "addStoryFlag", flag: "SEEN_INTRO"},
           { type: "textMessage", text: "Ugh, it's locked. The security guard should come by the morning."},
         ]
       }]
