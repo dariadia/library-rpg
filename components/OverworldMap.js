@@ -163,31 +163,6 @@ window.OverworldMaps = {
           { type: "stand", direction: "left", time: 500 },
         ]
       },
-      // readingRoomNpcB: {
-      //   type: "Person",
-      //   x: utils.withGrid(3),
-      //   y: utils.withGrid(6),
-      //   src: "/images/characters/people/npc3.png",
-      //   talking: [
-      //     {
-      //       events: [
-      //         { type: "textMessage", text: "People take their jobs here very seriously.", faceHero: "readingRoomNpcB" },
-      //       ]
-      //     }
-      //   ],
-      //   behaviorLoop: [
-      //     { type: "walk", direction: "right", },
-      //     { type: "walk", direction: "right", },
-      //     { type: "walk", direction: "down", },
-      //     { type: "walk", direction: "down", },
-      //     { type: "walk", direction: "left", },
-      //     { type: "walk", direction: "left", },
-      //     { type: "walk", direction: "up", },
-      //     { type: "walk", direction: "up", },
-      //     { type: "stand", direction: "up", time: 500 },
-      //     { type: "stand", direction: "left", time: 500 },
-      //   ]
-      // },
     },
     cutsceneSpaces: {
       [utils.asGridCoord(5,10)]: [
@@ -195,9 +170,9 @@ window.OverworldMaps = {
           events: [
             { 
               type: "changeMap", 
-              map: "ReadingRoom",
-              x: utils.withGrid(7),
-              y: utils.withGrid(3),
+              map: "Hall",
+              x: utils.withGrid(9),
+              y: utils.withGrid(10),
               direction: "down"
             }
           ]
@@ -225,15 +200,9 @@ window.OverworldMaps = {
           // { type: "stand", who: "Milos", direction: "right", time: 300},
           // { type: "textMessage", text: "*shouts after you*  Also, you're stuck with till the morning. Have fun!", character: CHARACTERS.MILOS},
           // { type: "stand", who: "Milos", direction: "left", time: 300},
-          // { type: "textMessage", text: "This is just a dream. A really weird dream *you tell yourself*"},
-          // { type: "textMessage", text: "Might as well explore it. For research purposes."},
-          {
-            type: "changeMap",
-            map: "Hall",
-            x: utils.withGrid(9),
-            y: utils.withGrid(10),
-            direction: "down"
-          },
+          // { type: "textMessage", text: "Ow, wow..."},
+          // { type: "textMessage", text: "Might as well explore. Er, for research purposes?"},
+          // { type: "textMessage", text: "Is this even real? *you wonder* ... "},
         ]
       }],
       [utils.asGridCoord(4,4)]: [{
@@ -297,7 +266,8 @@ window.OverworldMaps = {
       "31,9","32,9","33,9",
       "34,10","34,11","34,12","34,13","34,14","34,15","34,16","34,17","34,18","34,19",
       "24,20","25,20","26,20","27,20","28,20","29,20","30,20","31,20","32,20","33,20","34,20",
-      "23,19","23,18","22,18",
+      "23,19","23,18","22,18","18,18","18,19","18,20","18,17","19,20","20,20","21,20","22,20",
+
       ].forEach(coord => {
         let [x,y] = coord.split(",")
         walls[utils.asGridCoord(x,y)] = true
