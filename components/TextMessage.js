@@ -1,18 +1,9 @@
-const MILOS_JOKES = [
-  `What room does a ghost not need in a house? A living room. Aha-ha! Get it? 'Cause they're dead!`,
-  `When do ghosts drink coffee? In the moaning. Ugh, I'd kill for a good cup for breakfast...`,
-  `Do you have any cigarettes? I can't smoke but I sure can smell!`,
-  `Rakija is my medicine. You don't happen to have any, do you?..`,
-  `Boo Felicia`,
-  `My ma made the best rakija. Bre... I miss those days.`,
-  `What kind of streets do ghosts haunt? Dead ends.`,
-  `Do you want to hear a ghost joke? That’s the spirit.`,
-]
+const HERR_DOKTOR_PHRASES = []
 
 const getRandomJoke = (character) => {
   switch (character) {
-    case MILOS: {
-      return MILOS_JOKES[Math.floor(Math.random() * (MILOS_JOKES.length))] 
+    case [HERR_DOKTOR]: {
+      return HERR_DOKTOR_PHRASES[Math.floor(Math.random() * (HERR_DOKTOR_PHRASES.length))] 
     }
   }
 }

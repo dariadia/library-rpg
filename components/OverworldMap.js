@@ -1,10 +1,11 @@
-const MILOS = 'Miloš'
+const HERR_DOKTOR = 'HerrDoktor'
 
 const CHARACTERS = {
-  MILOS: {
-    id: MILOS,
-    name: 'Miloš Lukić',
-    avatar: '/images/characters/avatars/milos.png'
+[HERR_DOKTOR]: {
+    id: HERR_DOKTOR,
+    name: 'Herr Doktor von Reichshoffen',
+    avatar: '/images/characters/avatars/herr-doktor.png',
+    character: '/images/characters/people/herr-doktor.png',
   }
 }
 
@@ -131,16 +132,16 @@ window.OverworldMaps = {
         x: utils.withGrid(10),
         y: utils.withGrid(5),
       },
-      Milos: {
+      [HERR_DOKTOR]: {
         type: "Person",
         x: utils.withGrid(5),
         y: utils.withGrid(5),
         direction: "up",
-        src: "/images/characters/people/milos.png",
+        src: CHARACTERS[HERR_DOKTOR].character,
         talking: [
           {
             events: [
-              { type: "textMessage", character: CHARACTERS.MILOS, sayRandom: true },
+              // { type: "textMessage", character: CHARACTERS[HERR_DOKTOR], sayRandom: true },
             ]
           }
         ],
@@ -154,13 +155,6 @@ window.OverworldMaps = {
           { type: "stand", direction: "left", time: 1000 },
           { type: "walk", direction: "down", },
           { type: "walk", direction: "left", },
-          { type: "walk", direction: "left", },
-          { type: "textMessage", character: CHARACTERS.MILOS, sayRandom: true },
-          { type: "walk", direction: "left", },
-          { type: "walk", direction: "left", },
-          { type: "walk", direction: "up", },
-          { type: "stand", direction: "up", time: 1000 },
-          { type: "stand", direction: "left", time: 500 },
         ]
       },
     },
@@ -184,19 +178,9 @@ window.OverworldMaps = {
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
           { type: "textMessage", text: "*You fall asleep in the library only to realise you've been locked in*"},
           // { type: "walk", who: "Milos", direction: "right"},
-          // { type: "walk", who: "Milos", direction: "right"},
-          // { type: "walk", who: "Milos", direction: "right"},
-          // { type: "stand", who: "Milos", direction: "right", time: 200},
-          // { type: "stand", who: "hero", direction: "left", time: 200},
-          // { type: "textMessage", text: "Howdy! First time dead?", character: { name: "???", avatar: CHARACTERS.MILOS.avatar } },
-          // { type: "textMessage", text: "Ahah, just kidding. But those books of yours look plenty enough to kill.", character: { name: "???", avatar: CHARACTERS.MILOS.avatar } },
-          // { type: "textMessage", text: "Happened before, *nudges you* you'd never believe the things you get to see around these parts. Like Miss T over there.", character: { name: "???", avatar: CHARACTERS.MILOS.avatar }},
-          // { type: "textMessage", text: "The name is Miloš, by the way. That's a 'sh' at the end, make an effort.", character: CHARACTERS.MILOS},
           // { type: "stand", who: "Milos", direction: "up", time: 200},
           // { type: "walk", who: "Milos", direction: "down"},
           // { type: "walk", who: "Milos", direction: "left"},
-          // { type: "walk", who: "Milos", direction: "left"},
-          // { type: "stand", who: "hero", direction: "down", time: 400},
           // { type: "stand", who: "Milos", direction: "right", time: 300},
           // { type: "textMessage", text: "*shouts after you*  Also, you're stuck with till the morning. Have fun!", character: CHARACTERS.MILOS},
           // { type: "stand", who: "Milos", direction: "left", time: 300},
@@ -240,7 +224,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(22),
         y: utils.withGrid(10),
-        src: "/images/characters/people/npc8.png",
+        src: "/images/characters/people/npc2.png",
         talking: [
           {
             required: ["hallBattle"],
@@ -331,7 +315,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(6),
         y: utils.withGrid(5),
-        src: "/images/characters/people/erio.png",
+        src: "/images/characters/people/npc2.png",
         talking: [
           {
             events: [
@@ -475,7 +459,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(1),
         y: utils.withGrid(8),
-        src: "/images/characters/people/npc3.png",
+        src: "/images/characters/people/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "up", time: 900, },
           { type: "walk", direction: "down"},
@@ -500,7 +484,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(3),
         y: utils.withGrid(5),
-        src: "/images/characters/people/secondBoss.png",
+        src: "/images/characters/people/npc2.png",
         talking: [
           {
             required: ["chefRootie"],
@@ -594,7 +578,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(9),
         y: utils.withGrid(6),
-        src: "/images/characters/people/npc1.png",
+        src: "/images/characters/people/npc2.png",
         behaviorLoop: [
           { type: "walk", direction: "left", },
           { type: "walk", direction: "down", },
@@ -615,7 +599,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(4),
         y: utils.withGrid(12),
-        src: "/images/characters/people/npc3.png",
+        src: "/images/characters/people/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "up", time: 400, },
           { type: "stand", direction: "left", time: 800, },
@@ -635,7 +619,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(12),
         y: utils.withGrid(9),
-        src: "/images/characters/people/npc8.png",
+        src: "/images/characters/people/npc2.png",
         talking: [
           {
             required: ["streetNorthBattle"],
@@ -759,7 +743,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(12),
         y: utils.withGrid(8),
-        src: "/images/characters/people/npc8.png",
+        src: "/images/characters/people/npc2.png",
         talking: [
           {
             required: ["diningRoomBattle"],
@@ -780,7 +764,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(9),
         y: utils.withGrid(5),
-        src: "/images/characters/people/npc4.png",
+        src: "/images/characters/people/npc2.png",
         talking: [
           {
             events: [
@@ -793,7 +777,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(2),
         y: utils.withGrid(8),
-        src: "/images/characters/people/npc7.png",
+        src: "/images/characters/people/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "right", time: 800, },
           { type: "stand", direction: "down", time: 700, },
@@ -811,7 +795,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(8),
         y: utils.withGrid(9),
-        src: "/images/characters/people/npc1.png",
+        src: "/images/characters/people/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "right", time: 1200, },
           { type: "stand", direction: "down", time: 900, },
