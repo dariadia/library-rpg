@@ -1,6 +1,6 @@
 const HERR_DOKTOR_PHRASES = []
 
-const getRandomJoke = (character) => {
+const getRandomPhrase = (character) => {
   switch (character) {
     case [HERR_DOKTOR]: {
       return HERR_DOKTOR_PHRASES[Math.floor(Math.random() * (HERR_DOKTOR_PHRASES.length))] 
@@ -36,7 +36,7 @@ class TextMessage {
 
     this.revealingText = new RevealingText({
       element: this.element.querySelector(".TextMessage_p"),
-      text: this.sayRandom ? getRandomJoke(this.character.id) : this.text
+      text: this.sayRandom ? getRandomPhrase(this.character.id) : this.text
     })
 
     this.element.querySelector("button").addEventListener("click", () => {

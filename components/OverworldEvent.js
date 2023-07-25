@@ -40,6 +40,14 @@ class OverworldEvent {
     document.addEventListener("PersonWalkingComplete", completeHandler)
   }
 
+  externalEffect(resolve) {
+    const container = document.querySelector(".game-container")
+    const effectElement = document.createElement("div");
+    effectElement.classList.add("ExternalEffect", this.event.kind);
+    container.appendChild(effectElement)
+    resolve()
+  }
+
   textMessage(resolve) {
 
     if (this.event.faceHero) {

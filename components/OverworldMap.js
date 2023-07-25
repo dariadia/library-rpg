@@ -129,33 +129,16 @@ window.OverworldMaps = {
       hero: {
         type: "Person",
         isPlayerControlled: true,
-        x: utils.withGrid(10),
-        y: utils.withGrid(5),
+        x: utils.withGrid(11),
+        y: utils.withGrid(6),
       },
       [HERR_DOKTOR]: {
         type: "Person",
-        x: utils.withGrid(5),
-        y: utils.withGrid(5),
+        x: utils.withGrid(2),
+        y: utils.withGrid(4),
         direction: "up",
         src: CHARACTERS[HERR_DOKTOR].character,
-        talking: [
-          {
-            events: [
-              // { type: "textMessage", character: CHARACTERS[HERR_DOKTOR], sayRandom: true },
-            ]
-          }
-        ],
-        behaviorLoop: [
-          { type: "stand", direction: "up", time: 2000 },
-          { type: "walk", direction: "right", },
-          { type: "walk", direction: "right", },
-          { type: "walk", direction: "right", },
-          { type: "walk", direction: "right", },
-          { type: "stand", direction: "right", time: 500 },
-          { type: "stand", direction: "left", time: 1000 },
-          { type: "walk", direction: "down", },
-          { type: "walk", direction: "left", },
-        ]
+        behaviorLoop: []
       },
     },
     cutsceneSpaces: {
@@ -172,9 +155,10 @@ window.OverworldMaps = {
           ]
         }
       ],
-      [utils.asGridCoord(9,5)]: [{
+      [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
+          { type: "externalEffect", kind: "dark"},
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
           { type: "textMessage", text: "*You fall asleep in the library only to realise you've been locked in*"},
           // { type: "walk", who: "Milos", direction: "right"},
