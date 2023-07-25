@@ -42,9 +42,12 @@ class OverworldEvent {
 
   externalEffect(resolve) {
     const container = document.querySelector(".game-container")
-    const effectElement = document.createElement("div");
-    effectElement.classList.add("ExternalEffect", this.event.kind);
+    const effectElement = document.createElement("div")
+    effectElement.classList.add("ExternalEffect", this.event.kind)
     container.appendChild(effectElement)
+    setTimeout(() => {
+      effectElement.remove()
+    }, this.event.time || 1000)
     resolve()
   }
 

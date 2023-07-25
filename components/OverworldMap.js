@@ -1,4 +1,5 @@
 const HERR_DOKTOR = 'HerrDoktor'
+const HERO = 'hero'
 
 const CHARACTERS = {
 [HERR_DOKTOR]: {
@@ -95,7 +96,7 @@ class OverworldMap {
   }
 
   checkForActionCutscene() {
-    const hero = this.gameObjects["hero"]
+    const hero = this.gameObjects[HERO]
     const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction)
     const match = Object.values(this.gameObjects).find(object => {
       return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
@@ -112,7 +113,7 @@ class OverworldMap {
   }
 
   checkForFootstepCutscene() {
-    const hero = this.gameObjects["hero"]
+    const hero = this.gameObjects[HERO]
     const match = this.cutsceneSpaces[ `${hero.x},${hero.y}` ]
     if (!this.isCutscenePlaying && match) {
       this.startCutscene( match[0].events )
@@ -158,9 +159,14 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
-          { type: "externalEffect", kind: "dark"},
+          { type: "externalEffect", kind: "darkMax", time: 5000},
+          { type: "stand", who: HERO, direction: "up", time: 200},
+          { type: "stand", who: HERO, direction: "left", time: 200},
+          { type: "textMessage", text: "Ugh...."},
+          { type: "stand", who: HERO, direction: "right", time: 200},
+          { type: "stand", who: HERO, direction: "down", time: 200},
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          { type: "textMessage", text: "*You fall asleep in the library only to realise you've been locked in*"},
+          { type: "textMessage", text: "... did I fall asleep? Ugh... "},
           // { type: "walk", who: "Milos", direction: "right"},
           // { type: "stand", who: "Milos", direction: "up", time: 200},
           // { type: "walk", who: "Milos", direction: "down"},

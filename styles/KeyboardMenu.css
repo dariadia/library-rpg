@@ -18,10 +18,12 @@
  padding-left: 1em;
  font-size: 10px;
  color: wheat;
+ background: var(--menu-selected-background);
 }
 .KeyboardMenu button:focus {
- background: var(--menu-selected-background);
- outline: 0;
+  background: var(--button-action);
+  transition: 1s background;
+  outline: 0;
 }
 
 .KeyboardMenu .option {
