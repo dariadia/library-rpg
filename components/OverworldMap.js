@@ -5,7 +5,12 @@ const CHARACTERS = {
 [HERR_DOKTOR]: {
     id: HERR_DOKTOR,
     name: 'Herr Doktor von Reichshoffen',
-    avatar: '/images/characters/avatars/herr-doktor.png',
+    avatar: {
+      gen: '/images/characters/avatars/herr-doktor_gen.png',
+      adm: '/images/characters/avatars/herr-doktor_adm.png',
+      happy: '/images/characters/avatars/herr-doktor_happy.png',
+      smile: '/images/characters/avatars/herr-doktor_smile.png'
+    },
     character: '/images/characters/people/herr-doktor.png',
   }
 }
@@ -167,16 +172,32 @@ window.OverworldMaps = {
           { type: "stand", who: HERO, direction: "down", time: 200},
           { type: "addStoryFlag", flag: "SEEN_INTRO"},
           { type: "textMessage", text: "... did I fall asleep? Ugh... "},
-          // { type: "walk", who: "Milos", direction: "right"},
-          // { type: "stand", who: "Milos", direction: "up", time: 200},
-          // { type: "walk", who: "Milos", direction: "down"},
-          // { type: "walk", who: "Milos", direction: "left"},
-          // { type: "stand", who: "Milos", direction: "right", time: 300},
-          // { type: "textMessage", text: "*shouts after you*  Also, you're stuck with till the morning. Have fun!", character: CHARACTERS.MILOS},
-          // { type: "stand", who: "Milos", direction: "left", time: 300},
-          // { type: "textMessage", text: "Ow, wow..."},
-          // { type: "textMessage", text: "Might as well explore. Er, for research purposes?"},
-          // { type: "textMessage", text: "Is this even real? *you wonder* ... "},
+          { type: "stand", who: HERO, direction: "left", time: 200},
+          { type: "textMessage", text: "... wha-at"},
+          { type: "walk", who: HERR_DOKTOR, direction: "left"},
+          { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
+          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
+          { type: "textMessage", text: "WHAT?!"},
+          { type: "textMessage", text: "A-A-A-A!!!"},
+          { type: "walk", who: HERO, direction: "right"},
+          { type: "walk", who: HERO, direction: "down"},
+          { type: "walk", who: HERO, direction: "down"},
+          { type: "walk", who: HERO, direction: "left"},
+          { type: "walk", who: HERO, direction: "left"},
+          { type: "walk", who: HERO, direction: "left"},
+          { type: "walk", who: HERO, direction: "left"},
+          { type: "walk", who: HERO, direction: "left"},
+          { type: "walk", who: HERO, direction: "down"},
+          { type: "walk", who: HERO, direction: "left"},
+          { type: "walk", who: HERO, direction: "left"},
+          { type: "walk", who: HERO, direction: "down"},
+          { 
+            type: "changeMap", 
+            map: "Hall",
+            x: utils.withGrid(9),
+            y: utils.withGrid(10),
+            direction: "down"
+          }
         ]
       }],
       [utils.asGridCoord(4,4)]: [{
