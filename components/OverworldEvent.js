@@ -67,6 +67,15 @@ class OverworldEvent {
     message.init( document.querySelector(".game-container") )
   }
 
+  prompt(resolve) {
+    const prompt = new Prompt({
+      options: this.event.options,
+      onComplete: () => resolve(),
+      withBackOption: this.event.withBackOption,
+    })
+    prompt.init( document.querySelector(".game-container") )
+  }
+
   changeMap(resolve) {
     Object.values(this.map.gameObjects).forEach(obj => {
       obj.isMounted = false

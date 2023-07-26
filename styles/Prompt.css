@@ -1,0 +1,17 @@
+.Prompt_actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 36px;
+  padding: 4px;
+  background: var(--menu-background);
+  border-top: 1px solid var(--menu-border-color);
+  color: var(--menu-font-color);
+}
+
+.Prompt_action-option {
+  margin: 0;
+  font-size: 10px;
+  cursor: pointer;
+}
