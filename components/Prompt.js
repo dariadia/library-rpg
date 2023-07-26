@@ -6,19 +6,24 @@ class Prompt {
     this.withBackOption = withBackOption
   }
 
+  menuSubmit(action = null) {
+    this.keyboardMenu?.end()
+    this.onComplete()
+  }
+
   getOptions() {
     const backOption = {
       label: "Go Back",
       description: "Return to previous page",
       handler: () => {
-        this.keyboardMenu.setOptions(this.getPages().root)
+        this.keyboardMenu.setOptions(this.getPages())
       }
     };
     let options = this.options.map(option => ({
       label: option.text,
-      description: "Choose an attack",
+      description: `Choose what to do: ${option.text}`,
       handler: () => {
-        this.menuSubmit(action, item.instanceId)
+        this.menuSubmit()
       }
     }))
 

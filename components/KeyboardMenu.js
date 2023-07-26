@@ -86,7 +86,5 @@ class KeyboardMenu {
       })
       nextButton?.focus()
     })
-
   }
-
 }
