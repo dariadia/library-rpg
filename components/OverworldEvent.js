@@ -71,6 +71,7 @@ class OverworldEvent {
     const prompt = new Prompt({
       options: this.event.options,
       onComplete: () => resolve(),
+      map: this.map,
       withBackOption: this.event.withBackOption,
     })
     prompt.init( document.querySelector(".game-container") )

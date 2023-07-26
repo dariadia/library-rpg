@@ -179,29 +179,31 @@ window.OverworldMaps = {
           // { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
           // { type: "textMessage", text: "WHAT?!"},
           { type: "prompt", options: [
-            { text: "run away", flag: "INTRO:RAN_AWAY" }, 
+            { text: "run away", actions: [
+              { type: "addStoryFlag",  flag: "INTRO:RAN_AWAY"},
+              { type: "textMessage", text: "A-A-A-A!!!"},
+              { type: "walk", who: HERO, direction: "right"},
+              { type: "walk", who: HERO, direction: "down"},
+              { type: "walk", who: HERO, direction: "down"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "down"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "down"},
+              { 
+                type: "changeMap", 
+                map: "Hall",
+                x: utils.withGrid(9),
+                y: utils.withGrid(10),
+                direction: "down"
+              }
+            ] }, 
             { text: "keep quiet and watch", flag: "INTRO_QUIET_WATCH" }
           ]},
-          { type: "textMessage", text: "A-A-A-A!!!"},
-          { type: "walk", who: HERO, direction: "right"},
-          { type: "walk", who: HERO, direction: "down"},
-          { type: "walk", who: HERO, direction: "down"},
-          { type: "walk", who: HERO, direction: "left"},
-          { type: "walk", who: HERO, direction: "left"},
-          { type: "walk", who: HERO, direction: "left"},
-          { type: "walk", who: HERO, direction: "left"},
-          { type: "walk", who: HERO, direction: "left"},
-          { type: "walk", who: HERO, direction: "down"},
-          { type: "walk", who: HERO, direction: "left"},
-          { type: "walk", who: HERO, direction: "left"},
-          { type: "walk", who: HERO, direction: "down"},
-          { 
-            type: "changeMap", 
-            map: "Hall",
-            x: utils.withGrid(9),
-            y: utils.withGrid(10),
-            direction: "down"
-          }
         ]
       }],
       [utils.asGridCoord(4,4)]: [{

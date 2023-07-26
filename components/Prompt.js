@@ -1,13 +1,22 @@
 class Prompt {
-  constructor({ options, onComplete, withBackOption }) {
+  constructor({ options, map, onComplete, withBackOption }) {
     this.options = options
     this.onComplete = onComplete
     this.element = null
     this.withBackOption = withBackOption
+    this.map = map
   }
 
-  menuSubmit(action = null) {
+  async menuSubmit(actions = []) {
     this.keyboardMenu?.end()
+    for (let i=0; i<actions.length; i++) {
+      const eventHandler = new OverworldEvent({
+        event: actions[i],
+        map: this.map,
+      })
+      await eventHandler.init()
+    }
+
     this.onComplete()
   }
 
@@ -23,7 +32,7 @@ class Prompt {
       label: option.text,
       description: `Choose what to do: ${option.text}`,
       handler: () => {
-        this.menuSubmit()
+        this.menuSubmit(option.actions)
       }
     }))
 
