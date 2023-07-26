@@ -18,6 +18,7 @@ class Prompt {
     }
 
     this.onComplete()
+    this.done()
   }
 
   getOptions() {

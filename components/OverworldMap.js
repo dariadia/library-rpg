@@ -32,6 +32,7 @@ class OverworldMap {
   }
 
   drawLowerImage(ctx, cameraPerson) {
+    ctx.globalAlpha = 1
     ctx.drawImage(
       this.lowerImage, 
       utils.withGrid(10.5) - cameraPerson.x, 
@@ -40,6 +41,7 @@ class OverworldMap {
   }
 
   drawUpperImage(ctx, cameraPerson) {
+    ctx.globalAlpha = 1
     ctx.drawImage(
       this.upperImage, 
       utils.withGrid(10.5) - cameraPerson.x, 
