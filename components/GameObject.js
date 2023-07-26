@@ -1,28 +1,24 @@
 class GameObject {
   constructor(config) {
-    this.id = null;
-    this.isMounted = false;
-    this.x = config.x || 0;
-    this.y = config.y || 0;
-    this.direction = config.direction || "down";
+    this.id = null
+    this.isMounted = false
+    this.x = config.x || 0
+    this.y = config.y || 0
+    this.direction = config.direction || "down"
     this.sprite = new Sprite({
       gameObject: this,
       src: config.src || "/images/characters/people/hero.png",
-    });
-
-    //These happen once on map startup.
-    this.behaviorLoop = config.behaviorLoop || [];
-    this.behaviorLoopIndex = 0;
-    this.talking = config.talking || [];
-    this.retryTimeout = null;
+    })
+    this.behaviorLoop = config.behaviorLoop || []
+    this.behaviorLoopIndex = 0
+    this.talking = config.talking || []
+    this.retryTimeout = null
   }
 
   mount(map) {
-    this.isMounted = true;
-
-    //If we have a behavior, kick off after a short delay
+    this.isMounted = true
     setTimeout(() => {
-      this.doBehaviorEvent(map);
+      this.doBehaviorEvent(map)
     }, 10)
   }
 
@@ -34,32 +30,23 @@ class GameObject {
 
     if (map.isCutscenePlaying) {
       if (this.retryTimeout) {
-        clearTimeout(this.retryTimeout);
+        clearTimeout(this.retryTimeout)
       }
       this.retryTimeout = setTimeout(() => {
-        this.doBehaviorEvent(map);
+        this.doBehaviorEvent(map)
       }, 1000)
-      return;
+      return
     }
 
-    let eventConfig = this.behaviorLoop[this.behaviorLoopIndex];
-    eventConfig.who = this.id;
+    let eventConfig = this.behaviorLoop[this.behaviorLoopIndex]
+    eventConfig.who = this.id
 
-    //Create an event instance out of our next event config
-    const eventHandler = new OverworldEvent({ map, event: eventConfig });
-    await eventHandler.init(); 
-
-    //Setting the next event to fire
-    this.behaviorLoopIndex += 1;
+    const eventHandler = new OverworldEvent({ map, event: eventConfig })
+    await eventHandler.init() 
+    this.behaviorLoopIndex += 1
     if (this.behaviorLoopIndex === this.behaviorLoop.length) {
-      this.behaviorLoopIndex = 0;
+      this.behaviorLoopIndex = 0
     } 
-
-    //Do it again!
-    this.doBehaviorEvent(map);
-    
-
+    this.doBehaviorEvent(map)
   }
-
-
 }

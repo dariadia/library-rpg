@@ -4,6 +4,7 @@ const HERO = 'hero'
 const CHARACTERS = {
 [HERR_DOKTOR]: {
     id: HERR_DOKTOR,
+    visible: 0.7,
     name: 'Herr Doktor von Reichshoffen',
     avatar: {
       gen: '/images/characters/avatars/herr-doktor_gen.png',
@@ -143,6 +144,7 @@ window.OverworldMaps = {
         x: utils.withGrid(2),
         y: utils.withGrid(4),
         direction: "up",
+        visible: CHARACTERS[HERR_DOKTOR].visible,
         src: CHARACTERS[HERR_DOKTOR].character,
         behaviorLoop: []
       },
@@ -202,7 +204,13 @@ window.OverworldMaps = {
                 direction: "down"
               }
             ] }, 
-            { text: "keep quiet and watch", flag: "INTRO_QUIET_WATCH" }
+            { text: "keep quiet and watch", actions: [
+              { type: "addStoryFlag",  flag: "INTRO:QUIET_WATCH"},
+              { type: "stand", who: HERR_DOKTOR, direction: "up", time: 1000},
+              { type: "walk", who: HERR_DOKTOR, direction: "left"},
+              { type: "stand", who: HERR_DOKTOR, direction: "left", time: 500},
+              { type: "stand", who: HERR_DOKTOR, direction: "up", time: 500},
+            ] }
           ]},
         ]
       }],
