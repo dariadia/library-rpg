@@ -52,9 +52,8 @@ class Prompt {
   }
 
   done() {
-    this.element.remove()
-    this.actionListener.unbind()
     this.onComplete()
+    this.element.remove()
   }
 
   init(container) {
