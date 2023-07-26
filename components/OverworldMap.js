@@ -143,7 +143,7 @@ window.OverworldMaps = {
       },
       [HERR_DOKTOR]: {
         type: "Person",
-        x: utils.withGrid(2),
+        x: utils.withGrid(3),
         y: utils.withGrid(4),
         direction: "up",
         visible: CHARACTERS[HERR_DOKTOR].visible,
@@ -168,20 +168,20 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
-          // { type: "externalEffect", kind: "darkMax", time: 5000},
-          // { type: "stand", who: HERO, direction: "up", time: 200},
-          // { type: "stand", who: HERO, direction: "left", time: 200},
-          // { type: "textMessage", text: "Ugh...."},
-          // { type: "stand", who: HERO, direction: "right", time: 200},
-          // { type: "stand", who: HERO, direction: "down", time: 200},
-          // { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          // { type: "textMessage", text: "... did I fall asleep? Ugh... "},
-          // { type: "stand", who: HERO, direction: "left", time: 200},
-          // { type: "textMessage", text: "... wha-at"},
-          // { type: "walk", who: HERR_DOKTOR, direction: "left"},
-          // { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
-          // { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
-          // { type: "textMessage", text: "WHAT?!"},
+          { type: "externalEffect", kind: "darkMax", time: 5000},
+          { type: "stand", who: HERO, direction: "up", time: 200},
+          { type: "stand", who: HERO, direction: "left", time: 200},
+          { type: "textMessage", text: "Ugh...."},
+          { type: "stand", who: HERO, direction: "right", time: 200},
+          { type: "stand", who: HERO, direction: "down", time: 200},
+          { type: "addStoryFlag", flag: "SEEN_INTRO"},
+          { type: "textMessage", text: "... did I fall asleep? Ugh... "},
+          { type: "stand", who: HERO, direction: "left", time: 200},
+          { type: "textMessage", text: "... wha-at"},
+          { type: "walk", who: HERR_DOKTOR, direction: "left"},
+          { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
+          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
+          { type: "textMessage", text: "WHAT?!"},
           { type: "prompt", options: [
             { text: "run away", actions: [
               { type: "addStoryFlag",  flag: "INTRO:RAN_AWAY"},
@@ -212,10 +212,67 @@ window.OverworldMaps = {
               { type: "walk", who: HERR_DOKTOR, direction: "left"},
               { type: "stand", who: HERR_DOKTOR, direction: "left", time: 500},
               { type: "stand", who: HERR_DOKTOR, direction: "up", time: 500},
+              { 
+                type: "changeMap", 
+                map: "ReadingRoomEmpty",
+                x: utils.withGrid(11),
+                y: utils.withGrid(6),
+                direction: "left",
+                disappear: true,
+                shadeOptions: "width:14px;height: 18px;top: 60px;left: 9px;border-radius: 50px;filter: blur(3px);"
+              },
+              { type: "textMessage", text: "...a-and he went through the bookshelves..."},
+              { type: "textMessage", text: "Of course."},
             ] }
           ]},
         ]
       }],
+      [utils.asGridCoord(4,4)]: [{
+        events: [
+          { type: "textMessage", text: "Ugh, it's locked. The security guard should come by the morning."},
+        ]
+      }]
+    },
+    walls: function() {
+      let walls = {};
+      ["1,10","2,10","3,10","4,10","6,10","7,10","8,10","9,10","10,10","11,10","12,10",
+      "1,3","2,3","3,3","4,3","5,3","6,3","7,3","8,3","9,3","10,3","11,3","12,3",
+      "0,3","0,4","0,5","0,6","0,7","0,8","0,9",
+      "13,3","13,4","13,5","13,6","13,7","13,8","13,9",
+      "12,9","11,9","9,9","8,9","6,7","7,7","9,7","10,7","11,7",
+      ].forEach(coord => {
+        let [x,y] = coord.split(",")
+        walls[utils.asGridCoord(x,y)] = true
+      })
+      return walls
+    }(),
+  },
+  ReadingRoomEmpty: {
+    id: "ReadingRoom",
+    lowerSrc: "/images/maps/ReadingRoomLower.png",
+    upperSrc: "/images/maps/ReadingRoomUpper.png",
+    configObjects: {
+      hero: {
+        type: "Person",
+        isPlayerControlled: true,
+        x: utils.withGrid(11),
+        y: utils.withGrid(6),
+      },
+    },
+    cutsceneSpaces: {
+      [utils.asGridCoord(5,10)]: [
+        {
+          events: [
+            { 
+              type: "changeMap", 
+              map: "Hall",
+              x: utils.withGrid(9),
+              y: utils.withGrid(10),
+              direction: "down"
+            }
+          ]
+        }
+      ],
       [utils.asGridCoord(4,4)]: [{
         events: [
           { type: "textMessage", text: "Ugh, it's locked. The security guard should come by the morning."},
@@ -291,7 +348,7 @@ window.OverworldMaps = {
           events: [
             { 
               type: "changeMap",
-              map: "ReadingRoom",
+              map: "ReadingRoomEmpty",
               x: utils.withGrid(5),
               y: utils.withGrid(10),
               direction: "up"

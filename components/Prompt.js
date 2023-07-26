@@ -52,8 +52,8 @@ class Prompt {
   }
 
   done() {
-    this.onComplete()
     this.element.remove()
+    this.onComplete()
   }
 
   init(container) {

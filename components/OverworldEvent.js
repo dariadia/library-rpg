@@ -82,7 +82,7 @@ class OverworldEvent {
       obj.isMounted = false
     })
 
-    const sceneTransition = new SceneTransition()
+    const sceneTransition = new SceneTransition({ lowShade: this.event.disappear, shadeOptions: this.event.shadeOptions })
     sceneTransition.init(document.querySelector(".game-container"), () => {
       this.map.overworld.startMap( window.OverworldMaps[this.event.map], {
         x: this.event.x,
