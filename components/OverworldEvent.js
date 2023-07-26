@@ -40,6 +40,17 @@ class OverworldEvent {
     document.addEventListener("PersonWalkingComplete", completeHandler)
   }
 
+  externalEffect(resolve) {
+    const container = document.querySelector(".game-container")
+    const effectElement = document.createElement("div")
+    effectElement.classList.add("ExternalEffect", this.event.kind)
+    container.appendChild(effectElement)
+    setTimeout(() => {
+      effectElement.remove()
+    }, this.event.time || 1000)
+    resolve()
+  }
+
   textMessage(resolve) {
 
     if (this.event.faceHero) {
@@ -56,12 +67,22 @@ class OverworldEvent {
     message.init( document.querySelector(".game-container") )
   }
 
+  prompt(resolve) {
+    const prompt = new Prompt({
+      options: this.event.options,
+      onComplete: () => resolve(),
+      map: this.map,
+      withBackOption: this.event.withBackOption,
+    })
+    prompt.init( document.querySelector(".game-container") )
+  }
+
   changeMap(resolve) {
     Object.values(this.map.gameObjects).forEach(obj => {
       obj.isMounted = false
     })
 
-    const sceneTransition = new SceneTransition()
+    const sceneTransition = new SceneTransition({ lowShade: this.event.disappear, shadeOptions: this.event.shadeOptions })
     sceneTransition.init(document.querySelector(".game-container"), () => {
       this.map.overworld.startMap( window.OverworldMaps[this.event.map], {
         x: this.event.x,

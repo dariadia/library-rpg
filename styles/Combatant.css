@@ -3,6 +3,7 @@
   height: 14px;
   background: url("/images/ui/combatant-plate.png") no-repeat no-repeat;
   position:absolute;
+  display: none;
 }
 
 .Battle .Combatant {
