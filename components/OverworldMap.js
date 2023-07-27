@@ -168,63 +168,70 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
-          { type: "externalEffect", kind: "darkMax", time: 5000},
-          { type: "stand", who: HERO, direction: "up", time: 200},
-          { type: "stand", who: HERO, direction: "left", time: 200},
-          { type: "textMessage", text: "Ugh...."},
-          { type: "stand", who: HERO, direction: "right", time: 200},
-          { type: "stand", who: HERO, direction: "down", time: 200},
-          { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          { type: "textMessage", text: "... did I fall asleep? Ugh... "},
-          { type: "stand", who: HERO, direction: "left", time: 200},
-          { type: "textMessage", text: "... wha-at"},
-          { type: "walk", who: HERR_DOKTOR, direction: "left"},
-          { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
-          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
-          { type: "textMessage", text: "WHAT?!"},
-          { type: "prompt", options: [
-            { text: "run away", actions: [
-              { type: "addStoryFlag",  flag: "INTRO:RAN_AWAY"},
-              { type: "textMessage", text: "A-A-A-A!!!"},
-              { type: "walk", who: HERO, direction: "right"},
-              { type: "walk", who: HERO, direction: "down"},
-              { type: "walk", who: HERO, direction: "down"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "down"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "down"},
               { 
                 type: "changeMap", 
                 map: "Hall",
-                x: utils.withGrid(9),
-                y: utils.withGrid(10),
+                x: utils.withGrid(19),
+                y: utils.withGrid(19),
                 direction: "down"
               }
-            ] }, 
-            { text: "keep quiet and watch", actions: [
-              { type: "addStoryFlag",  flag: "INTRO:QUIET_WATCH"},
-              { type: "stand", who: HERR_DOKTOR, direction: "up", time: 1000},
-              { type: "walk", who: HERR_DOKTOR, direction: "left"},
-              { type: "stand", who: HERR_DOKTOR, direction: "left", time: 500},
-              { type: "stand", who: HERR_DOKTOR, direction: "up", time: 500},
-              { 
-                type: "changeMap", 
-                map: "ReadingRoomEmpty",
-                x: utils.withGrid(11),
-                y: utils.withGrid(6),
-                direction: "left",
-                disappear: true,
-                shadeOptions: "width:14px;height: 18px;top: 60px;left: 9px;border-radius: 50px;filter: blur(3px);"
-              },
-              { type: "textMessage", text: "...a-and he went through the bookshelves..."},
-              { type: "textMessage", text: "Of course."},
-            ] }
-          ]},
+          // { type: "externalEffect", kind: "darkMax", time: 5000},
+          // { type: "stand", who: HERO, direction: "up", time: 200},
+          // { type: "stand", who: HERO, direction: "left", time: 200},
+          // { type: "textMessage", text: "Ugh...."},
+          // { type: "stand", who: HERO, direction: "right", time: 200},
+          // { type: "stand", who: HERO, direction: "down", time: 200},
+          // { type: "addStoryFlag", flag: "SEEN_INTRO"},
+          // { type: "textMessage", text: "... did I fall asleep? Ugh... "},
+          // { type: "stand", who: HERO, direction: "left", time: 200},
+          // { type: "textMessage", text: "... wha-at"},
+          // { type: "walk", who: HERR_DOKTOR, direction: "left"},
+          // { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
+          // { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
+          // { type: "textMessage", text: "WHAT?!"},
+          // { type: "prompt", options: [
+          //   { text: "run away", actions: [
+          //     { type: "addStoryFlag",  flag: "INTRO:RAN_AWAY"},
+          //     { type: "textMessage", text: "A-A-A-A!!!"},
+          //     { type: "walk", who: HERO, direction: "right"},
+          //     { type: "walk", who: HERO, direction: "down"},
+          //     { type: "walk", who: HERO, direction: "down"},
+          //     { type: "walk", who: HERO, direction: "left"},
+          //     { type: "walk", who: HERO, direction: "left"},
+          //     { type: "walk", who: HERO, direction: "left"},
+          //     { type: "walk", who: HERO, direction: "left"},
+          //     { type: "walk", who: HERO, direction: "left"},
+          //     { type: "walk", who: HERO, direction: "down"},
+          //     { type: "walk", who: HERO, direction: "left"},
+          //     { type: "walk", who: HERO, direction: "left"},
+          //     { type: "walk", who: HERO, direction: "down"},
+          //     { 
+          //       type: "changeMap", 
+          //       map: "Hall",
+          //       x: utils.withGrid(9),
+          //       y: utils.withGrid(10),
+          //       direction: "down"
+          //     }
+          //   ] }, 
+          //   { text: "keep quiet and watch", actions: [
+          //     { type: "addStoryFlag",  flag: "INTRO:QUIET_WATCH"},
+          //     { type: "stand", who: HERR_DOKTOR, direction: "up", time: 1000},
+          //     { type: "walk", who: HERR_DOKTOR, direction: "left"},
+          //     { type: "stand", who: HERR_DOKTOR, direction: "left", time: 500},
+          //     { type: "stand", who: HERR_DOKTOR, direction: "up", time: 500},
+          //     { 
+          //       type: "changeMap", 
+          //       map: "ReadingRoomEmpty",
+          //       x: utils.withGrid(11),
+          //       y: utils.withGrid(6),
+          //       direction: "left",
+          //       disappear: true,
+          //       shadeOptions: "width:14px;height: 18px;top: 60px;left: 9px;border-radius: 50px;filter: blur(3px);"
+          //     },
+          //     { type: "textMessage", text: "...a-and he went through the bookshelves..."},
+          //     { type: "textMessage", text: "Of course."},
+          //   ] }
+          // ]},
         ]
       }],
       [utils.asGridCoord(4,4)]: [{
@@ -335,7 +342,8 @@ window.OverworldMaps = {
       "34,10","34,11","34,12","34,13","34,14","34,15","34,16","34,17","34,18","34,19",
       "24,20","25,20","26,20","27,20","28,20","29,20","30,20","31,20","32,20","33,20","34,20",
       "23,19","23,18","22,18","18,18","18,19","18,20","18,17","19,20","20,20","21,20","22,20",
-
+      "17,18","16,18","15,18","14,18","13,18","12,19","11,19","10,18","9,18","8,18","7,18","6,19","5,19","4,18",
+      "3,18","3,17","3,16","3,15","3,14","3,13","3,12","3,11","3,10",
       ].forEach(coord => {
         let [x,y] = coord.split(",")
         walls[utils.asGridCoord(x,y)] = true
