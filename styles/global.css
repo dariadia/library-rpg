@@ -66,6 +66,20 @@ body {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
+.device-error {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.device-error_message {
+  color: var(--text-message-action);
+  font-size: 24px;
+  padding: 24px;
+  display: block;
+  width: 280px;
+}
+
 @keyframes enter {
 	0%		{opacity:1;}
 	100%	{opacity:0;}
