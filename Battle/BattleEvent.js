@@ -25,13 +25,9 @@ class BattleEvent {
     let who = this.event.onCaster ? caster : target;
 
     if (damage) {
-      //modify the target to have less HP
       target.update({
         hp: target.hp - damage
       })
-      
-      //start blinking
-      target.pizzaElement.classList.add("battle-damage-blink");
     }
 
     if (recover) {
@@ -62,9 +58,6 @@ class BattleEvent {
     //Update Team components
     this.battle.playerTeam.update();
     this.battle.enemyTeam.update();
-
-    //stop blinking
-    target.pizzaElement.classList.remove("battle-damage-blink");
     resolve();
   }
 

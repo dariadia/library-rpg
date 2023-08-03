@@ -21,7 +21,7 @@ const CHARACTERS = {
     name: 'Mrs T (widowed)',
     avatar: {
       gen: '/images/characters/avatars/mrs-t_gen.png',
-      upset: '/images/characters/avatars/mrs-t_smile.png'
+      upset: '/images/characters/avatars/mrs-t_upset.png'
     },
     character: '/images/characters/people/mrs-t.png',
   },
@@ -182,8 +182,8 @@ window.OverworldMaps = {
               { 
                 type: "changeMap", 
                 map: "Hall",
-                x: utils.withGrid(19),
-                y: utils.withGrid(19),
+                x: utils.withGrid(8),
+                y: utils.withGrid(11),
                 direction: "down"
               }
           // { type: "externalEffect", kind: "darkMax", time: 5000},
@@ -322,25 +322,34 @@ window.OverworldMaps = {
         x: utils.withGrid(30),
         y: utils.withGrid(10),
       },
-      hallNpcC: {
+      [MRS_T]: {
         type: "Person",
-        x: utils.withGrid(22),
+        x: utils.withGrid(20),
         y: utils.withGrid(10),
-        src: "/images/characters/people/npc2.png",
-        talking: [
-          {
-            required: ["hallBattle"],
-            events: [
-              { type: "textMessage", text: "You are quite capable.", faceHero: "hallNpcC" },
-            ]
-          },
-          {
-            events: [
-              { type: "textMessage", text: "You should have just stayed home!", faceHero: "hallNpcC" },
-              { type: "battle", enemyId: "hallBattle" },
-              { type: "addStoryFlag", flag: "hallBattle"},
-            ]
-          },
+        direction: "down",
+        visible: CHARACTERS[MRS_T].visible,
+        src: CHARACTERS[MRS_T].character,
+        behaviorLoop: [
+          { type: "stand", who: MRS_T, direction: "down", time: 4000},
+          { type: "textMessage", text: "Oh, dear, oh dear!", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar.upset }},
+          { type: "stand", who: MRS_T, direction: "left", time: 500},
+          { type: "stand", who: MRS_T, direction: "right", time: 500},
+          { type: "walk", who: MRS_T, direction: "left"},
+          { type: "walk", who: MRS_T, direction: "left"},
+          { type: "walk", who: MRS_T, direction: "left"},
+          { type: "walk", who: MRS_T, direction: "left"},
+          { type: "stand", who: MRS_T, direction: "up", time: 500},
+          { type: "stand", who: MRS_T, direction: "right", time: 500},
+          { type: "textMessage", text: "Isn't the weather just lovely today?", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar.gen }},
+          { type: "walk", who: MRS_T, direction: "down"},
+          { type: "walk", who: MRS_T, direction: "down"},
+          { type: "walk", who: MRS_T, direction: "right"},
+          { type: "walk", who: MRS_T, direction: "right"},
+          { type: "walk", who: MRS_T, direction: "right"},
+          { type: "walk", who: MRS_T, direction: "right"},
+          { type: "stand", who: MRS_T, direction: "left", time: 500},
+          { type: "stand", who: MRS_T, direction: "right", time: 500},
+          { type: "stand", who: MRS_T, direction: "down", time: 3000},
         ]
       },
     },
@@ -375,6 +384,11 @@ window.OverworldMaps = {
           ]
         }
       ],
+      [utils.asGridCoord(9,11)]: [{
+        events: [
+          { type: "textMessage", text: "Huh? Who's there?"},
+        ]
+      }]
       // [utils.asGridCoord(29,9)]: [
       //   {
       //     events: [
