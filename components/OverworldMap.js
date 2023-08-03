@@ -1,8 +1,9 @@
 const HERR_DOKTOR = 'HerrDoktor'
 const HERO = 'hero'
+const MRS_T = 'MrsT'
 
 const CHARACTERS = {
-[HERR_DOKTOR]: {
+  [HERR_DOKTOR]: {
     id: HERR_DOKTOR,
     visible: 0.7,
     name: 'Herr Doktor von Reichshoffen',
@@ -13,7 +14,17 @@ const CHARACTERS = {
       smile: '/images/characters/avatars/herr-doktor_smile.png'
     },
     character: '/images/characters/people/herr-doktor.png',
-  }
+  },
+  [MRS_T]: {
+    id: MRS_T,
+    visible: 0.6,
+    name: 'Mrs T (widowed)',
+    avatar: {
+      gen: '/images/characters/avatars/mrs-t_gen.png',
+      upset: '/images/characters/avatars/mrs-t_smile.png'
+    },
+    character: '/images/characters/people/mrs-t.png',
+  },
 }
 
 class OverworldMap {
