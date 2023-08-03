@@ -1,10 +1,10 @@
 class Combatant {
-  constructor(config, battle) {
+  constructor(config, question) {
     Object.keys(config).forEach(key => {
       this[key] = config[key];
     })
     this.hp = typeof(this.hp) === "undefined" ? this.maxHp : this.hp;
-    this.battle = battle;
+    this.question = question;
   }
 
   get hpPercent() {
@@ -17,7 +17,7 @@ class Combatant {
   }
 
   get isActive() {
-    return this.battle?.activeCombatants[this.team] === this.id;
+    return this.question?.activeCombatants[this.team] === this.id;
   }
 
   get givesXp() {

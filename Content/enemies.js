@@ -38,7 +38,7 @@ window.Enemies = {
       }
     }
   },
-  "streetNorthBattle": {
+  "streetNorthQuestion": {
     name: "Pizza Thug",
     src: "/images/characters/people/npc2.png",
     pizzas: {
@@ -49,7 +49,7 @@ window.Enemies = {
       }
     }
   },
-  "diningRoomBattle": {
+  "diningRoomQuestion": {
     name: "Pizza Thug",
     src: "/images/characters/people/npc2.png",
     pizzas: {
@@ -65,7 +65,7 @@ window.Enemies = {
       }
     }
   },
-  "hallBattle": {
+  "hallQuestion": {
     name: "Pizza Thug",
     src: "/images/characters/people/npc2.png",
     pizzas: {

@@ -1,7 +1,7 @@
-class BattleEvent {
-  constructor(event, battle) {
+class QuestionEvent {
+  constructor(event, question) {
     this.event = event;
-    this.battle = battle;
+    this.question = question;
   }
   
   textMessage(resolve) {
@@ -17,7 +17,7 @@ class BattleEvent {
         resolve();
       }
     })
-    message.init( this.battle.element )
+    message.init( this.question.element )
   }
 
   async stateChange(resolve) {
@@ -56,8 +56,8 @@ class BattleEvent {
     await utils.wait(600)
 
     //Update Team components
-    this.battle.playerTeam.update();
-    this.battle.enemyTeam.update();
+    this.question.playerTeam.update();
+    this.question.enemyTeam.update();
     resolve();
   }
 
@@ -66,8 +66,8 @@ class BattleEvent {
     const menu = new SubmissionMenu({
       caster: caster,
       enemy: this.event.enemy,
-      items: this.battle.items,
-      replacements: Object.values(this.battle.combatants).filter(c => {
+      items: this.question.items,
+      replacements: Object.values(this.question.combatants).filter(c => {
         return c.id !== caster.id && c.team === caster.team && c.hp > 0
       }),
       onComplete: submission => {
@@ -75,38 +75,38 @@ class BattleEvent {
         resolve(submission)
       }
     })
-    menu.init( this.battle.element )
+    menu.init( this.question.element )
   }
 
   replacementMenu(resolve) {
     const menu = new ReplacementMenu({
-      replacements: Object.values(this.battle.combatants).filter(c => {
+      replacements: Object.values(this.question.combatants).filter(c => {
         return c.team === this.event.team && c.hp > 0
       }),
       onComplete: replacement => {
         resolve(replacement)
       }
     })
-    menu.init( this.battle.element )
+    menu.init( this.question.element )
   }
 
   async replace(resolve) {
     const {replacement} = this.event;
 
     //Clear out the old combatant
-    const prevCombatant = this.battle.combatants[this.battle.activeCombatants[replacement.team]];
-    this.battle.activeCombatants[replacement.team] = null;
+    const prevCombatant = this.question.combatants[this.question.activeCombatants[replacement.team]];
+    this.question.activeCombatants[replacement.team] = null;
     prevCombatant.update();
     await utils.wait(400);
 
     //In with the new!
-    this.battle.activeCombatants[replacement.team] = replacement.id;
+    this.question.activeCombatants[replacement.team] = replacement.id;
     replacement.update();
     await utils.wait(400);
 
     //Update Team components
-    this.battle.playerTeam.update();
-    this.battle.enemyTeam.update();
+    this.question.playerTeam.update();
+    this.question.enemyTeam.update();
 
     resolve();
   }
@@ -136,7 +136,7 @@ class BattleEvent {
   }
 
   animation(resolve) {
-    const fn = BattleAnimations[this.event.animation];
+    const fn = QuestionAnimations[this.event.animation];
     fn(this.event, resolve);
   }
 

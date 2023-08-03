@@ -1,7 +1,7 @@
-window.BattleAnimations = {
+window.QuestionAnimations = {
   async spin(event, onComplete) {
     const element = event.caster.pizzaElement;
-    const animationClassName = event.caster.team === "player" ? "battle-spin-right" : "battle-spin-left";
+    const animationClassName = event.caster.team === "player" ? "question-spin-right" : "question-spin-left";
     element.classList.add(animationClassName);
 
     //Remove class when animation is fully complete
@@ -9,7 +9,7 @@ window.BattleAnimations = {
       element.classList.remove(animationClassName);
     }, { once:true });
 
-    //Continue battle cycle right around when the pizzas collide
+    //Continue question cycle right around when the pizzas collide
     await utils.wait(100);
     onComplete();
   },
@@ -18,7 +18,7 @@ window.BattleAnimations = {
     const {caster} = event;
     let div = document.createElement("div");
     div.classList.add("glob-orb");
-    div.classList.add(caster.team === "player" ? "battle-glob-right" : "battle-glob-left");
+    div.classList.add(caster.team === "player" ? "question-glob-right" : "question-glob-left");
 
     div.innerHTML = (`
       <svg viewBox="0 0 32 32" width="32" height="32">
@@ -32,7 +32,7 @@ window.BattleAnimations = {
     });
 
     //Add to scene
-    document.querySelector(".Battle").appendChild(div);
+    document.querySelector(".Question").appendChild(div);
 
     await utils.wait(820);
     onComplete();

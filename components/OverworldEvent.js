@@ -94,15 +94,15 @@ class OverworldEvent {
     })
   }
 
-  battle(resolve) {
-    const battle = new Battle({
-      enemy: Enemies[this.event.enemyId],
+  question(resolve) {
+    const question = new Question({
+      enemy: this.event.enemy,
       arena: this.event.arena || null,
       onComplete: (didWin) => {
         resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE")
       }
     })
-    battle.init(document.querySelector(".game-container"))
+    question.init(document.querySelector(".game-container"))
 
   }
 

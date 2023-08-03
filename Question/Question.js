@@ -1,4 +1,4 @@
-class Battle {
+class Question {
   constructor({ enemy, onComplete, arena }) {
 
     this.enemy = enemy;
@@ -49,15 +49,14 @@ class Battle {
     }
 
     this.activeCombatants = {
-      player: null, //"player1",
-      enemy: null, //"enemy1",
+      player: null,
+      enemy: null,
     }
 
-    //Dynamically add the Player team
     window.playerState.lineup.forEach(id => {
       this.addCombatant(id, "player", window.playerState.pizzas[id])
     });
-    //Now the enemy team
+
     Object.keys(this.enemy.pizzas).forEach(key => {
       this.addCombatant("e_"+key, "enemy", this.enemy.pizzas[key])
     })
@@ -92,7 +91,7 @@ class Battle {
 
   createElement() {
     this.element = document.createElement("div");
-    this.element.classList.add("Battle");
+    this.element.classList.add("Question");
 
     // If provided, add a CSS class for setting the arena background
     if (this.arena) {
@@ -100,11 +99,11 @@ class Battle {
     }
 
     this.element.innerHTML = (`
-    <div class="Battle_hero">
+    <div class="Question_hero">
       <img src="${'/images/characters/people/hero.png'}" alt="Hero" />
     </div>
-    <div class="Battle_enemy">
-      <img src=${this.enemy.src} alt=${this.enemy.name} />
+    <div class="Question_enemy">
+      <img src="${this.enemy.character}" alt="${this.enemy.name}" />
     </div>
     `)
   }
@@ -133,11 +132,11 @@ class Battle {
     this.enemyTeam.init(this.element);
 
     this.turnCycle = new TurnCycle({
-      battle: this,
+      question: this,
       onNewEvent: event => {
         return new Promise(resolve => {
-          const battleEvent = new BattleEvent(event, this)
-          battleEvent.init(resolve);
+          const questionEvent = new QuestionEvent(event, this)
+          questionEvent.init(resolve);
         })
       },
       onWinner: winner => {

@@ -24,6 +24,13 @@ const CHARACTERS = {
       upset: '/images/characters/avatars/mrs-t_upset.png'
     },
     character: '/images/characters/people/mrs-t.png',
+    pizzas: {
+      "a": {
+        pizzaId: "f002",
+        maxHp: 25,
+        level: 1,
+      }
+    }
   },
 }
 
@@ -350,6 +357,21 @@ window.OverworldMaps = {
           { type: "stand", who: MRS_T, direction: "left", time: 500},
           { type: "stand", who: MRS_T, direction: "right", time: 500},
           { type: "stand", who: MRS_T, direction: "down", time: 3000},
+        ],
+        talking: [
+          {
+            required: ["GREETED_BY_MRS_T"],
+            events: [
+              { type: "textMessage", text: "You are quite capable.", faceHero: MRS_T },
+            ]
+          },
+          {
+            events: [
+              { type: "textMessage", text: "You should have just stayed home!", faceHero: MRS_T },
+              { type: "question", enemy: CHARACTERS[MRS_T], arena: "hall" },
+              { type: "addStoryFlag", flag: "GREETED_BY_MRS_T"},
+            ]
+          },
         ]
       },
     },
@@ -610,7 +632,7 @@ window.OverworldMaps = {
           {
             events: [
               { type: "textMessage", text: "Veggies are the fuel for the heart and soul!", faceHero: "darkHallNpcC" },
-              { type: "battle", enemyId: "chefRootie", arena: "dark-hall" },
+              { type: "question", enemy: "chefRootie", arena: "dark-hall" },
               { type: "addStoryFlag", flag: "chefRootie"},
             ]
           }
@@ -739,7 +761,7 @@ window.OverworldMaps = {
         src: "/images/characters/people/npc2.png",
         talking: [
           {
-            required: ["streetNorthBattle"],
+            required: ["streetNorthQuestion"],
             events: [
               { type: "textMessage", text: "Could you be the Legendary one?", faceHero: "streetNorthNpcC" },
             ]
@@ -747,8 +769,8 @@ window.OverworldMaps = {
           {
             events: [
               { type: "textMessage", text: "This is my turf!", faceHero: "streetNorthNpcC" },
-              { type: "battle", enemyId: "streetNorthBattle" },
-              { type: "addStoryFlag", flag: "streetNorthBattle"},
+              { type: "question", enemy: "streetNorthQuestion" },
+              { type: "addStoryFlag", flag: "streetNorthQuestion"},
             ]
           },
         ]
@@ -863,7 +885,7 @@ window.OverworldMaps = {
         src: "/images/characters/people/npc2.png",
         talking: [
           {
-            required: ["diningRoomBattle"],
+            required: ["diningRoomQuestion"],
             events: [
               { type: "textMessage", text: "Maybe I am not ready for this place.", faceHero: "diningRoomNpcA" },
             ]
@@ -871,8 +893,8 @@ window.OverworldMaps = {
           {
             events: [
               { type: "textMessage", text: "You think you have what it takes to cook here?!", faceHero: "diningRoomNpcA" },
-              { type: "battle", enemyId: "diningRoomBattle", arena: "dining-room" },
-              { type: "addStoryFlag", flag: "diningRoomBattle"},
+              { type: "question", enemy: "diningRoomQuestion", arena: "dining-room" },
+              { type: "addStoryFlag", flag: "diningRoomQuestion"},
             ]
           },
         ]

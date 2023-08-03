@@ -5,14 +5,14 @@
   position:absolute;
 }
 
-.Battle .Combatant {
+.Question .Combatant {
   transform: scale(2);
   transition: opacity 0.4s;
 }
-.Battle .Combatant[data-active="false"] {
+.Question .Combatant[data-active="false"] {
   opacity: 0;
 }
-.Battle .Combatant[data-active="true"] {
+.Question .Combatant[data-active="true"] {
   opacity: 1;
 }
 
@@ -48,7 +48,7 @@
   left: -11px;
   bottom: -7px;
 }
-.Battle .Player_crop {
+.Question .Player_crop {
   display:none;
 }
 
@@ -59,7 +59,7 @@
   white-space: nowrap;
   background: var(--menu-font-color);
   color: #fff;
-  font-size: 5px; /*This is only so small because the component is scaled 2x in battle which is weird */
+  font-size: 5px; /*This is only so small because the component is scaled 2x in question which is weird */
   padding-left: 2px;
   padding-right: 2px;
   margin: 0;
