@@ -6,11 +6,10 @@ class PauseMenu {
 
   getOptions(pageKey) {
 
-    //Case 1: Show the first page of options
     if (pageKey === "root") {
-      const lineupPizzas = playerState.lineup.map(id => {
-        const {pizzaId} = playerState.pizzas[id];
-        const base = Pizzas[pizzaId];
+      const lineupSkills = playerState.lineup.map(id => {
+        const {skillId} = playerState.skills[id];
+        const base = Skills[skillId];
         return {
           label: base.name,
           description: base.description,
@@ -20,7 +19,7 @@ class PauseMenu {
         }
       })
       return [
-        ...lineupPizzas,
+        ...lineupSkills,
         {
           label: "Save",
           description: "Save your progress",
@@ -39,12 +38,12 @@ class PauseMenu {
       ]
     }
 
-    //Case 2: Show the options for just one pizza (by id)
-    const unequipped = Object.keys(playerState.pizzas).filter(id => {
+    //Case 2: Show the options for just one skill (by id)
+    const unequipped = Object.keys(playerState.skills).filter(id => {
       return playerState.lineup.indexOf(id) === -1;
     }).map(id => {
-      const {pizzaId} = playerState.pizzas[id];
-      const base = Pizzas[pizzaId];
+      const {skillId} = playerState.skills[id];
+      const base = Skills[skillId];
       return {
         label: `Swap for ${base.name}`,
         description: base.description,
@@ -59,7 +58,7 @@ class PauseMenu {
       ...unequipped,
       {
         label: "Move to front",
-        description: "Move this pizza to the front of the list",
+        description: "Move this skill to the front of the list",
         handler: () => {
           playerState.moveToFront(pageKey);
           this.keyboardMenu.setOptions( this.getOptions("root") );

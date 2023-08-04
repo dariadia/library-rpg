@@ -14,7 +14,7 @@ class Progress {
       startingHeroY: this.startingHeroY,
       startingHeroDirection: this.startingHeroDirection,
       playerState: {
-        pizzas: playerState.pizzas,
+        skills: playerState.skills,
         lineup: playerState.lineup,
         items: playerState.items,
         storyFlags: playerState.storyFlags

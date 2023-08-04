@@ -35,7 +35,7 @@ class Combatant {
       <div class="Player_crop">
         <img class="Player_notepad" alt="player's notepad for clues" src="/images/ui/notepad.png" />
       </div>
-      <img class="Combatant_type" src="${this.icon}" alt="${this.type}" />
+      <img class="Combatant_type" src="/images/ui/notepad.png" alt="${this.type}" />
       <svg viewBox="0 0 26 3" class="Player_time-container">
         <rect x=0 y=0 width="0%" height=1 fill="rgba(255,215,0,0.9)" />
         <rect x=0 y=1 width="0%" height=2 fill="rgba(255,215,0,1)" />

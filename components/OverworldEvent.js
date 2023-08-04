@@ -126,7 +126,7 @@ class OverworldEvent {
 
   craftingMenu(resolve) {
     const menu = new CraftingMenu({
-      pizzas: this.event.pizzas,
+      skills: this.event.skills,
       onComplete: () => {
         resolve()
       }

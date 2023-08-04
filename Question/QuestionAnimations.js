@@ -1,6 +1,6 @@
 window.QuestionAnimations = {
   async spin(event, onComplete) {
-    const element = event.caster.pizzaElement;
+    const element = event.caster.skillElement;
     const animationClassName = event.caster.team === "player" ? "question-spin-right" : "question-spin-left";
     element.classList.add(animationClassName);
 
@@ -9,7 +9,7 @@ window.QuestionAnimations = {
       element.classList.remove(animationClassName);
     }, { once:true });
 
-    //Continue question cycle right around when the pizzas collide
+    //Continue question cycle right around when the skills collide
     await utils.wait(100);
     onComplete();
   },

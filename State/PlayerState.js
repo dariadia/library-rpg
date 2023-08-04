@@ -1,8 +1,8 @@
 class PlayerState {
   constructor() {
-    this.pizzas = {
+    this.skills = {
       "p1": {
-        pizzaId: "s001",
+        skillId: "s001",
         hp: 50,
         maxHp: 50,
         xp: 0,
@@ -21,10 +21,10 @@ class PlayerState {
     };
   }
 
-  addPizza(pizzaId) {
+  addSkill(skillId) {
     const newId = `p${Date.now()}`+Math.floor(Math.random() * 99999);
-    this.pizzas[newId] = {
-      pizzaId,
+    this.skills[newId] = {
+      skillId,
       hp: 50,
       maxHp: 50,
       xp: 0,

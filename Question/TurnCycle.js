@@ -7,7 +7,6 @@ class TurnCycle {
   }
 
   async turn() {
-    //Get the caster
     const casterId = this.question.activeCombatants[this.currentTeam];
     const caster = this.question.combatants[casterId];
     console.log(this.question.activeCombatants, caster.team )
@@ -19,8 +18,6 @@ class TurnCycle {
       caster,
       enemy
     })
-
-    //Stop here if we are replacing this Pizza
     if (submission.replacement) {
       await this.onNewEvent({
         type: "replace",
@@ -30,16 +27,12 @@ class TurnCycle {
         type: "textMessage",
         text: `Go get 'em, ${submission.replacement.name}!`
       })
-      this.nextTurn();
-      return;
+      this.nextTurn()
+      return
     }
 
     if (submission.instanceId) {
-
-      //Add to list to persist to player state later
       this.question.usedInstanceIds[submission.instanceId] = true;
-
-      //Removing item from question state
       this.question.items = this.question.items.filter(i => i.instanceId !== submission.instanceId)
     }
 
@@ -55,8 +48,6 @@ class TurnCycle {
       }
       await this.onNewEvent(event);
     }
-
-    //Did the target die?
     const targetDead = submission.target.hp <= 0;
     if (targetDead) {
       await this.onNewEvent({ 
@@ -65,7 +56,7 @@ class TurnCycle {
 
       if (submission.target.team === "enemy") {
 
-        const playerActivePizzaId = this.question.activeCombatants.player;
+        const playerActiveSkillId = this.question.activeCombatants.player;
         const xp = submission.target.givesXp;
 
         await this.onNewEvent({
@@ -75,7 +66,7 @@ class TurnCycle {
         await this.onNewEvent({
           type: "giveXp",
           xp,
-          combatant: this.question.combatants[playerActivePizzaId]
+          combatant: this.question.combatants[playerActiveSkillId]
         })
       }
     }
@@ -107,9 +98,6 @@ class TurnCycle {
       })
     }
 
-
-    //Check for post events
-    //(Do things AFTER your original turn submission)
     const postEvents = caster.getPostEvents();
     for (let i=0; i < postEvents.length; i++ ) {
       const event = {
@@ -122,7 +110,6 @@ class TurnCycle {
       await this.onNewEvent(event);
     }
 
-    //Check for status expire
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent)
@@ -151,10 +138,8 @@ class TurnCycle {
   async init() {
     await this.onNewEvent({
       type: "textMessage",
-      text: `${this.question.enemy.name} wants to throw down!`
+      text: `You approach ${this.question.enemy.name}!`
     })
-
-    //Start the first turn!
     this.turn();
 
   }

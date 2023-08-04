@@ -17,12 +17,13 @@
 }
 
 .Combatant[data-team="player"] {
-  left: 46px;
-  top: 70px;
+  left: 49px;
+  top: 34px;
 }
 .Combatant[data-team="enemy"] {
   top: 28px;
   right: 77px;
+  display: none;
 }
 
 .Player_crop {

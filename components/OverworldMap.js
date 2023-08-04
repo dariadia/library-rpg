@@ -24,9 +24,9 @@ const CHARACTERS = {
       upset: '/images/characters/avatars/mrs-t_upset.png'
     },
     character: '/images/characters/people/mrs-t.png',
-    pizzas: {
+    skills: {
       "a": {
-        pizzaId: "f002",
+        skillId: "f002",
         maxHp: 25,
         level: 1,
       }
@@ -89,8 +89,8 @@ class OverworldMap {
         case 'Person':
           instance = new Person(object)
           break
-        case 'PizzaStone':
-          instance = new PizzaStone(object)
+        case 'SkillBook':
+          instance = new SkillBook(object)
       }
       this.gameObjects[key] = instance
       this.gameObjects[key].id = key
@@ -362,12 +362,12 @@ window.OverworldMaps = {
           {
             required: ["GREETED_BY_MRS_T"],
             events: [
-              { type: "textMessage", text: "You are quite capable.", faceHero: MRS_T },
+              { type: "textMessage", text: "Goodness gracious, where are my manners? Please, accept my apologies... Do you happen to know my name?", faceHero: MRS_T },
             ]
           },
           {
             events: [
-              { type: "textMessage", text: "You should have just stayed home!", faceHero: MRS_T },
+              { type: "textMessage", text: "Oh, hello, dear. I believe we never were introduced?", faceHero: MRS_T },
               { type: "question", enemy: CHARACTERS[MRS_T], arena: "hall" },
               { type: "addStoryFlag", flag: "GREETED_BY_MRS_T"},
             ]
@@ -441,8 +441,8 @@ window.OverworldMaps = {
   },
   Shop: {
     id: "Shop",
-    lowerSrc: "/images/maps/PizzaShopLower.png",
-    upperSrc: "/images/maps/PizzaShopUpper.png",
+    lowerSrc: "/images/maps/someRandom.png",
+    upperSrc: "/images/maps/someRandom.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -479,12 +479,12 @@ window.OverworldMaps = {
           }
         ]
       },
-      pizzaStone: {
-        type: "PizzaStone",
+      skillBook: {
+        type: "SkillBook",
         x: utils.withGrid(1),
         y: utils.withGrid(4),
         storyFlag: "STONE_SHOP",
-        pizzas: ["v002", "f002"],
+        skills: ["v002", "f002"],
       },
     },
     cutsceneSpaces: {
@@ -614,7 +614,7 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "Finally... a pizza place that gets me!", faceHero: "darkHallNpcB" },
+              { type: "textMessage", text: "Finally...", faceHero: "darkHallNpcB" },
             ]
           }
         ]
@@ -729,7 +729,7 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "This place is famous for veggie pizzas!", faceHero: "streetNorthNpcA" },
+              { type: "textMessage", text: "This place is famous for veggie!", faceHero: "streetNorthNpcA" },
             ]
           }
         ]
@@ -775,12 +775,12 @@ window.OverworldMaps = {
           },
         ]
       },
-      pizzaStone: {
-        type: "PizzaStone",
+      skillBook: {
+        type: "SkillBook",
         x: utils.withGrid(2),
         y: utils.withGrid(9),
         storyFlag: "STONE_STREET_NORTH",
-        pizzas: ["v001", "f001"],
+        skills: ["v001", "f001"],
       },
     },
     walls: {
@@ -946,7 +946,7 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "I've been dreaming of this pizza for weeks!", faceHero: "diningRoomNpcD" },
+              { type: "textMessage", text: "I've been dreaming of this for weeks!", faceHero: "diningRoomNpcD" },
             ]
           },
         ]
