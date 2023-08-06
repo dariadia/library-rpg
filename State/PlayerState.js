@@ -1,16 +1,6 @@
 class PlayerState {
   constructor() {
-    this.skills = {
-      "p1": {
-        skillId: "s001",
-        hp: 50,
-        maxHp: 50,
-        xp: 0,
-        maxXp: 100,
-        level: 0,
-        status: null,
-      },
-    }
+    this.skills = {}
     this.lineup = ["p1"];
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },

@@ -2,6 +2,9 @@ const HERR_DOKTOR = 'HerrDoktor'
 const HERO = 'hero'
 const MRS_T = 'MrsT'
 
+const RAN_AWAY = 'INTRO:RAN_AWAY'
+const QUIET_WATCH = 'INTRO:QUIET_WATCH'
+
 const CHARACTERS = {
   [HERR_DOKTOR]: {
     id: HERR_DOKTOR,
@@ -186,70 +189,70 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
+              // { 
+              //   type: "changeMap", 
+              //   map: "Hall",
+              //   x: utils.withGrid(8),
+              //   y: utils.withGrid(11),
+              //   direction: "down"
+              // }
+          { type: "externalEffect", kind: "darkMax", time: 5000},
+          { type: "stand", who: HERO, direction: "up", time: 200},
+          { type: "stand", who: HERO, direction: "left", time: 200},
+          { type: "textMessage", text: "Ugh...."},
+          { type: "stand", who: HERO, direction: "right", time: 200},
+          { type: "stand", who: HERO, direction: "down", time: 200},
+          { type: "addStoryFlag", flag: "SEEN_INTRO"},
+          { type: "textMessage", text: "... did I fall asleep? Ugh... "},
+          { type: "stand", who: HERO, direction: "left", time: 200},
+          { type: "textMessage", text: "... wha-at"},
+          { type: "walk", who: HERR_DOKTOR, direction: "left"},
+          { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
+          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
+          { type: "textMessage", text: "WHAT?!"},
+          { type: "prompt", options: [
+            { text: "run away", actions: [
+              { type: "addStoryFlag",  flag: RAN_AWAY, upSkill: '0quick' },
+              { type: "textMessage", text: "A-A-A-A!!!"},
+              { type: "walk", who: HERO, direction: "right"},
+              { type: "walk", who: HERO, direction: "down"},
+              { type: "walk", who: HERO, direction: "down"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "down"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "down"},
               { 
                 type: "changeMap", 
                 map: "Hall",
-                x: utils.withGrid(8),
-                y: utils.withGrid(11),
+                x: utils.withGrid(9),
+                y: utils.withGrid(10),
                 direction: "down"
               }
-          // { type: "externalEffect", kind: "darkMax", time: 5000},
-          // { type: "stand", who: HERO, direction: "up", time: 200},
-          // { type: "stand", who: HERO, direction: "left", time: 200},
-          // { type: "textMessage", text: "Ugh...."},
-          // { type: "stand", who: HERO, direction: "right", time: 200},
-          // { type: "stand", who: HERO, direction: "down", time: 200},
-          // { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          // { type: "textMessage", text: "... did I fall asleep? Ugh... "},
-          // { type: "stand", who: HERO, direction: "left", time: 200},
-          // { type: "textMessage", text: "... wha-at"},
-          // { type: "walk", who: HERR_DOKTOR, direction: "left"},
-          // { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
-          // { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
-          // { type: "textMessage", text: "WHAT?!"},
-          // { type: "prompt", options: [
-          //   { text: "run away", actions: [
-          //     { type: "addStoryFlag",  flag: "INTRO:RAN_AWAY"},
-          //     { type: "textMessage", text: "A-A-A-A!!!"},
-          //     { type: "walk", who: HERO, direction: "right"},
-          //     { type: "walk", who: HERO, direction: "down"},
-          //     { type: "walk", who: HERO, direction: "down"},
-          //     { type: "walk", who: HERO, direction: "left"},
-          //     { type: "walk", who: HERO, direction: "left"},
-          //     { type: "walk", who: HERO, direction: "left"},
-          //     { type: "walk", who: HERO, direction: "left"},
-          //     { type: "walk", who: HERO, direction: "left"},
-          //     { type: "walk", who: HERO, direction: "down"},
-          //     { type: "walk", who: HERO, direction: "left"},
-          //     { type: "walk", who: HERO, direction: "left"},
-          //     { type: "walk", who: HERO, direction: "down"},
-          //     { 
-          //       type: "changeMap", 
-          //       map: "Hall",
-          //       x: utils.withGrid(9),
-          //       y: utils.withGrid(10),
-          //       direction: "down"
-          //     }
-          //   ] }, 
-          //   { text: "keep quiet and watch", actions: [
-          //     { type: "addStoryFlag",  flag: "INTRO:QUIET_WATCH"},
-          //     { type: "stand", who: HERR_DOKTOR, direction: "up", time: 1000},
-          //     { type: "walk", who: HERR_DOKTOR, direction: "left"},
-          //     { type: "stand", who: HERR_DOKTOR, direction: "left", time: 500},
-          //     { type: "stand", who: HERR_DOKTOR, direction: "up", time: 500},
-          //     { 
-          //       type: "changeMap", 
-          //       map: "ReadingRoomEmpty",
-          //       x: utils.withGrid(11),
-          //       y: utils.withGrid(6),
-          //       direction: "left",
-          //       disappear: true,
-          //       shadeOptions: "width:14px;height: 18px;top: 60px;left: 9px;border-radius: 50px;filter: blur(3px);"
-          //     },
-          //     { type: "textMessage", text: "...a-and he went through the bookshelves..."},
-          //     { type: "textMessage", text: "Of course."},
-          //   ] }
-          // ]},
+            ] }, 
+            { text: "keep quiet and watch", actions: [
+              { type: "addStoryFlag",  flag: QUIET_WATCH, upSkill: '0obs'},
+              { type: "stand", who: HERR_DOKTOR, direction: "up", time: 1000},
+              { type: "walk", who: HERR_DOKTOR, direction: "left"},
+              { type: "stand", who: HERR_DOKTOR, direction: "left", time: 500},
+              { type: "stand", who: HERR_DOKTOR, direction: "up", time: 500},
+              { 
+                type: "changeMap", 
+                map: "ReadingRoomEmpty",
+                x: utils.withGrid(11),
+                y: utils.withGrid(6),
+                direction: "left",
+                disappear: true,
+                shadeOptions: "width:14px;height: 18px;top: 60px;left: 9px;border-radius: 50px;filter: blur(3px);"
+              },
+              { type: "textMessage", text: "...a-and he went through the bookshelves..."},
+              { type: "textMessage", text: "Of course."},
+            ] }
+          ]},
         ]
       }],
       [utils.asGridCoord(4,4)]: [{

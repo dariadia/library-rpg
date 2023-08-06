@@ -83,9 +83,9 @@ class Combatant {
   }
 
   getPostEvents() {
-    if (this.status?.type === "saucy") {
+    if (this.status?.type === "confident") {
       return [
-        { type: "textMessage", text: "Feelin' saucy!" },
+        { type: "textMessage", text: "Feelin' confident!" },
         { type: "stateChange", recover: 5, onCaster: true }
       ]
     } 

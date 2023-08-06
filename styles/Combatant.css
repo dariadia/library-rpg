@@ -67,10 +67,10 @@
 }
 .Combatant_type {
   position: absolute;
-  left: 3px;
-  top: -2px;
-  width: 16px;
-  height: 16px;
+  left: 5px;
+  top: 2px;
+  width: 10px;
+  height: 10px;
 }
 
 .Player_time-container {
@@ -117,7 +117,7 @@
   color: white;
   margin: 0;
 }
-.Combatant_status[data-status="saucy"] {
+.Combatant_status[data-status="confident"] {
   color: red;
 }
 .Combatant_status[data-status="clumsy"] {

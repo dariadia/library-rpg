@@ -138,7 +138,8 @@ class TurnCycle {
   async init() {
     await this.onNewEvent({
       type: "textMessage",
-      text: `You approach ${this.question.enemy.name}!`
+      text: `You approach ${this.question.enemy.name}!`,
+      caster: { name: "You" }
     })
     this.turn();
 

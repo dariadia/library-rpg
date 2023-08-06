@@ -10,7 +10,6 @@ class Hud {
   }
 
   createElement() {
-
     if (this.element) {
       this.element.remove();
       this.scoreboards = [];
@@ -22,6 +21,7 @@ class Hud {
     const {playerState} = window;
     playerState.lineup.forEach(key => {
       const skill = playerState.skills[key];
+      if (!skill) return 
       const scoreboard = new Combatant({
         id: key,
         ...Skills[skill.skillId],

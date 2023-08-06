@@ -5,11 +5,10 @@ class QuestionEvent {
   }
   
   textMessage(resolve) {
-
     const text = this.event.text
-    .replace("{CASTER}", this.event.caster?.name)
-    .replace("{TARGET}", this.event.target?.name)
-    .replace("{ACTION}", this.event.action?.name)
+      .replace("{CASTER}", this.event.caster?.name)
+      .replace("{TARGET}", this.event.target?.name)
+      .replace("{ACTION}", this.event.action?.name)
 
     const message = new TextMessage({
       text,
