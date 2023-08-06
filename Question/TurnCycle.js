@@ -1,16 +1,16 @@
 class TurnCycle {
   constructor({ question, onNewEvent, onWinner }) {
-    this.question = question;
-    this.onNewEvent = onNewEvent;
-    this.onWinner = onWinner;
-    this.currentTeam = "player";
+    this.question = question
+    this.onNewEvent = onNewEvent
+    this.onWinner = onWinner
+    this.currentTeam = "player"
   }
 
   async turn() {
-    const casterId = this.question.activeCombatants[this.currentTeam];
-    const caster = this.question.combatants[casterId];
+    const casterId = this.question.activeCombatants[this.currentTeam]
+    const caster = this.question.combatants[casterId]
     const enemyId = this.question.activeCombatants[caster.team === "player" ? "enemy" : "player"]
-    const enemy = this.question.combatants[enemyId];
+    const enemy = this.question.combatants[enemyId]
 
     const submission = await this.onNewEvent({
       type: "submissionMenu",
@@ -31,11 +31,11 @@ class TurnCycle {
     }
 
     if (submission.instanceId) {
-      this.question.usedInstanceIds[submission.instanceId] = true;
+      this.question.usedInstanceIds[submission.instanceId] = true
       this.question.items = this.question.items.filter(i => i.instanceId !== submission.instanceId)
     }
 
-    const resultingEvents = caster.getReplacedEvents(submission.action.success);
+    const resultingEvents = caster.getReplacedEvents(submission.action.success)
 
     for (let i=0; i<resultingEvents.length; i++) {
       const event = {
@@ -45,9 +45,9 @@ class TurnCycle {
         caster,
         target: submission.target,
       }
-      await this.onNewEvent(event);
+      await this.onNewEvent(event)
     }
-    const targetDead = submission.target.hp <= 0;
+    const targetDead = submission.target.hp <= 0
     if (targetDead) {
       await this.onNewEvent({ 
         type: "textMessage", text: `${submission.target.name} is ruined!`
@@ -55,8 +55,8 @@ class TurnCycle {
 
       if (submission.target.team === "enemy") {
 
-        const playerActiveSkillId = this.question.activeCombatants.player;
-        const xp = submission.target.givesXp;
+        const playerActiveSkillId = this.question.activeCombatants.player
+        const xp = submission.target.givesXp
 
         await this.onNewEvent({
           type: "textMessage",
@@ -70,18 +70,16 @@ class TurnCycle {
       }
     }
 
-    //Do we have a winning team?
-    const winner = this.getWinningTeam();
+    const winner = this.getWinningTeam()
     if (winner) {
       await this.onNewEvent({
         type: "textMessage",
         text: "Winner!"
       })
-      this.onWinner(winner);
-      return;
+      this.onWinner(winner)
+      return
     }
-      
-    //We have a dead target, but still no winner, so bring in a replacement
+
     if (targetDead) {
       const replacement = await this.onNewEvent({
         type: "replacementMenu",
@@ -97,7 +95,7 @@ class TurnCycle {
       })
     }
 
-    const postEvents = caster.getPostEvents();
+    const postEvents = caster.getPostEvents()
     for (let i=0; i < postEvents.length; i++ ) {
       const event = {
         ...postEvents[i],
@@ -106,32 +104,32 @@ class TurnCycle {
         caster,
         target: submission.target, 
       }
-      await this.onNewEvent(event);
+      await this.onNewEvent(event)
     }
 
-    const expiredEvent = caster.decrementStatus();
+    const expiredEvent = caster.decrementStatus()
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent)
     }
 
-    this.nextTurn();
+    this.nextTurn()
   }
 
   nextTurn() {
-    this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
-    this.turn();
+    this.currentTeam = this.currentTeam === "player" ? "enemy" : "player"
+    this.turn()
   }
 
   getWinningTeam() {
-    let aliveTeams = {};
+    let aliveTeams = {}
     Object.values(this.question.combatants).forEach(c => {
       if (c.hp > 0) {
-        aliveTeams[c.team] = true;
+        aliveTeams[c.team] = true
       }
     })
     if (!aliveTeams["player"]) { return "enemy"}
     if (!aliveTeams["enemy"]) { return "player"}
-    return null;
+    return null
   }
 
   async init() {
@@ -140,7 +138,7 @@ class TurnCycle {
       text: `You approach ${this.question.enemy.name}!`,
       caster: { name: "You" }
     })
-    this.turn();
+    this.turn()
 
   }
 
