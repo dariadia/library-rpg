@@ -21,7 +21,7 @@ const CHARACTERS = {
   [MRS_T]: {
     id: MRS_T,
     visible: 0.6,
-    name: 'Mrs T (widowed)',
+    name: 'Mrs T',
     avatar: {
       gen: '/images/characters/avatars/mrs-t_gen.png',
       upset: '/images/characters/avatars/mrs-t_upset.png'
@@ -29,8 +29,8 @@ const CHARACTERS = {
     character: '/images/characters/people/mrs-t.png',
     skills: {
       "a": {
-        skillId: "f002",
-        maxHp: 25,
+        skillId: "mrsT",
+        maxHp: 20,
         level: 1,
       }
     }

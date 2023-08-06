@@ -30,7 +30,7 @@ class Combatant {
     this.hudElement.setAttribute("data-combatant", this.id);
     this.hudElement.setAttribute("data-team", this.team);
     this.hudElement.innerHTML = (`
-      <p class="Combatant_name">Clues collected</p>
+      <p class="Combatant_name">${this.name}</p>
       <p class="Combatant_level"></p>
       <div class="Player_crop">
         <img class="Player_notepad" alt="${this.type}" src="${this.icon}" />
@@ -83,13 +83,16 @@ class Combatant {
   }
 
   getPostEvents() {
-    if (this.status?.type === "confident") {
-      return [
-        { type: "textMessage", text: "Feelin' confident!" },
-        { type: "stateChange", recover: 5, onCaster: true }
-      ]
-    } 
-    return [];
+    switch (this.status?.type) {
+      case "confident": {
+        return [
+          { type: "textMessage", text: "Feelin' confident!" },
+          { type: "stateChange", recover: 5, onCaster: true }
+        ]
+      }
+      default:
+        return []
+    }
   }
 
   decrementStatus() {

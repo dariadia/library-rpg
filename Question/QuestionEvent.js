@@ -50,11 +50,8 @@ class QuestionEvent {
       })
     }
 
-
-    //Wait a little bit
     await utils.wait(600)
 
-    //Update Team components
     this.question.playerTeam.update();
     this.question.enemyTeam.update();
     resolve();
@@ -70,7 +67,6 @@ class QuestionEvent {
         return c.id !== caster.id && c.team === caster.team && c.hp > 0
       }),
       onComplete: submission => {
-        //submission { what move to use, who to use it on }
         resolve(submission)
       }
     })
@@ -91,19 +87,15 @@ class QuestionEvent {
 
   async replace(resolve) {
     const {replacement} = this.event;
-
-    //Clear out the old combatant
     const prevCombatant = this.question.combatants[this.question.activeCombatants[replacement.team]];
     this.question.activeCombatants[replacement.team] = null;
     prevCombatant.update();
     await utils.wait(400);
 
-    //In with the new!
     this.question.activeCombatants[replacement.team] = replacement.id;
     replacement.update();
     await utils.wait(400);
 
-    //Update Team components
     this.question.playerTeam.update();
     this.question.enemyTeam.update();
 

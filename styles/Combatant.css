@@ -22,7 +22,10 @@
 }
 .Combatant[data-team="enemy"] {
   top: 28px;
-  right: 77px;
+  right: 45px;
+}
+
+.Combatant[data-team="enemy"] .Combatant_level {
   display: none;
 }
 

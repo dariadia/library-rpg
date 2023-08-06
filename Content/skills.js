@@ -11,20 +11,28 @@ window.SkillTypes = {
 
 window.Skills = {
   "0obs": {
-    name: "YN",
+    name: "Your Name",
     description: "You pay close attention to details.",
     type: SkillTypes.observant,
     src: "/images/ui/notepad.png",
     icon: "/images/ui/notepad.png",
-    actions: [ "confidentStatus", "sleepyStatus", "damage1" ],
+    actions: [ "ask_name", "ask_death_gen", "damage1" ],
   },
   "0quick": {
-    name: "YN",
+    name: "Your Name",
     description: "Quick thinking. Also, fast running.",
     type: SkillTypes.quick,
     src: "/images/characters/skills/s001.png",
     icon: "/images/icons/spicy.png",
-    actions: [ "confidentStatus", "sleepyStatus", "damage1" ],
+    actions: [ "ask_death", "ask_ghost", "damage1" ],
+  },
+  "mrsT": {
+    name: "Mrs T (widowed)",
+    description: "Has no idea what's going on.",
+    type: SkillTypes.disoriented,
+    src: "/images/characters/skills/s001.png",
+    icon: "/images/icons/spicy.png",
+    actions: [ "disorientedStatus", "sleepyStatus" ],
   },
   "s001": {
     name: "some name",
@@ -67,7 +75,7 @@ window.Skills = {
     actions: [ "damage1" ],
   },
   "f002": {
-    name: "Say Shitake",
+    name: "some name",
     description: "Skill desc here",
     type: SkillTypes.normal,
     src: "/images/characters/skills/f001.png",

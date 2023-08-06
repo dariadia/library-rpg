@@ -35,17 +35,11 @@ class Question {
 
     window.playerState.lineup.forEach(id => {
       this.addCombatant(id, "player", window.playerState.skills[id])
-    });
-
+    })
     Object.keys(this.enemy.skills).forEach(key => {
       this.addCombatant("e_"+key, "enemy", this.enemy.skills[key])
     })
-
-
-    //Start empty
     this.items = []
-
-    //Add in player items
     window.playerState.items.forEach(item => {
       this.items.push({
         ...item,
@@ -70,8 +64,6 @@ class Question {
   createElement() {
     this.element = document.createElement("div");
     this.element.classList.add("Question");
-
-    // If provided, add a CSS class for setting the arena background
     if (this.arena) {
       this.element.classList.add(this.arena);
     }
@@ -97,8 +89,6 @@ class Question {
       let combatant = this.combatants[key];
       combatant.id = key;
       combatant.init(this.element)
-      
-      //Add to correct team
       if (combatant.team === "player") {
         this.playerTeam.combatants.push(combatant);
       } else if (combatant.team === "enemy") {
@@ -131,13 +121,9 @@ class Question {
               playerStateSkill.level = combatant.level;
             }
           })
-
-          //Get rid of player used items
           playerState.items = playerState.items.filter(item => {
             return !this.usedInstanceIds[item.instanceId]
           })
-
-          //Send signal to update
           utils.emitEvent("PlayerStateUpdated");
         }
 
@@ -146,8 +132,6 @@ class Question {
       }
     })
     this.turnCycle.init();
-
-
   }
 
 }

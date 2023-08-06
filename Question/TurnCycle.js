@@ -60,7 +60,7 @@ class TurnCycle {
 
         await this.onNewEvent({
           type: "textMessage",
-          text: `Gained ${xp} XP!`
+          text: `Gained a clue!`
         })
         await this.onNewEvent({
           type: "giveXp",
