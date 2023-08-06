@@ -21,7 +21,7 @@ class Combatant {
   }
 
   get givesXp() {
-    return this.level * 20;
+    return window.playerState.clues += 1;
   }
 
   createElement() {
@@ -31,7 +31,6 @@ class Combatant {
     this.hudElement.setAttribute("data-team", this.team);
     this.hudElement.innerHTML = (`
       <p class="Combatant_name">${this.name}</p>
-      <p class="Combatant_level"></p>
       <div class="Player_crop">
         <img class="Player_notepad" alt="${this.type}" src="${this.icon}" />
       </div>
@@ -52,7 +51,6 @@ class Combatant {
   }
 
   update(changes={}) {
-    //Update anything incoming
     Object.keys(changes).forEach(key => {
       this[key] = changes[key]
     });
@@ -60,7 +58,17 @@ class Combatant {
     this.hudElement.setAttribute("data-active", this.isActive);
     this.hpFills.forEach(rect => rect.style.width = `${this.hpPercent}%`)
     this.xpFills.forEach(rect => rect.style.width = `${this.xpPercent}%`)
-    this.hudElement.querySelector(".Combatant_level").innerText = this.level;
+
+    let cluesEl = document.querySelector(".Clues_collected")
+    if (!cluesEl) {
+      cluesEl = document.createElement("div")
+      cluesEl.classList.add("Clues_collected")
+      cluesEl.innerHTML = window.playerState.clues
+      this.hudElement.appendChild(cluesEl)
+    } else if (Number(cluesEl.innerHTML) !== window.playerState.clues) {
+      cluesEl.innerHTML = window.playerState.clues
+    }
+
     const statusElement = this.hudElement.querySelector(".Combatant_status");
     if (this.status) {
       statusElement.innerText = this.status.type;

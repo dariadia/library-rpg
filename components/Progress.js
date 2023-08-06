@@ -1,10 +1,11 @@
 class Progress {
   constructor() {
-    this.mapId = "ReadingRoom";
-    this.startingHeroX = 0;
-    this.startingHeroY = 0;
-    this.startingHeroDirection = "down";
-    this.saveFileKey = "Geister_SaveFile1";
+    this.mapId = "ReadingRoom"
+    this.startingHeroX = 0
+    this.startingHeroY = 0
+    this.startingHeroDirection = "down"
+    this.saveFileKey = "Geister_SaveFile1"
+    this.clues = 0
   }
 
   save() {
@@ -17,7 +18,8 @@ class Progress {
         skills: playerState.skills,
         lineup: playerState.lineup,
         items: playerState.items,
-        storyFlags: playerState.storyFlags
+        storyFlags: playerState.storyFlags,
+        clues: playerState.clues,
       }
     }))
   }
@@ -25,22 +27,22 @@ class Progress {
   getSaveFile() {
 
     if (!window.localStorage) {
-      return null;
+      return null
     }
 
-    const file = window.localStorage.getItem(this.saveFileKey);
+    const file = window.localStorage.getItem(this.saveFileKey)
     return file ? JSON.parse(file) : null
   }
   
   load() {
-    const file = this.getSaveFile();
+    const file = this.getSaveFile()
     if (file) {
-      this.mapId = file.mapId;
-      this.startingHeroX = file.startingHeroX;
-      this.startingHeroY = file.startingHeroY;
-      this.startingHeroDirection = file.startingHeroDirection;
+      this.mapId = file.mapId
+      this.startingHeroX = file.startingHeroX
+      this.startingHeroY = file.startingHeroY
+      this.startingHeroDirection = file.startingHeroDirection
       Object.keys(file.playerState).forEach(key => {
-        playerState[key] = file.playerState[key];
+        playerState[key] = file.playerState[key]
       })
     }
   }

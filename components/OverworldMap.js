@@ -31,7 +31,6 @@ const CHARACTERS = {
       "a": {
         skillId: "mrsT",
         maxHp: 20,
-        level: 1,
       }
     }
   },

@@ -25,7 +25,7 @@
   right: 45px;
 }
 
-.Combatant[data-team="enemy"] .Combatant_level {
+.Combatant[data-team="enemy"] .Clues_collected {
   display: none;
 }
 
@@ -94,12 +94,11 @@
   width: 26px;
   height: 2px;
 }
-.Combatant_level {
+.Clues_collected {
   position: absolute;
   font-size: 12px;
-  right: 2px;
-  top: -1px;
-  width: 17px;
+  top: 16px;
+  left: 2px;
   height: 12px;
   display:flex;
   align-items: center;
@@ -107,6 +106,13 @@
   background: #F8C594;
   border: 1px solid #A48465;
   margin: 0;
+}
+
+.Clues_collected::after {
+  content: "clues collected";
+  display: block;
+  font-size: 6px;
+  padding: 0 4px 0 2px;
 }
 
 .Combatant_status {

@@ -109,12 +109,9 @@ class QuestionEvent {
       if (amount > 0) {
         amount -= 1;
         combatant.xp += 1;
-
-        //Check if we've hit level up point
         if (combatant.xp === combatant.maxXp) {
           combatant.xp = 0;
           combatant.maxXp = 100;
-          combatant.level += 1;
         }
 
         combatant.update();

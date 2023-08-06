@@ -118,7 +118,6 @@ class Question {
               playerStateSkill.hp = combatant.hp;
               playerStateSkill.xp = combatant.xp;
               playerStateSkill.maxXp = combatant.maxXp;
-              playerStateSkill.level = combatant.level;
             }
           })
           playerState.items = playerState.items.filter(item => {
