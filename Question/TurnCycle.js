@@ -1,25 +1,22 @@
 class TurnCycle {
-  constructor({ battle, onNewEvent, onWinner }) {
-    this.battle = battle;
+  constructor({ question, onNewEvent, onWinner }) {
+    this.question = question;
     this.onNewEvent = onNewEvent;
     this.onWinner = onWinner;
-    this.currentTeam = "player"; //or "enemy"
+    this.currentTeam = "player";
   }
 
   async turn() {
-    //Get the caster
-    const casterId = this.battle.activeCombatants[this.currentTeam];
-    const caster = this.battle.combatants[casterId];
-    const enemyId = this.battle.activeCombatants[caster.team === "player" ? "enemy" : "player"]
-    const enemy = this.battle.combatants[enemyId];
+    const casterId = this.question.activeCombatants[this.currentTeam];
+    const caster = this.question.combatants[casterId];
+    const enemyId = this.question.activeCombatants[caster.team === "player" ? "enemy" : "player"]
+    const enemy = this.question.combatants[enemyId];
 
     const submission = await this.onNewEvent({
       type: "submissionMenu",
       caster,
       enemy
     })
-
-    //Stop here if we are replacing this Pizza
     if (submission.replacement) {
       await this.onNewEvent({
         type: "replace",
@@ -29,17 +26,13 @@ class TurnCycle {
         type: "textMessage",
         text: `Go get 'em, ${submission.replacement.name}!`
       })
-      this.nextTurn();
-      return;
+      this.nextTurn()
+      return
     }
 
     if (submission.instanceId) {
-
-      //Add to list to persist to player state later
-      this.battle.usedInstanceIds[submission.instanceId] = true;
-
-      //Removing item from battle state
-      this.battle.items = this.battle.items.filter(i => i.instanceId !== submission.instanceId)
+      this.question.usedInstanceIds[submission.instanceId] = true;
+      this.question.items = this.question.items.filter(i => i.instanceId !== submission.instanceId)
     }
 
     const resultingEvents = caster.getReplacedEvents(submission.action.success);
@@ -54,8 +47,6 @@ class TurnCycle {
       }
       await this.onNewEvent(event);
     }
-
-    //Did the target die?
     const targetDead = submission.target.hp <= 0;
     if (targetDead) {
       await this.onNewEvent({ 
@@ -64,17 +55,17 @@ class TurnCycle {
 
       if (submission.target.team === "enemy") {
 
-        const playerActivePizzaId = this.battle.activeCombatants.player;
+        const playerActiveSkillId = this.question.activeCombatants.player;
         const xp = submission.target.givesXp;
 
         await this.onNewEvent({
           type: "textMessage",
-          text: `Gained ${xp} XP!`
+          text: `Gained a clue!`
         })
         await this.onNewEvent({
           type: "giveXp",
           xp,
-          combatant: this.battle.combatants[playerActivePizzaId]
+          combatant: this.question.combatants[playerActiveSkillId]
         })
       }
     }
@@ -106,9 +97,6 @@ class TurnCycle {
       })
     }
 
-
-    //Check for post events
-    //(Do things AFTER your original turn submission)
     const postEvents = caster.getPostEvents();
     for (let i=0; i < postEvents.length; i++ ) {
       const event = {
@@ -121,7 +109,6 @@ class TurnCycle {
       await this.onNewEvent(event);
     }
 
-    //Check for status expire
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent)
@@ -137,7 +124,7 @@ class TurnCycle {
 
   getWinningTeam() {
     let aliveTeams = {};
-    Object.values(this.battle.combatants).forEach(c => {
+    Object.values(this.question.combatants).forEach(c => {
       if (c.hp > 0) {
         aliveTeams[c.team] = true;
       }
@@ -150,10 +137,9 @@ class TurnCycle {
   async init() {
     await this.onNewEvent({
       type: "textMessage",
-      text: `${this.battle.enemy.name} wants to throw down!`
+      text: `You approach ${this.question.enemy.name}!`,
+      caster: { name: "You" }
     })
-
-    //Start the first turn!
     this.turn();
 
   }

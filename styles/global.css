@@ -33,14 +33,26 @@ body {
 
 .game-container {
   position: relative; 
-  top: -90px;
   background: var(--main);
   width: 352px;
   height: 100%;
   margin: 0 auto;
   outline: 1px solid var(--menu-border-color);
-  transform: scale(3) translateY(50%);
+  transform: scale(3) translateY(36%);
 }
+
+@media screen and (max-width: 1100px){
+  .game-container {
+    transform: scale(2.5) translateY(40%);
+  }
+}
+
+@media screen and (max-width: 900px){
+  .game-container {
+    transform: scale(2) translateY(50%);
+  }
+}
+
 
 .game-container canvas {
   image-rendering: pixelated;
@@ -64,6 +76,20 @@ body {
   animation: enter 5s ease-out 1;
 	-webkit-animation: enter 5s ease-out 1;
   background-color: rgba(0, 0, 0, 0.9);
+}
+
+.device-error {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.device-error_message {
+  color: var(--text-message-action);
+  font-size: 24px;
+  padding: 24px;
+  display: block;
+  width: 280px;
 }
 
 @keyframes enter {

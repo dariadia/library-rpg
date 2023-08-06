@@ -94,15 +94,15 @@ class OverworldEvent {
     })
   }
 
-  battle(resolve) {
-    const battle = new Battle({
-      enemy: Enemies[this.event.enemyId],
+  question(resolve) {
+    const question = new Question({
+      enemy: this.event.enemy,
       arena: this.event.arena || null,
       onComplete: (didWin) => {
         resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE")
       }
     })
-    battle.init(document.querySelector(".game-container"))
+    question.init(document.querySelector(".game-container"))
 
   }
 
@@ -121,12 +121,14 @@ class OverworldEvent {
 
   addStoryFlag(resolve) {
     window.playerState.storyFlags[this.event.flag] = true
+    if (this.event.upSkill) 
+      playerState.addSkill(this.event.upSkill) 
     resolve()
   }
 
   craftingMenu(resolve) {
     const menu = new CraftingMenu({
-      pizzas: this.event.pizzas,
+      skills: this.event.skills,
       onComplete: () => {
         resolve()
       }

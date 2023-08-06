@@ -1,17 +1,17 @@
 class CraftingMenu {
-  constructor({ pizzas, onComplete}) {
-    this.pizzas = pizzas;
+  constructor({ skills, onComplete}) {
+    this.skills = skills;
     this.onComplete = onComplete;
   }
 
   getOptions() {
-    return this.pizzas.map(id => {
-      const base = Pizzas[id];
+    return this.skills.map(id => {
+      const base = skills[id];
       return {
         label: base.name,
         description: base.description,
         handler: () => {
-          playerState.addPizza(id);
+          playerState.addSkill(id);
           this.close();
         }
       }
@@ -23,7 +23,7 @@ class CraftingMenu {
     this.element.classList.add("CraftingMenu");
     this.element.classList.add("overlayMenu");
     this.element.innerHTML = (`
-      <h2>Create a Pizza</h2>
+      <h2>Up a skill</h2>
     `)
   }
 

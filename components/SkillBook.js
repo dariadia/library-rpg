@@ -1,9 +1,9 @@
-class PizzaStone extends GameObject {
+class SkillBook extends GameObject {
   constructor(config) {
     super(config);
     this.sprite = new Sprite({
       gameObject: this,
-      src: "/images/characters/pizza-stone.png",
+      src: "/images/characters/skill-book.png",
       animations: {
         "used-down"   : [ [0,0] ],
         "unused-down" : [ [1,0] ],
@@ -11,7 +11,7 @@ class PizzaStone extends GameObject {
       currentAnimation: "used-down"
     });
     this.storyFlag = config.storyFlag;
-    this.pizzas = config.pizzas;
+    this.skills = config.skills;
 
     this.talking = [
       {
@@ -22,8 +22,8 @@ class PizzaStone extends GameObject {
       },
       {
         events: [
-          { type: "textMessage", text: "Approaching the legendary pizza stone..." },
-          { type: "craftingMenu", pizzas: this.pizzas },
+          { type: "textMessage", text: "Approaching the legendary stone..." },
+          { type: "craftingMenu", skills: this.skills },
           { type: "addStoryFlag", flag: this.storyFlag },
         ]
       }

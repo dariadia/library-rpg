@@ -1,4 +1,4 @@
-class Battle {
+class Question {
   constructor({ enemy, onComplete, arena }) {
 
     this.enemy = enemy;
@@ -7,7 +7,7 @@ class Battle {
 
     this.combatants = {
       // "player1": new Combatant({
-      //   ...Pizzas.s001,
+      //   ...Skills.s001,
       //   team: "player",
       //   hp: 30,
       //   maxHp: 50,
@@ -17,19 +17,8 @@ class Battle {
       //   status: { type: "saucy" },
       //   isPlayerControlled: true
       // }, this),
-      // "player2": new Combatant({
-      //   ...Pizzas.s002,
-      //   team: "player",
-      //   hp: 30,
-      //   maxHp: 50,
-      //   xp: 75,
-      //   maxXp: 100,
-      //   level: 1,
-      //   status: null,
-      //   isPlayerControlled: true
-      // }, this),
       // "enemy1": new Combatant({
-      //   ...Pizzas.v001,
+      //   ...Skills.v001,
       //   team: "enemy",
       //   hp: 1,
       //   maxHp: 50,
@@ -37,36 +26,20 @@ class Battle {
       //   maxXp: 100,
       //   level: 1,
       // }, this),
-      // "enemy2": new Combatant({
-      //   ...Pizzas.f001,
-      //   team: "enemy",
-      //   hp: 25,
-      //   maxHp: 50,
-      //   xp: 30,
-      //   maxXp: 100,
-      //   level: 1,
-      // }, this)
     }
 
     this.activeCombatants = {
-      player: null, //"player1",
-      enemy: null, //"enemy1",
+      player: null,
+      enemy: null,
     }
 
-    //Dynamically add the Player team
     window.playerState.lineup.forEach(id => {
-      this.addCombatant(id, "player", window.playerState.pizzas[id])
-    });
-    //Now the enemy team
-    Object.keys(this.enemy.pizzas).forEach(key => {
-      this.addCombatant("e_"+key, "enemy", this.enemy.pizzas[key])
+      this.addCombatant(id, "player", window.playerState.skills[id])
     })
-
-
-    //Start empty
+    Object.keys(this.enemy.skills).forEach(key => {
+      this.addCombatant("e_"+key, "enemy", this.enemy.skills[key])
+    })
     this.items = []
-
-    //Add in player items
     window.playerState.items.forEach(item => {
       this.items.push({
         ...item,
@@ -80,31 +53,27 @@ class Battle {
 
   addCombatant(id, team, config) {
       this.combatants[id] = new Combatant({
-        ...Pizzas[config.pizzaId],
+        ...Skills[config.skillId],
         ...config,
         team,
         isPlayerControlled: team === "player"
       }, this)
-
-      //Populate first active pizza
       this.activeCombatants[team] = this.activeCombatants[team] || id
   }
 
   createElement() {
     this.element = document.createElement("div");
-    this.element.classList.add("Battle");
-
-    // If provided, add a CSS class for setting the arena background
+    this.element.classList.add("Question");
     if (this.arena) {
       this.element.classList.add(this.arena);
     }
 
     this.element.innerHTML = (`
-    <div class="Battle_hero">
+    <div class="Question_hero">
       <img src="${'/images/characters/people/hero.png'}" alt="Hero" />
     </div>
-    <div class="Battle_enemy">
-      <img src=${this.enemy.src} alt=${this.enemy.name} />
+    <div class="Question_enemy">
+      <img src="${this.enemy.character}" alt="${this.enemy.name}" />
     </div>
     `)
   }
@@ -120,8 +89,6 @@ class Battle {
       let combatant = this.combatants[key];
       combatant.id = key;
       combatant.init(this.element)
-      
-      //Add to correct team
       if (combatant.team === "player") {
         this.playerTeam.combatants.push(combatant);
       } else if (combatant.team === "enemy") {
@@ -133,34 +100,29 @@ class Battle {
     this.enemyTeam.init(this.element);
 
     this.turnCycle = new TurnCycle({
-      battle: this,
+      question: this,
       onNewEvent: event => {
         return new Promise(resolve => {
-          const battleEvent = new BattleEvent(event, this)
-          battleEvent.init(resolve);
+          const questionEvent = new QuestionEvent(event, this)
+          questionEvent.init(resolve);
         })
       },
       onWinner: winner => {
 
         if (winner === "player") {
           const playerState = window.playerState;
-          Object.keys(playerState.pizzas).forEach(id => {
-            const playerStatePizza = playerState.pizzas[id];
+          Object.keys(playerState.skills).forEach(id => {
+            const playerStateSkill = playerState.skills[id];
             const combatant = this.combatants[id];
             if (combatant) {
-              playerStatePizza.hp = combatant.hp;
-              playerStatePizza.xp = combatant.xp;
-              playerStatePizza.maxXp = combatant.maxXp;
-              playerStatePizza.level = combatant.level;
+              playerStateSkill.hp = combatant.hp;
+              playerStateSkill.xp = combatant.xp;
+              playerStateSkill.maxXp = combatant.maxXp;
             }
           })
-
-          //Get rid of player used items
           playerState.items = playerState.items.filter(item => {
             return !this.usedInstanceIds[item.instanceId]
           })
-
-          //Send signal to update
           utils.emitEvent("PlayerStateUpdated");
         }
 
@@ -169,8 +131,6 @@ class Battle {
       }
     })
     this.turnCycle.init();
-
-
   }
 
 }
