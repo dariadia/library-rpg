@@ -3,13 +3,12 @@ class TurnCycle {
     this.question = question;
     this.onNewEvent = onNewEvent;
     this.onWinner = onWinner;
-    this.currentTeam = "player"; //or "enemy"
+    this.currentTeam = "player";
   }
 
   async turn() {
     const casterId = this.question.activeCombatants[this.currentTeam];
     const caster = this.question.combatants[casterId];
-    console.log(this.question.activeCombatants, caster.team )
     const enemyId = this.question.activeCombatants[caster.team === "player" ? "enemy" : "player"]
     const enemy = this.question.combatants[enemyId];
 

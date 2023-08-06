@@ -14,8 +14,8 @@ window.Skills = {
     name: "YN",
     description: "You pay close attention to details.",
     type: SkillTypes.observant,
-    src: "/images/characters/skills/s001.png",
-    icon: "/images/icons/spicy.png",
+    src: "/images/ui/notepad.png",
+    icon: "/images/ui/notepad.png",
     actions: [ "confidentStatus", "sleepyStatus", "damage1" ],
   },
   "0quick": {

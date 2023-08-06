@@ -64,8 +64,6 @@ class Question {
         team,
         isPlayerControlled: team === "player"
       }, this)
-
-      //Populate first active skill
       this.activeCombatants[team] = this.activeCombatants[team] || id
   }
 

@@ -1,7 +1,7 @@
 class PlayerState {
   constructor() {
     this.skills = {}
-    this.lineup = ["p1"];
+    this.lineup = [];
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },
       { actionId: "item_recoverHp", instanceId: "item2" },
