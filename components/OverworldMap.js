@@ -188,13 +188,6 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
-              // { 
-              //   type: "changeMap", 
-              //   map: "Hall",
-              //   x: utils.withGrid(8),
-              //   y: utils.withGrid(11),
-              //   direction: "down"
-              // }
           { type: "externalEffect", kind: "darkMax", time: 5000},
           { type: "stand", who: HERO, direction: "up", time: 200},
           { type: "stand", who: HERO, direction: "left", time: 200},
