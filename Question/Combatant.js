@@ -80,14 +80,23 @@ class Combatant {
   }
 
   getReplacedEvents(originalEvents) {
-
-    if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
-      return [
-        { type: "textMessage", text: `${this.name} flops over!` },
-      ]
+    const isValid = utils.randomFromArray([true, false, false])
+    if (!isValid) return originalEvents
+    const status = this.status?.type || ""
+    switch (status) {
+      case "disoriented":
+        return [
+          { type: "textMessage", text: `${this.name} no longer has any idea what's going on!` },
+          { type: "stateChange", damage: 1 }
+        ]
+      case "shocked": 
+        return [
+          { type: "textMessage", text: `${this.name} is taken aback!` },
+          { type: "stateChange", damage: 5 }
+        ]
+      default:
+        return originalEvents;
     }
-
-    return originalEvents;
   }
 
   getPostEvents() {

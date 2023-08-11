@@ -50,18 +50,14 @@ class TurnCycle {
     const targetDead = submission.target.hp <= 0
     if (targetDead) {
       await this.onNewEvent({ 
-        type: "textMessage", text: `${submission.target.name} is ruined!`
+        type: "textMessage", text: `${submission.target.name} gives in!`
       })
 
       if (submission.target.team === "enemy") {
 
         const playerActiveSkillId = this.question.activeCombatants.player
-        const xp = submission.target.givesXp
+        const xp = 10
 
-        await this.onNewEvent({
-          type: "textMessage",
-          text: `Gained a clue!`
-        })
         await this.onNewEvent({
           type: "giveXp",
           xp,

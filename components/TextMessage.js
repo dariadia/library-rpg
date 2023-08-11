@@ -9,12 +9,14 @@ const getRandomPhrase = (character) => {
 }
 
 class TextMessage {
-  constructor({ text, character, onComplete, sayRandom }) {
+  constructor({ text, character, onComplete, sayRandom, emotion, cb }) {
     this.text = text
     this.character = character
     this.onComplete = onComplete
     this.element = null
     this.sayRandom = sayRandom
+    this.emotion = emotion
+    this.cb = cb
   }
 
   createElement() {
@@ -29,7 +31,7 @@ class TextMessage {
     if (this.character) {
       const characterBox = document.createElement("div")
       characterBox.classList.add("TextMessage_character")
-      characterBox.innerHTML = `<div class="TextMessage_character-name">${this.character?.name}<img class="TextMessage_character-avatar" src="${this.character?.avatar}" alt="${this.character?.name} speaking" /></div>`
+      characterBox.innerHTML = `<div class="TextMessage_character-name">${this.character?.name}<img class="TextMessage_character-avatar" src="${this.character?.avatar[this.emotion || 'gen']}" alt="${this.character?.name} speaking" /></div>`
 
       this.element.insertBefore(characterBox, this.element.firstChild)
     }
@@ -52,6 +54,7 @@ class TextMessage {
     if (this.revealingText.isDone) {
       this.element.remove()
       this.actionListener.unbind()
+      if (this.cb) this.cb()
       this.onComplete()
     } else this.revealingText.warpToDone()
   }

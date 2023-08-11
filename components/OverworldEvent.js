@@ -62,6 +62,8 @@ class OverworldEvent {
       text: this.event.text,
       character: this.event.character,
       sayRandom: this.event.sayRandom,
+      emotion: this.event.emotion,
+      cb: this.event.cb,
       onComplete: () => resolve()
     })
     message.init( document.querySelector(".game-container") )

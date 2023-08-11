@@ -200,7 +200,7 @@ window.OverworldMaps = {
           { type: "textMessage", text: "... wha-at"},
           { type: "walk", who: HERR_DOKTOR, direction: "left"},
           { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
-          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
+          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar }},
           { type: "textMessage", text: "WHAT?!"},
           { type: "prompt", options: [
             { text: "run away", actions: [
@@ -333,7 +333,7 @@ window.OverworldMaps = {
         src: CHARACTERS[MRS_T].character,
         behaviorLoop: [
           { type: "stand", who: MRS_T, direction: "down", time: 4000},
-          { type: "textMessage", text: "Oh, dear, oh dear!", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar.upset }},
+          { type: "textMessage", text: "Oh, dear, oh dear!", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar, emotion: "upset" }},
           { type: "stand", who: MRS_T, direction: "left", time: 500},
           { type: "stand", who: MRS_T, direction: "right", time: 500},
           { type: "walk", who: MRS_T, direction: "left"},
@@ -342,7 +342,7 @@ window.OverworldMaps = {
           { type: "walk", who: MRS_T, direction: "left"},
           { type: "stand", who: MRS_T, direction: "up", time: 500},
           { type: "stand", who: MRS_T, direction: "right", time: 500},
-          { type: "textMessage", text: "Isn't the weather just lovely today?", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar.gen }},
+          { type: "textMessage", text: "Isn't the weather just lovely today?", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar }},
           { type: "walk", who: MRS_T, direction: "down"},
           { type: "walk", who: MRS_T, direction: "down"},
           { type: "walk", who: MRS_T, direction: "right"},

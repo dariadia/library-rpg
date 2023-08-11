@@ -44,6 +44,7 @@
   top: -1px;
   left: 1px;
   position: relative;
+  filter: drop-shadow(0px 1px 3px #36220b);
 }
 
 .Combatant_character {
@@ -119,8 +120,8 @@
 .Combatant_status {
   position: absolute;
   font-size: 5px;
-  left: 47px;
-  bottom: -3px;
+  left: 25px;
+  bottom: -5px;
   padding-left: 2px;
   padding-right: 2px;
   background: rgba(0,0,0,0.8);
