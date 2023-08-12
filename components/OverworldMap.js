@@ -188,6 +188,8 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
+          { type: "textMessage", text: "February, 29. 1992.", effect: "intro" },
+          { type: "textMessage", text: "Kaliningrad, Russia.", effect: "intro" },
           { type: "externalEffect", kind: "darkMax", time: 5000},
           { type: "stand", who: HERO, direction: "up", time: 200},
           { type: "stand", who: HERO, direction: "left", time: 200},
