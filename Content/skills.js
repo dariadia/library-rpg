@@ -32,7 +32,7 @@ window.Skills = {
     type: SkillTypes.disoriented,
     src: "/images/characters/skills/s001.png",
     icon: "/images/icons/question-mark.png",
-    actions: [ "disorientedStatus", "sleepyStatus" ],
+    actions: [ "disoriented1", "disoriented2", "sleepy" ],
   },
   "s001": {
     name: "some name",

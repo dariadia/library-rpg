@@ -1,7 +1,7 @@
 class QuestionEvent {
   constructor(event, question) {
-    this.event = event;
-    this.question = question;
+    this.event = event
+    this.question = question
   }
   
   textMessage(resolve) {
@@ -12,16 +12,19 @@ class QuestionEvent {
 
     const message = new TextMessage({
       text,
+      emotion: this.event.emotion,
+      character: this.event.character,
+      cb: this.event.cb,
       onComplete: () => {
-        resolve();
+        resolve()
       }
     })
     message.init( this.question.element )
   }
 
   async stateChange(resolve) {
-    const {caster, target, damage, recover, status, action} = this.event;
-    let who = this.event.onCaster ? caster : target;
+    const {caster, target, damage, recover, status } = this.event
+    let who = this.event.onCaster ? caster : target
 
     if (damage) {
       target.update({
@@ -30,10 +33,8 @@ class QuestionEvent {
     }
 
     if (recover) {
-      let newHp = who.hp + recover;
-      if (newHp > who.maxHp) {
-        newHp = who.maxHp;
-      }
+      let newHp = who.hp + recover
+      if (newHp > who.maxHp) newHp = who.maxHp
       who.update({
         hp: newHp
       })
@@ -52,13 +53,13 @@ class QuestionEvent {
 
     await utils.wait(600)
 
-    this.question.playerTeam.update();
-    this.question.enemyTeam.update();
-    resolve();
+    this.question.playerTeam.update()
+    this.question.enemyTeam.update()
+    resolve()
   }
 
   submissionMenu(resolve) {
-    const {caster} = this.event;
+    const {caster} = this.event
     const menu = new SubmissionMenu({
       caster: caster,
       enemy: this.event.enemy,
@@ -75,60 +76,65 @@ class QuestionEvent {
 
   replacementMenu(resolve) {
     const menu = new ReplacementMenu({
-      replacements: Object.values(this.question.combatants).filter(c => {
-        return c.team === this.event.team && c.hp > 0
-      }),
-      onComplete: replacement => {
-        resolve(replacement)
-      }
+      replacements: Object.values(this.question.combatants).filter(c => 
+        c.team === this.event.team && c.hp > 0
+      ),
+      onComplete: replacement => resolve(replacement)
     })
     menu.init( this.question.element )
   }
 
   async replace(resolve) {
-    const {replacement} = this.event;
-    const prevCombatant = this.question.combatants[this.question.activeCombatants[replacement.team]];
-    this.question.activeCombatants[replacement.team] = null;
-    prevCombatant.update();
-    await utils.wait(400);
+    const {replacement} = this.event
+    const prevCombatant = this.question.combatants[this.question.activeCombatants[replacement.team]]
+    this.question.activeCombatants[replacement.team] = null
+    prevCombatant.update()
+    await utils.wait(400)
 
-    this.question.activeCombatants[replacement.team] = replacement.id;
-    replacement.update();
-    await utils.wait(400);
+    this.question.activeCombatants[replacement.team] = replacement.id
+    replacement.update()
+    await utils.wait(400)
 
-    this.question.playerTeam.update();
-    this.question.enemyTeam.update();
+    this.question.playerTeam.update()
+    this.question.enemyTeam.update()
 
-    resolve();
+    resolve()
+  }
+
+  addStoryFlag(resolve) {
+    window.playerState.storyFlags[this.event.flag] = true
+    if (this.event.upSkill) 
+      playerState.addSkill(this.event.upSkill) 
+    resolve()
   }
 
   giveXp(resolve) {
-    let amount = this.event.xp;
-    const {combatant} = this.event;
+    let amount = this.event.xp
+    const {combatant} = this.event
     const step = () => {
       if (amount > 0) {
-        amount -= 1;
-        combatant.xp += 1;
+        amount -= 1
+        combatant.xp += 1
         if (combatant.xp === combatant.maxXp) {
-          combatant.xp = 0;
-          combatant.maxXp = 100;
+          combatant.xp = 0
+          combatant.maxXp = 100
         }
 
-        combatant.update();
-        requestAnimationFrame(step);
-        return;
+        combatant.update()
+        requestAnimationFrame(step)
+        return
       }
-      resolve();
+      resolve()
     }
-    requestAnimationFrame(step);
+    requestAnimationFrame(step)
   }
 
   animation(resolve) {
-    const fn = QuestionAnimations[this.event.animation];
-    fn(this.event, resolve);
+    const fn = QuestionAnimations[this.event.animation]
+    fn(this.event, resolve)
   }
 
   init(resolve) {
-    this[this.event.type](resolve);
+    this[this.event.type](resolve)
   }
 }

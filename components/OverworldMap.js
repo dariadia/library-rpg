@@ -188,13 +188,6 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
-              // { 
-              //   type: "changeMap", 
-              //   map: "Hall",
-              //   x: utils.withGrid(8),
-              //   y: utils.withGrid(11),
-              //   direction: "down"
-              // }
           { type: "externalEffect", kind: "darkMax", time: 5000},
           { type: "stand", who: HERO, direction: "up", time: 200},
           { type: "stand", who: HERO, direction: "left", time: 200},
@@ -207,7 +200,7 @@ window.OverworldMaps = {
           { type: "textMessage", text: "... wha-at"},
           { type: "walk", who: HERR_DOKTOR, direction: "left"},
           { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
-          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar.gen }},
+          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar }},
           { type: "textMessage", text: "WHAT?!"},
           { type: "prompt", options: [
             { text: "run away", actions: [
@@ -340,7 +333,7 @@ window.OverworldMaps = {
         src: CHARACTERS[MRS_T].character,
         behaviorLoop: [
           { type: "stand", who: MRS_T, direction: "down", time: 4000},
-          { type: "textMessage", text: "Oh, dear, oh dear!", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar.upset }},
+          { type: "textMessage", text: "Oh, dear, oh dear!", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar, emotion: "upset" }},
           { type: "stand", who: MRS_T, direction: "left", time: 500},
           { type: "stand", who: MRS_T, direction: "right", time: 500},
           { type: "walk", who: MRS_T, direction: "left"},
@@ -349,7 +342,7 @@ window.OverworldMaps = {
           { type: "walk", who: MRS_T, direction: "left"},
           { type: "stand", who: MRS_T, direction: "up", time: 500},
           { type: "stand", who: MRS_T, direction: "right", time: 500},
-          { type: "textMessage", text: "Isn't the weather just lovely today?", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar.gen }},
+          { type: "textMessage", text: "Isn't the weather just lovely today?", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar }},
           { type: "walk", who: MRS_T, direction: "down"},
           { type: "walk", who: MRS_T, direction: "down"},
           { type: "walk", who: MRS_T, direction: "right"},
@@ -364,7 +357,8 @@ window.OverworldMaps = {
           {
             required: ["GREETED_BY_MRS_T"],
             events: [
-              { type: "textMessage", text: "Goodness gracious, where are my manners? Please, accept my apologies... Do you happen to know my name?", faceHero: MRS_T },
+              { type: "textMessage", text: "Goodness gracious, where are my manners?", faceHero: MRS_T, character: CHARACTERS[MRS_T], emotion: 'upset' },
+              { type: "textMessage", text: "Please, accept my apologies... I am Mrs... do you happen to know my name?", faceHero: MRS_T, character: CHARACTERS[MRS_T] },
             ]
           },
           {
