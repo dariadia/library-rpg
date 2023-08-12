@@ -1,7 +1,7 @@
 window.Enemies = {
   "erio": {
     name: "Erio",
-    src: "/images/characters/people/npc2.png",
+    src: "/images/characters/icons/npc2.png",
     skills: {
       "a": {
         skillId: "s001",
@@ -17,7 +17,7 @@ window.Enemies = {
   },
   "beth": {
     name: "Beth",
-    src: "/images/characters/people/npc2.png",
+    src: "/images/characters/icons/npc2.png",
     skills: {
       "a": {
         hp: 1,
@@ -29,7 +29,7 @@ window.Enemies = {
   },
   "chefRootie": {
     name: "Rootie",
-    src: "/images/characters/people/npc2.png",
+    src: "/images/characters/icons/npc2.png",
     skills: {
       "a": {
         skillId: "f002",
@@ -40,7 +40,7 @@ window.Enemies = {
   },
   "streetNorthQuestion": {
     name: "skill Thug",
-    src: "/images/characters/people/npc2.png",
+    src: "/images/characters/icons/npc2.png",
     skills: {
       "a": {
         skillId: "s001",
@@ -51,7 +51,7 @@ window.Enemies = {
   },
   "diningRoomQuestion": {
     name: "skill Thug",
-    src: "/images/characters/people/npc2.png",
+    src: "/images/characters/icons/npc2.png",
     skills: {
       "a": {
         skillId: "s001",
@@ -67,7 +67,7 @@ window.Enemies = {
   },
   "hallQuestion": {
     name: "skill Thug",
-    src: "/images/characters/people/npc2.png",
+    src: "/images/characters/icons/npc2.png",
     skills: {
       "a": {
         skillId: "f002",

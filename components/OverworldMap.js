@@ -16,7 +16,7 @@ const CHARACTERS = {
       happy: '/images/characters/avatars/herr-doktor_happy.png',
       smile: '/images/characters/avatars/herr-doktor_smile.png'
     },
-    character: '/images/characters/people/herr-doktor.png',
+    character: '/images/characters/icons/herr-doktor.png',
   },
   [MRS_T]: {
     id: MRS_T,
@@ -26,7 +26,7 @@ const CHARACTERS = {
       gen: '/images/characters/avatars/mrs-t_gen.png',
       upset: '/images/characters/avatars/mrs-t_upset.png'
     },
-    character: '/images/characters/people/mrs-t.png',
+    character: '/images/characters/icons/mrs-t.png',
     skills: {
       "a": {
         skillId: "mrsT",
@@ -450,7 +450,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(6),
         y: utils.withGrid(5),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         talking: [
           {
             events: [
@@ -463,7 +463,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(5),
         y: utils.withGrid(9),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "left", time: 400, },
         ],
@@ -575,7 +575,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(8),
         y: utils.withGrid(8),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "up", time: 400, },
           { type: "stand", direction: "left", time: 800, },
@@ -594,7 +594,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(1),
         y: utils.withGrid(8),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "up", time: 900, },
           { type: "walk", direction: "down"},
@@ -619,7 +619,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(3),
         y: utils.withGrid(5),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         talking: [
           {
             required: ["chefRootie"],
@@ -713,7 +713,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(9),
         y: utils.withGrid(6),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         behaviorLoop: [
           { type: "walk", direction: "left", },
           { type: "walk", direction: "down", },
@@ -734,7 +734,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(4),
         y: utils.withGrid(12),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "up", time: 400, },
           { type: "stand", direction: "left", time: 800, },
@@ -754,7 +754,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(12),
         y: utils.withGrid(9),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         talking: [
           {
             required: ["streetNorthQuestion"],
@@ -878,7 +878,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(12),
         y: utils.withGrid(8),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         talking: [
           {
             required: ["diningRoomQuestion"],
@@ -899,7 +899,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(9),
         y: utils.withGrid(5),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         talking: [
           {
             events: [
@@ -912,7 +912,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(2),
         y: utils.withGrid(8),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "right", time: 800, },
           { type: "stand", direction: "down", time: 700, },
@@ -930,7 +930,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(8),
         y: utils.withGrid(9),
-        src: "/images/characters/people/npc2.png",
+        src: "/images/characters/icons/npc2.png",
         behaviorLoop: [
           { type: "stand", direction: "right", time: 1200, },
           { type: "stand", direction: "down", time: 900, },
