@@ -97,3 +97,27 @@
   top: 56px;
   animation: question-glob-left 1s forwards;
 }
+
+.walking-forward {
+  animation: walk-forward 1s forwards;
+}
+
+.walking-back {
+  animation: walk-back 0.5s forwards;
+}
+
+@keyframes walk-forward {
+  from { }
+  to {
+    transform: translate3d(43px,-24px,0) scale(2);
+  }
+}
+
+@keyframes walk-back {
+  from {
+    transform: translate3d(43px,-24px,0) scale(2);
+  }
+  to {
+    transform: translate3d(0,0,0) scale(2.5);
+  }
+}

@@ -357,7 +357,8 @@ window.OverworldMaps = {
           {
             required: ["GREETED_BY_MRS_T"],
             events: [
-              { type: "textMessage", text: "Goodness gracious, where are my manners? Please, accept my apologies... Do you happen to know my name?", faceHero: MRS_T },
+              { type: "textMessage", text: "Goodness gracious, where are my manners?", faceHero: MRS_T, character: CHARACTERS[MRS_T], emotion: 'upset' },
+              { type: "textMessage", text: "Please, accept my apologies... I am Mrs... do you happen to know my name?", faceHero: MRS_T, character: CHARACTERS[MRS_T] },
             ]
           },
           {

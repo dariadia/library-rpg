@@ -28,5 +28,24 @@ window.QuestionAnimations = {
 
     await utils.wait(820)
     onComplete()
+  },
+
+  async move(event, onComplete) {
+    const { caster, direction } = event
+    const casterClass = caster.team === "player" ? ".Question_hero" : ".Question_enemy"
+    const movingClass = direction === 'forward' ? "walking-forward" : "walking-back"
+    const div = document.querySelector(casterClass)
+    div.classList.add(movingClass)
+    const animate = () => {
+      div.classList.remove("walking-forward", "walking-back")
+    }
+
+    if (direction === 'backward') {
+      div.addEventListener("animationend", animate)
+    }
+
+    await utils.wait(820)
+    div.removeEventListener("animationend", animate);
+    onComplete()
   }
 }

@@ -67,15 +67,8 @@ class TurnCycle {
     }
 
     const winner = this.getWinningTeam()
-    if (winner) {
-      await this.onNewEvent({
-        type: "textMessage",
-        text: "Winner!"
-      })
-      this.onWinner(winner)
-      return
-    }
-
+    if (winner) return this.onWinner(winner)
+ 
     if (targetDead) {
       const replacement = await this.onNewEvent({
         type: "replacementMenu",

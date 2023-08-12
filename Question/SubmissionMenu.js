@@ -36,7 +36,7 @@ class SubmissionMenu {
     return {
       root: [
         {
-          label: "Ask",
+          label: "Actions",
           description: "Choose what to do",
           handler: () => {
             this.keyboardMenu.setOptions( this.getPages().attacks )

@@ -133,5 +133,4 @@ class Combatant {
     container.appendChild(this.hudElement);
     this.update();
   }
-
 }
