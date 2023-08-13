@@ -9,7 +9,7 @@ const getRandomPhrase = (character) => {
 }
 
 class TextMessage {
-  constructor({ text, character, onComplete, sayRandom, emotion, cb }) {
+  constructor({ text, character, onComplete, sayRandom, emotion, cb, effect }) {
     this.text = text
     this.character = character
     this.onComplete = onComplete
@@ -17,11 +17,17 @@ class TextMessage {
     this.sayRandom = sayRandom
     this.emotion = emotion
     this.cb = cb
+    this.effect = effect
   }
 
   createElement() {
     this.element = document.createElement("div")
     this.element.classList.add("TextMessage")
+
+    if (this.effect) {
+      this.effectParent = document.createElement("div")
+      this.effectParent.classList.add("TextMessage_effect", this.effect)
+    }
 
     this.element.innerHTML = (`
       <p class="TextMessage_p"></p>
@@ -52,7 +58,8 @@ class TextMessage {
 
   done() {
     if (this.revealingText.isDone) {
-      this.element.remove()
+      if (this.effectParent) this.effectParent.remove()
+      else this.element.remove()
       this.actionListener.unbind()
       if (this.cb) this.cb()
       this.onComplete()
@@ -61,7 +68,10 @@ class TextMessage {
 
   init(container) {
     this.createElement()
-    container.appendChild(this.element)
+    if (this.effectParent) {
+      this.effectParent.appendChild(this.element)
+      container.appendChild(this.effectParent)
+    } else container.appendChild(this.element)
     this.revealingText.init()
   }
 }

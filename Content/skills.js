@@ -11,7 +11,6 @@ window.SkillTypes = {
 
 window.Skills = {
   "0obs": {
-    name: "Your Name",
     description: "You pay close attention to details.",
     type: SkillTypes.observant,
     src: "/images/icons/notepad.png",
@@ -19,7 +18,6 @@ window.Skills = {
     actions: [ "ask_name", "ask_death_gen", "damage1" ],
   },
   "0quick": {
-    name: "Your Name",
     description: "Quick thinking. Also, fast running.",
     type: SkillTypes.quick,
     src: "/images/icons/quick.png",

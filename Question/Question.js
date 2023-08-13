@@ -70,7 +70,7 @@ class Question {
 
     this.element.innerHTML = (`
     <div class="Question_hero">
-      <img src="${'/images/characters/people/hero.png'}" alt="Hero" />
+      <img src="/images/characters/icons/${window.playerState.hero.hero_skin || "hero_1"}.png" alt="Hero" />
     </div>
     <div class="Question_enemy">
       <img src="${this.enemy.character}" alt="${this.enemy.name}" />
