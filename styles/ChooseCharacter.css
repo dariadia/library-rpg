@@ -89,22 +89,22 @@ label[for=hero_1] .hero-icon.two {
 }
 
 label[for=hero_2] .hero-icon.one {
-  background: url(/images/characters/icons/npc2.png) no-repeat no-repeat 10px -10px / 125px;
+  background: url(/images/characters/icons/hero_2.png) no-repeat no-repeat 10px -10px / 125px;
   left: 0;
 }
   
 label[for=hero_2] .hero-icon.two {
-  background: url(/images/characters/icons/npc2.png) no-repeat no-repeat 10px -42.5px;
+  background: url(/images/characters/icons/hero_2.png) no-repeat no-repeat 10px -42.5px;
   left: 32px;
 }
 
 label[for=hero_3] .hero-icon.one {
-  background: url(/images/characters/icons/npc2.png) no-repeat no-repeat 10px -10px / 125px;
+  background: url(/images/characters/icons/hero_3.png) no-repeat no-repeat 10px -10px / 125px;
   left: 0;
 }
   
 label[for=hero_3] .hero-icon.two {
-  background: url(/images/characters/icons/npc2.png) no-repeat no-repeat 10px -42.5px;
+  background: url(/images/characters/icons/hero_3.png) no-repeat no-repeat 10px -42.5px;
   left: 32px;
 }
 
