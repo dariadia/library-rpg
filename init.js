@@ -11,11 +11,14 @@
     bodyElement.classList.add("device-error")
     return bodyElement.innerHTML = `<span class="device-error_message">Sorry, you need a keyboard to play this game (yet).</span>`
   }
-    
+
+  const gameContainer = document.querySelector(".game-container")
+  const heroSelectionScreen = new ChooseCharacter()
+  gameContainer.appendChild(heroSelectionScreen.init())
 
   const overworld = new Overworld({
-    element: document.querySelector(".game-container")
+    element: gameContainer
   });
-  overworld.init();
+  //overworld.init();
 
 })();
