@@ -20,16 +20,13 @@ class Progress {
         items: playerState.items,
         storyFlags: playerState.storyFlags,
         clues: playerState.clues,
+        hero: playerState.hero,
       }
     }))
   }
 
   getSaveFile() {
-
-    if (!window.localStorage) {
-      return null
-    }
-
+    if (!window.localStorage) return null
     const file = window.localStorage.getItem(this.saveFileKey)
     return file ? JSON.parse(file) : null
   }
