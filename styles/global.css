@@ -48,15 +48,9 @@ body {
   }
 }
 
-@media screen and (min-width: 700px) and (max-width: 900px) {
+@media screen and (max-width: 900px) {
   .game-container {
-    transform: scale(2) translateY(50%);
-  }
-}
-
-@media screen and (max-width: 850px) and (max-height: 500px) {
-  .game-container {
-    transform: scale(2.1) translateY(29%);
+    transform: scale(2) translateY(40%);
   }
 }
 
