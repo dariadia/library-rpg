@@ -54,5 +54,4 @@ class DirectionInput {
       this.initMobile(window.playerState.mobileKeyboard)
     else this.initDesktop()
   }
-
 }

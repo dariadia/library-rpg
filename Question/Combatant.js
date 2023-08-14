@@ -29,8 +29,9 @@ class Combatant {
     this.hudElement.classList.add("Combatant");
     this.hudElement.setAttribute("data-combatant", this.id);
     this.hudElement.setAttribute("data-team", this.team);
+    const combatantName = this.isSkillName ? window.playerState.hero.your_name : this.name
     this.hudElement.innerHTML = (`
-      <p class="Combatant_name">${this.name || window.playerState.hero.your_name}</p>
+      <p class="Combatant_name">${combatantName}</p>
       <div class="Player_crop">
         <img class="Player_notepad" alt="${this.type}" src="${this.icon}" />
       </div>
