@@ -6,10 +6,10 @@ class MobileKeyboard {
     this.element = document.createElement("div")
     this.element.classList.add("MobileKeyboard")
     this.element.innerHTML = `
-    <button class="MobileKey left">➤</button>
-    <button class="MobileKey right">➤</button>
-    <button class="MobileKey up">➤</button>
-    <button class="MobileKey down">➤</button>
+    <button id="left" class="MobileKey left">➤</button>
+    <button id="right" class="MobileKey right">➤</button>
+    <button id="up" class="MobileKey up">➤</button>
+    <button id="down" class="MobileKey down">➤</button>
     `
     this.show()
   }
