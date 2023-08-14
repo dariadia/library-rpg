@@ -49,7 +49,7 @@ window.Enemies = {
       }
     }
   },
-  "diningRoomQuestion": {
+  "StorageQuestion": {
     name: "skill Thug",
     src: "/images/characters/icons/npc2.png",
     skills: {
