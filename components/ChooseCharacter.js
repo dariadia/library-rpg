@@ -39,8 +39,8 @@ class ChooseCharacter {
         <label for="hero_name">Enter your name:</label>
         <input id="hero_name" name="your_name" value="YN">
       </section> 
-      <button>OK</button>`
-    
+      <button id="ChooseCharacter_ok">OK</button>`
       this.parent.appendChild(this.chooseCharacterEl)
+      document.getElementById("ChooseCharacter_ok").focus()
   }
 }

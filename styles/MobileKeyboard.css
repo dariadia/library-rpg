@@ -38,8 +38,9 @@
 
 .EscButton {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 11px;
+  right: -11px;
+  transform: rotate(90deg);
   z-index: 5;
   font-size: 8px;
   outline: none;

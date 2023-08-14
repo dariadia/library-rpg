@@ -47,12 +47,11 @@ class Overworld {
  }
 
  bindMobileActionInput() {
-  const enterKey = document.getElementById("enter")
-  const escapeKey = document.getElementById("escape")
-  enterKey.addEventListener("touchstart", () => {
+  const { escButton, okButton }  = window.playerState.mobileKeyboard
+  okButton.addEventListener("touchstart", () => {
     this.map.checkForActionCutscene()
   })
-  escapeKey.addEventListener("touchstart", () => {
+  escButton.addEventListener("touchstart", () => {
     if (!this.map.isCutscenePlaying) {
       this.map.startCutscene([
         { type: "pause" }

@@ -9,6 +9,7 @@ class QuestionEvent {
       .replace("{CASTER}", this.event.caster?.name)
       .replace("{TARGET}", this.event.target?.name)
       .replace("{ACTION}", this.event.action?.name)
+      .replace("{HERO}", window.playerState.hero.your_name)
 
     const message = new TextMessage({
       text,

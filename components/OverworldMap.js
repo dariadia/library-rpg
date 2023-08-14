@@ -109,7 +109,8 @@ class OverworldMap {
     if (isSeenScene.length) return
 
     this.isCutscenePlaying = true
-    window.playerState.mobileKeyboard.hide()
+    const mobileKeyboard = window.playerState.mobileKeyboard
+    if (mobileKeyboard) mobileKeyboard.hide()
     
 
     for (let i=0; i<events.length; i++) {
@@ -123,7 +124,7 @@ class OverworldMap {
       }
     }
     this.isCutscenePlaying = false
-    window.playerState.mobileKeyboard.show()
+    mobileKeyboard.show()
   }
 
   checkForActionCutscene() {
@@ -193,6 +194,7 @@ window.OverworldMaps = {
         events: [
           { type: "textMessage", text: "February, 29. 1992.", effect: "intro" },
           { type: "textMessage", text: "Kaliningrad, Russia.", effect: "intro" },
+          { type: "textMessage", text: "You stay late in the library writing your thesis.", effect: "intro", effectType: "text" },
           { type: "externalEffect", kind: "darkMax", time: 5000},
           { type: "stand", who: HERO, direction: "up", time: 200},
           { type: "stand", who: HERO, direction: "left", time: 200},
