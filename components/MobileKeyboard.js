@@ -20,6 +20,7 @@ class MobileKeyboard {
     this.container.appendChild(this.element)
   }
   init() {
+    document.querySelector(".how-to-play").remove()
     this.createElement()
   }
 }
