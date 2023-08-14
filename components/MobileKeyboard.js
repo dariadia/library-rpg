@@ -5,6 +5,7 @@ class MobileKeyboard {
   createElement() {
     const escButton = document.createElement("button")
     escButton.classList.add("EscButton")
+    escButton.id = "escape"
     this.container.appendChild(escButton)
     escButton.innerHTML = "settings"
 

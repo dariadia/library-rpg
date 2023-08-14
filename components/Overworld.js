@@ -33,17 +33,37 @@ class Overworld {
     step()
  }
 
- bindActionInput() {
-   new KeyPressListener("Enter", () => {
-     this.map.checkForActionCutscene()
-   })
-   new KeyPressListener("Escape", () => {
-     if (!this.map.isCutscenePlaying) {
+ bindDesktopActionInput() {
+  new KeyPressListener("Enter", () => {
+    this.map.checkForActionCutscene()
+  })
+  new KeyPressListener("Escape", () => {
+    if (!this.map.isCutscenePlaying) {
+     this.map.startCutscene([
+       { type: "pause" }
+     ])
+    }
+  })
+ }
+
+ bindMobileActionInput() {
+  const enterKey = document.getElementById("enter")
+  const escapeKey = document.getElementById("escape")
+  enterKey.addEventListener("touchstart", () => {
+    this.map.checkForActionCutscene()
+  })
+  escapeKey.addEventListener("touchstart", () => {
+    if (!this.map.isCutscenePlaying) {
       this.map.startCutscene([
         { type: "pause" }
       ])
      }
-   })
+  })
+ }
+
+ bindActionInput() {
+  if (window.playerState.mobileKeyboard) this.bindMobileActionInput()
+  else this.bindDesktopActionInput()
  }
 
  bindHeroPositionCheck() {
