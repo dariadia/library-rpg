@@ -36,11 +36,11 @@ class ChooseCharacter {
         <label for="he"><input type="radio" id="he" name="pronouns" value="he">He/his</label>
       </section>
       <section class="ChooseCharacter_name"> 
-        <label for="hero_name" >Enter your name:</label>
+        <label for="hero_name">Enter your name:</label>
         <input id="hero_name" name="your_name" value="YN">
       </section> 
-      <button>OK</button>`
-    
+      <button id="ChooseCharacter_ok">OK</button>`
       this.parent.appendChild(this.chooseCharacterEl)
+      document.getElementById("ChooseCharacter_ok").focus()
   }
 }

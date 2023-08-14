@@ -42,7 +42,7 @@ window.Skills = {
     type: SkillTypes.normal,
     src: "/images/characters/skills/s001.png",
     icon: "/images/icons/spicy.png",
-    actions: [ "confidentStatus", "sleepyStatus", "damage1" ],
+    actions: [ "confident", "sleepy", "damage1" ],
   },
   "s002": {
     name: "Bacon Brigade",
@@ -50,7 +50,7 @@ window.Skills = {
     type: SkillTypes.normal,
     src: "/images/characters/skills/s002.png",
     icon: "/images/icons/spicy.png",
-    actions: [ "damage1", "confidentStatus", "sleepyStatus" ],
+    actions: [ "damage1", "confident", "sleepy" ],
   },
   "v001": {
     name: "Call Me Kale",

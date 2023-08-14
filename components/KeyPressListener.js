@@ -10,7 +10,7 @@ class KeyPressListener {
       }
    }
    this.keyupFunction = function(event) {
-      if (event.code === keyCode) keySafe = true      
+      if (event.code === keyCode) keySafe = true
    }
    document.addEventListener("keydown", this.keydownFunction)
    document.addEventListener("keyup", this.keyupFunction)

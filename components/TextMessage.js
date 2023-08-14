@@ -3,13 +3,13 @@ const HERR_DOKTOR_PHRASES = []
 const getRandomPhrase = (character) => {
   switch (character) {
     case [HERR_DOKTOR]: {
-      return HERR_DOKTOR_PHRASES[Math.floor(Math.random() * (HERR_DOKTOR_PHRASES.length))] 
+      return HERR_DOKTOR_PHRASES[Math.floor(Math.random() * (HERR_DOKTOR_PHRASES.length))]
     }
   }
 }
 
 class TextMessage {
-  constructor({ text, character, onComplete, sayRandom, emotion, cb, effect }) {
+  constructor({ text, character, onComplete, sayRandom, emotion, cb, effect, effectType }) {
     this.text = text
     this.character = character
     this.onComplete = onComplete
@@ -18,6 +18,7 @@ class TextMessage {
     this.emotion = emotion
     this.cb = cb
     this.effect = effect
+    this.effectType = effectType
   }
 
   createElement() {
@@ -28,6 +29,7 @@ class TextMessage {
       this.effectParent = document.createElement("div")
       this.effectParent.classList.add("TextMessage_effect", this.effect)
     }
+    if (this.effectType) this.effectParent.classList.add(this.effectType)
 
     this.element.innerHTML = (`
       <p class="TextMessage_p"></p>

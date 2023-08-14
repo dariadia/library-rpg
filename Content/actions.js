@@ -77,9 +77,9 @@ window.Actions = {
       { type: "stateChange", damage: 10 }
     ]
   },
-  confidentStatus: {
-    name: "Tomato Squeeze",
-    description: "Applies the confident status",
+  confident: {
+    name: "Feeling confident!",
+    description: "Emergency confidence boost",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}!"},
@@ -104,7 +104,7 @@ window.Actions = {
     description: "No longer has any idea what's going on!",
     success: [
       { type: "textMessage", character: CHARACTERS[MRS_T], text: "Hello, dear. Sorry, I did not see you there!"},
-      { type: "stateChange", damage: 1 }
+      { type: "stateChange", damage: 3 }
     ]
   },
   disoriented2: {
@@ -132,9 +132,9 @@ window.Actions = {
     description: "Tastes better when hungry",
     targetType: "friendly",
     success: [
-      { type:"textMessage", text: "{CASTER} finds a {ACTION} in their bag!", },
+      { type:"textMessage", text: `{HERO} finds a {ACTION} in their bag!` },
       { type:"stateChange", recover: 10, },
-      { type:"textMessage", text: "{CASTER} recovers HP!", },
+      { type:"textMessage", text: `{HERO} recovers HP!`, },
     ]
   },
 }

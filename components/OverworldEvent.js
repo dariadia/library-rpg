@@ -52,7 +52,6 @@ class OverworldEvent {
   }
 
   textMessage(resolve) {
-
     if (this.event.faceHero) {
       const obj = this.map.gameObjects[this.event.faceHero]
       obj.direction = utils.oppositeDirection(this.map.gameObjects["hero"].direction)
@@ -65,6 +64,7 @@ class OverworldEvent {
       emotion: this.event.emotion,
       cb: this.event.cb,
       effect: this.event.effect,
+      effectType: this.event.effectType,
       onComplete: () => resolve()
     })
     message.init( document.querySelector(".game-container") )
@@ -98,6 +98,7 @@ class OverworldEvent {
   }
 
   question(resolve) {
+    document.querySelector(".TextMessage")?.remove()
     const question = new Question({
       enemy: this.event.enemy,
       arena: this.event.arena || null,
@@ -106,7 +107,6 @@ class OverworldEvent {
       }
     })
     question.init(document.querySelector(".game-container"))
-
   }
 
   pause(resolve) {

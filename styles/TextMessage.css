@@ -23,7 +23,11 @@
   width: 54%;
   left: 22%;
   border: none;
-  padding: 10px 40px;
+  text-align: center;
+  padding: 10px 10px;
+}
+.TextMessage_effect.intro.text > .TextMessage {
+  padding: 5px 10px;
 }
 
 .TextMessage_p {
