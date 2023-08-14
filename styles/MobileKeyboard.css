@@ -10,6 +10,10 @@
 }
 .MobileKey {
   position: absolute;
+  border: 1px solid var(--radio-border);
+  border-radius: 2px;
+  outline: none;
+  color: black;
 }
 .MobileKey.left {
   left: -10%;
@@ -17,7 +21,7 @@
   transform: rotate(180deg);
 }
 .MobileKey.right {
-  left: 65%;
+  left: 60%;
   top: 35%;
 }
 .MobileKey.up {
