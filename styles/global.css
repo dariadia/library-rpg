@@ -42,15 +42,21 @@ body {
   transform: scale(3) translateY(36%);
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (min-width: 901px) and (max-width: 1100px) {
   .game-container {
     transform: scale(2.5) translateY(40%);
   }
 }
 
-@media screen and (max-width: 900px){
+@media screen and (min-width: 700px) and (max-width: 900px) {
   .game-container {
     transform: scale(2) translateY(50%);
+  }
+}
+
+@media screen and (max-width: 850px) and (max-height: 500px) {
+  .game-container {
+    transform: scale(2.1) translateY(29%);
   }
 }
 

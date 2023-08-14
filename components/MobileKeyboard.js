@@ -1,5 +1,7 @@
 class MobileKeyboard {
-  constructor(){}
+  constructor() {
+    this.container = document.querySelector(".game-container")
+  }
   createElement() {
     this.element = document.createElement("div")
     this.element.classList.add("MobileKeyboard")
@@ -9,7 +11,13 @@ class MobileKeyboard {
     <button class="MobileKey up">➤</button>
     <button class="MobileKey down">➤</button>
     `
-    document.querySelector(".game-container").appendChild(this.element)
+    this.show()
+  }
+  hide() {
+    this.element.remove()
+  }
+  show() {
+    this.container.appendChild(this.element)
   }
   init() {
     this.createElement()

@@ -29,9 +29,7 @@ class GameObject {
     if (this.behaviorLoop.length === 0) return
 
     if (map.isCutscenePlaying) {
-      if (this.retryTimeout) {
-        clearTimeout(this.retryTimeout)
-      }
+      if (this.retryTimeout) clearTimeout(this.retryTimeout)
       this.retryTimeout = setTimeout(() => {
         this.doBehaviorEvent(map)
       }, 1000)

@@ -109,6 +109,7 @@ class OverworldMap {
     if (isSeenScene.length) return
 
     this.isCutscenePlaying = true
+    
 
     for (let i=0; i<events.length; i++) {
       const eventHandler = new OverworldEvent({
