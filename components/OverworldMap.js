@@ -870,10 +870,10 @@ window.OverworldMaps = {
       ],
     }
   },
-  DiningRoom: {
-    id: "DiningRoom",
-    lowerSrc: "/images/maps/DiningRoomLower.png",
-    upperSrc: "/images/maps/DiningRoomUpper.png",
+  StorageRoom: {
+    id: "StorageRoom",
+    lowerSrc: "/images/maps/storageRoomLower.png",
+    upperSrc: "/images/maps/storageRoomUpper.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -881,28 +881,28 @@ window.OverworldMaps = {
         x: utils.withGrid(5),
         y: utils.withGrid(8),
       },
-      diningRoomNpcA: {
+      storageRoomNpcA: {
         type: "Person",
         x: utils.withGrid(12),
         y: utils.withGrid(8),
         src: "/images/characters/icons/npc2.png",
         talking: [
           {
-            required: ["diningRoomQuestion"],
+            required: ["storageRoomQuestion"],
             events: [
-              { type: "textMessage", text: "Maybe I am not ready for this place.", faceHero: "diningRoomNpcA" },
+              { type: "textMessage", text: "Maybe I am not ready for this place.", faceHero: "storageRoomNpcA" },
             ]
           },
           {
             events: [
-              { type: "textMessage", text: "You think you have what it takes to cook here?!", faceHero: "diningRoomNpcA" },
-              { type: "question", enemy: "diningRoomQuestion", arena: "dining-room" },
-              { type: "addStoryFlag", flag: "diningRoomQuestion"},
+              { type: "textMessage", text: "You think you have what it takes to cook here?!", faceHero: "storageRoomNpcA" },
+              { type: "question", enemy: "storageRoomQuestion", arena: "storage-room" },
+              { type: "addStoryFlag", flag: "storageRoomQuestion"},
             ]
           },
         ]
       },
-      diningRoomNpcB: {
+      storageRoomNpcB: {
         type: "Person",
         x: utils.withGrid(9),
         y: utils.withGrid(5),
@@ -910,12 +910,12 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "People come from all over to dine here.", faceHero: "diningRoomNpcB" },
+              { type: "textMessage", text: "People come from all over to dine here.", faceHero: "storageRoomNpcB" },
             ]
           },
         ]
       },
-      diningRoomNpcC: {
+      storageRoomNpcC: {
         type: "Person",
         x: utils.withGrid(2),
         y: utils.withGrid(8),
@@ -928,12 +928,12 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "I was so lucky to score a reservation!", faceHero: "diningRoomNpcC" },
+              { type: "textMessage", text: "I was so lucky to score a reservation!", faceHero: "storageRoomNpcC" },
             ]
           },
         ]
       },
-      diningRoomNpcD: {
+      storageRoomNpcD: {
         type: "Person",
         x: utils.withGrid(8),
         y: utils.withGrid(9),
@@ -949,7 +949,7 @@ window.OverworldMaps = {
         talking: [
           {
             events: [
-              { type: "textMessage", text: "I've been dreaming of this for weeks!", faceHero: "diningRoomNpcD" },
+              { type: "textMessage", text: "I've been dreaming of this for weeks!", faceHero: "storageRoomNpcD" },
             ]
           },
         ]

@@ -11,8 +11,8 @@
 .Question.dark-hall {
   background-image: url(/images/maps/DarkHallQuestion.png);
 }
-.Question.dining-room {
-  background-image: url(/images/maps/DiningRoomQuestion.png);
+.Question.storage-room {
+  background-image: url(/images/maps/StorageRoomQuestion.png);
 }
 .Question.hall {
   background-image: url(/images/maps/HallQuestion.png);
