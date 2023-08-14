@@ -1,6 +1,6 @@
 class KeyboardMenu {
   constructor(config={}, hideDescription) {
-    this.options = [] //set by updater method
+    this.options = []
     this.up = null
     this.down = null
     this.prevFocus = null

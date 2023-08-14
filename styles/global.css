@@ -3,6 +3,7 @@
   --border-color: #291D4D;
   --dialog-background: #5e3e17;
   --menu-background: #5e3e17;
+  --keys-menu: rgba(94,62,23,0.4);
   --menu-border-color: rgba(255,215,0,1);
   --text-message-action: rgba(255,215,0,1);
   --button-action: rgba(255,215,0,0.8);
@@ -55,21 +56,6 @@ body {
 
 .game-container canvas {
   image-rendering: pixelated;
-}
-
-
-.device-error {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.device-error_message {
-  color: var(--text-message-action);
-  font-size: 24px;
-  padding: 24px;
-  display: block;
-  width: 280px;
 }
 
 input:focus-visible{
