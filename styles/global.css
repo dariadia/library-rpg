@@ -56,7 +56,7 @@ input:focus-visible{
     transform: scale(2.5) translateY(40%);
   }
   .game-container#mobile {
-    transform: scale(1.8) translateY(25%);
+    transform: scale(1.9) translateY(25%);
   }
 }
 
