@@ -8,6 +8,7 @@ class MobileKeyboard {
     this.element.innerHTML = `
     <button id="left" class="MobileKey left">➤</button>
     <button id="right" class="MobileKey right">➤</button>
+    <button id="enter" class="MobileKey enter">ok</button>
     <button id="up" class="MobileKey up">➤</button>
     <button id="down" class="MobileKey down">➤</button>
     `
