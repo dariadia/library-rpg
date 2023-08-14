@@ -88,7 +88,7 @@ class Combatant {
       case "disoriented":
         return [
           { type: "textMessage", text: `${this.name} no longer has any idea what's going on!` },
-          { type: "stateChange", damage: 1 }
+          { type: "stateChange", damage: 3 }
         ]
       case "shocked": 
         return [

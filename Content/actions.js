@@ -104,7 +104,7 @@ window.Actions = {
     description: "No longer has any idea what's going on!",
     success: [
       { type: "textMessage", character: CHARACTERS[MRS_T], text: "Hello, dear. Sorry, I did not see you there!"},
-      { type: "stateChange", damage: 1 }
+      { type: "stateChange", damage: 3 }
     ]
   },
   disoriented2: {
