@@ -109,6 +109,7 @@ class OverworldMap {
     if (isSeenScene.length) return
 
     this.isCutscenePlaying = true
+    window.playerState.mobileKeyboard.hide()
     
 
     for (let i=0; i<events.length; i++) {
@@ -122,6 +123,7 @@ class OverworldMap {
       }
     }
     this.isCutscenePlaying = false
+    window.playerState.mobileKeyboard.show()
   }
 
   checkForActionCutscene() {

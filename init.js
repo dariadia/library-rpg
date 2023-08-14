@@ -9,6 +9,8 @@
   if (playerHasNoKeyboard) {
     const mobileKeyboard = new MobileKeyboard({})
     mobileKeyboard.init()
+    mobileKeyboard.hide()
+    window.playerState.mobileKeyboard = mobileKeyboard
   }
 
   const overworld = new Overworld({
