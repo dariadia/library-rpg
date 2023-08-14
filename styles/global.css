@@ -52,12 +52,10 @@ input:focus-visible{
 
 @media screen and (max-width: 1100px) {
   .game-container {
-    transform: scale(2) translateY(40%);
+    transform: scale(2.5) translateY(40%);
+  }
+  .game-container.mobile {
+    transform: scale(2) translateY(30%);
   }
 }
 
-@media screen and (max-width: 900px) {
-  .game-container {
-    transform: scale(2) translateY(40%);
-  }
-}

@@ -21,6 +21,7 @@ class MobileKeyboard {
   }
   init() {
     document.querySelector(".how-to-play").remove()
+    this.container.classList.add("mobile")
     this.createElement()
   }
 }
