@@ -3,6 +3,11 @@ class MobileKeyboard {
     this.container = document.querySelector(".game-container")
   }
   createElement() {
+    const escButton = document.createElement("button")
+    escButton.classList.add("EscButton")
+    this.container.appendChild(escButton)
+    escButton.innerHTML = "settings"
+
     this.element = document.createElement("div")
     this.element.classList.add("MobileKeyboard")
     this.element.innerHTML = `
@@ -15,7 +20,7 @@ class MobileKeyboard {
     this.show()
   }
   hide() {
-    this.element.remove()
+    //this.element.remove()
   }
   show() {
     this.container.appendChild(this.element)
