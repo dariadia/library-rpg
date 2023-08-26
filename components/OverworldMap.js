@@ -2,6 +2,7 @@ const HERR_DOKTOR = 'HerrDoktor'
 const HERO = 'hero'
 const MRS_T = 'MrsT'
 const KARINA = 'Karina'
+const ARYLHAN = 'Arylhan'
 
 const RAN_AWAY = 'INTRO:RAN_AWAY'
 const QUIET_WATCH = 'INTRO:QUIET_WATCH'
@@ -45,6 +46,17 @@ const CHARACTERS = {
       spectic: '/images/characters/avatars/karina_spectic.png'
     },
     character: '/images/characters/icons/karina.png',
+  },
+  [ARYLHAN]: {
+    id: ARYLHAN,
+    visible: 0.7,
+    name: 'Arylhan Ivanov',
+    avatar: {
+      gen: '/images/characters/avatars/arylhan_gen.png',
+      upset: '/images/characters/avatars/arylhan_upset.png',
+      spectic: '/images/characters/avatars/arylhan_spectic.png'
+    },
+    character: '/images/characters/icons/arylhan.png',
   },
 }
 
@@ -306,6 +318,7 @@ window.OverworldMaps = {
             { 
               type: "changeMap", 
               map: "Hall",
+              optionalBack: true,
               x: utils.withGrid(9),
               y: utils.withGrid(10),
               direction: "down"
@@ -366,7 +379,11 @@ window.OverworldMaps = {
           { type: "walk", who: MRS_T, direction: "left"},
           { type: "stand", who: MRS_T, direction: "up", time: 500},
           { type: "stand", who: MRS_T, direction: "right", time: 500},
-          { type: "textMessage", text: "Isn't the weather just lovely today?", character: { name: "another ghost???", avatar: CHARACTERS[MRS_T].avatar }},
+          { type: "textMessage", text: "Isn't the weather just lovely today?", character: 
+          { name: () => window.playerState.storyFlags.GREETED_BY_MRS_T 
+              ? CHARACTERS[MRS_T].name 
+              : "another ghost???", 
+            avatar: CHARACTERS[MRS_T].avatar }},
           { type: "walk", who: MRS_T, direction: "down"},
           { type: "walk", who: MRS_T, direction: "down"},
           { type: "walk", who: MRS_T, direction: "right"},
@@ -405,6 +422,7 @@ window.OverworldMaps = {
               type: "changeMap", 
               map: "SecondHall",
               direction: "right",
+              noTransition: true,
             },
             ]
           },
@@ -504,6 +522,7 @@ window.OverworldMaps = {
             x: utils.withGrid(18),
             y: utils.withGrid(10),
             direction: "left",
+            noTransition: true,
           }
         ]
       }],
@@ -519,6 +538,7 @@ window.OverworldMaps = {
             x: utils.withGrid(20),
             y: utils.withGrid(10),
             direction: "left",
+            noTransition: true,
           }
         ]
       }],
@@ -534,6 +554,7 @@ window.OverworldMaps = {
             x: utils.withGrid(19),
             y: utils.withGrid(11),
             direction: "left",
+            noTransition: true,
           }
         ]
       }],
@@ -549,6 +570,7 @@ window.OverworldMaps = {
             x: utils.withGrid(19),
             y: utils.withGrid(9),
             direction: "left",
+            noTransition: true,
           }
         ]
       }],
@@ -564,6 +586,24 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(30),
         y: utils.withGrid(10),
+      },
+      [KARINA]: {
+        type: "Person",
+        x: utils.withGrid(6),
+        y: utils.withGrid(12),
+        direction: "right",
+        visible: CHARACTERS[KARINA].visible,
+        src: CHARACTERS[KARINA].character,
+        behaviorLoop: []
+      },
+      [ARYLHAN]: {
+        type: "Person",
+        x: utils.withGrid(6),
+        y: utils.withGrid(13),
+        direction: "right",
+        visible: CHARACTERS[ARYLHAN].visible,
+        src: CHARACTERS[ARYLHAN].character,
+        behaviorLoop: []
       },
     },
     walls: function() {
@@ -592,6 +632,7 @@ window.OverworldMaps = {
               map: "ReadingRoomEmpty",
               x: utils.withGrid(5),
               y: utils.withGrid(10),
+              back: "ThirdHall",
               direction: "up"
             }
           ]

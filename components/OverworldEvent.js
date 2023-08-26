@@ -1,5 +1,5 @@
 class OverworldEvent {
-  constructor({ map, event}) {
+  constructor({ map, event }) {
     this.map = map
     this.event = event
   }
@@ -86,10 +86,15 @@ class OverworldEvent {
       x = this.map.gameObjects.hero.x
       y = this.map.gameObjects.hero.y
     }
+    if (window.playerState.back) this.event.map = window.playerState.back
+    if (this.event.back) window.playerState.back = this.event.back
     Object.values(this.map.gameObjects).forEach(obj => {
       obj.isMounted = false
     })
-    const sceneTransition = new SceneTransition({ lowShade: this.event.disappear, shadeOptions: this.event.shadeOptions })
+    const { disappear, noTransition, shadeOptions } = this.event
+    const sceneTransition = new SceneTransition(
+      { lowShade: disappear, shadeOptions, noTransition }
+      )
     sceneTransition.init(document.querySelector(".game-container"), () => {
       this.map.overworld.startMap( window.OverworldMaps[this.event.map], {
         x: this.event.x || x,
