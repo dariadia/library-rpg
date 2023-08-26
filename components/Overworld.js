@@ -24,11 +24,8 @@ class Overworld {
       })
       this.map.drawUpperImage(this.ctx, cameraPerson)
       
-      if (!this.map.isPaused) {
-        requestAnimationFrame(() => {
-          step()   
-        })
-      }
+      if (!this.map.isPaused) 
+        requestAnimationFrame(() => step())
     }
     step()
  }
@@ -126,7 +123,6 @@ class Overworld {
       heroSelectionScreen.onSubmit(resolve)
     })
     isHeroSelected.then(() => this.startGame(container))
-
   }
  }
 }

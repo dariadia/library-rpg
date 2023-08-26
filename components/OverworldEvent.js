@@ -81,15 +81,19 @@ class OverworldEvent {
   }
 
   changeMap(resolve) {
+    let x,y
+    if (!this.event.x || !this.event.y) {
+      x = this.map.gameObjects.hero.x
+      y = this.map.gameObjects.hero.y
+    }
     Object.values(this.map.gameObjects).forEach(obj => {
       obj.isMounted = false
     })
-
     const sceneTransition = new SceneTransition({ lowShade: this.event.disappear, shadeOptions: this.event.shadeOptions })
     sceneTransition.init(document.querySelector(".game-container"), () => {
       this.map.overworld.startMap( window.OverworldMaps[this.event.map], {
-        x: this.event.x,
-        y: this.event.y,
+        x: this.event.x || x,
+        y: this.event.y || y,
         direction: this.event.direction,
       })
       resolve()
