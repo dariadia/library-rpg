@@ -6,7 +6,8 @@ class QuestionEvent {
   
   textMessage(resolve) {
     this.text = typeof this.event.text === 'string' ? this.event.text : this.event.text()
-    this.text
+    console.log(this.text, this.event)
+    this.text = this.text
       .replace("{CASTER}", this.event.caster?.name)
       .replace("{TARGET}", this.event.target?.name)
       .replace("{ACTION}", this.event.action?.name)
