@@ -32,14 +32,13 @@ class Person extends GameObject {
   startBehavior(state, behavior) {
     if (!this.isMounted) return
     this.direction = behavior.direction
-    
+    const isGhost = this.visible < 1
     if (behavior.type === "walk") {
-      if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
+      if (state.map.isSpaceTaken(this.x, this.y, this.direction, isGhost)) {
           behavior.retry && setTimeout(() => {
             this.startBehavior(state, behavior)
           }, 10)
           return
-        
       }
 
       this.movingProgressRemaining = 16

@@ -5,20 +5,20 @@ class QuestionEvent {
   }
   
   textMessage(resolve) {
-    const text = this.event.text
+    this.text = typeof this.event.text === 'string' ? this.event.text : this.event.text()
+    console.log(this.text, this.event)
+    this.text = this.text
       .replace("{CASTER}", this.event.caster?.name)
       .replace("{TARGET}", this.event.target?.name)
       .replace("{ACTION}", this.event.action?.name)
       .replace("{HERO}", window.playerState.hero.your_name)
 
     const message = new TextMessage({
-      text,
+      text: this.text,
       emotion: this.event.emotion,
       character: this.event.character,
       cb: this.event.cb,
-      onComplete: () => {
-        resolve()
-      }
+      onComplete: () => resolve()
     })
     message.init( this.question.element )
   }
