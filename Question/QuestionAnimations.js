@@ -45,7 +45,7 @@ window.QuestionAnimations = {
     }
 
     await utils.wait(820)
-    div.removeEventListener("animationend", animate);
+    div.removeEventListener("animationend", animate)
     onComplete()
   }
 }

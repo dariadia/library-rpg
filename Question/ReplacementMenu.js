@@ -1,7 +1,7 @@
 class ReplacementMenu {
   constructor({ replacements, onComplete }) {
-    this.replacements = replacements;
-    this.onComplete = onComplete;
+    this.replacements = replacements
+    this.onComplete = onComplete
   }
 
   decide() {
@@ -9,19 +9,19 @@ class ReplacementMenu {
   }
 
   menuSubmit(replacement) {
-    this.keyboardMenu?.end();
+    this.keyboardMenu?.end()
     this.onComplete(replacement)
   }
 
   showMenu(container) {
-    this.keyboardMenu = new KeyboardMenu();
-    this.keyboardMenu.init(container);
+    this.keyboardMenu = new KeyboardMenu()
+    this.keyboardMenu.init(container)
     this.keyboardMenu.setOptions(this.replacements.map(c => {
       return {
         label: c.name,
         description: c.description,
         handler: () => {
-          this.menuSubmit(c);
+          this.menuSubmit(c)
         }
       }
     }))
@@ -30,9 +30,9 @@ class ReplacementMenu {
   init(container) {
 
     if (this.replacements[0].isPlayerControlled) {
-      this.showMenu(container);
+      this.showMenu(container)
     } else {
-      this.decide();
+      this.decide()
     }
   }
 }

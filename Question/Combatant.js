@@ -1,34 +1,34 @@
 class Combatant {
   constructor(config, question) {
     Object.keys(config).forEach(key => {
-      this[key] = config[key];
+      this[key] = config[key]
     })
-    this.hp = typeof(this.hp) === "undefined" ? this.maxHp : this.hp;
-    this.question = question;
+    this.hp = typeof(this.hp) === "undefined" ? this.maxHp : this.hp
+    this.question = question
   }
 
   get hpPercent() {
-    const percent = this.hp / this.maxHp * 100;
-    return percent > 0 ? percent : 0;
+    const percent = this.hp / this.maxHp * 100
+    return percent > 0 ? percent : 0
   }
 
   get xpPercent() {
-    return this.xp / this.maxXp * 100;
+    return this.xp / this.maxXp * 100
   }
 
   get isActive() {
-    return this.question?.activeCombatants[this.team] === this.id;
+    return this.question?.activeCombatants[this.team] === this.id
   }
 
   get givesXp() {
-    return window.playerState.clues += 1;
+    return window.playerState.clues += 1
   }
 
   createElement() {
-    this.hudElement = document.createElement("div");
-    this.hudElement.classList.add("Combatant");
-    this.hudElement.setAttribute("data-combatant", this.id);
-    this.hudElement.setAttribute("data-team", this.team);
+    this.hudElement = document.createElement("div")
+    this.hudElement.classList.add("Combatant")
+    this.hudElement.setAttribute("data-combatant", this.id)
+    this.hudElement.setAttribute("data-team", this.team)
     const combatantName = this.isSkillName ? window.playerState.hero.your_name : this.name
     this.hudElement.innerHTML = (`
       <p class="Combatant_name">${combatantName}</p>
@@ -45,18 +45,18 @@ class Combatant {
         <rect x=0 y=1 width="0%" height=1 fill="#ffc934" />
       </svg>
       <p class="Combatant_status"></p>
-    `);
+    `)
 
-    this.hpFills = this.hudElement.querySelectorAll(".Player_time-container > rect");
-    this.xpFills = this.hudElement.querySelectorAll(".Player_clues-container > rect");
+    this.hpFills = this.hudElement.querySelectorAll(".Player_time-container > rect")
+    this.xpFills = this.hudElement.querySelectorAll(".Player_clues-container > rect")
   }
 
   update(changes={}) {
     Object.keys(changes).forEach(key => {
       this[key] = changes[key]
-    });
+    })
 
-    this.hudElement.setAttribute("data-active", this.isActive);
+    this.hudElement.setAttribute("data-active", this.isActive)
     this.hpFills.forEach(rect => rect.style.width = `${this.hpPercent}%`)
     this.xpFills.forEach(rect => rect.style.width = `${this.xpPercent}%`)
 
@@ -70,13 +70,13 @@ class Combatant {
       cluesEl.innerHTML = window.playerState.clues
     }
 
-    const statusElement = this.hudElement.querySelector(".Combatant_status");
+    const statusElement = this.hudElement.querySelector(".Combatant_status")
     if (this.status) {
-      statusElement.innerText = this.status.type;
-      statusElement.style.display = "block";
+      statusElement.innerText = this.status.type
+      statusElement.style.display = "block"
     } else {
-      statusElement.innerText = "";
-      statusElement.style.display = "none";
+      statusElement.innerText = ""
+      statusElement.style.display = "none"
     }
   }
 
@@ -96,7 +96,7 @@ class Combatant {
           { type: "stateChange", damage: 5 }
         ]
       default:
-        return originalEvents;
+        return originalEvents
     }
   }
 
@@ -115,7 +115,7 @@ class Combatant {
 
   decrementStatus() {
     if (this.status?.expiresIn > 0) {
-      this.status.expiresIn -= 1;
+      this.status.expiresIn -= 1
       if (this.status.expiresIn === 0) {
         this.update({
           status: null
@@ -126,12 +126,12 @@ class Combatant {
         }
       }
     }
-    return null;
+    return null
   }
 
   init(container) {
-    this.createElement();
-    container.appendChild(this.hudElement);
-    this.update();
+    this.createElement()
+    container.appendChild(this.hudElement)
+    this.update()
   }
 }
