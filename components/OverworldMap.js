@@ -1,3 +1,6 @@
+const LEFT = 'left'
+const RIGHT = 'right'
+
 const HERR_DOKTOR = 'HerrDoktor'
 const HERO = 'hero'
 const MRS_T = 'MrsT'
@@ -12,6 +15,7 @@ const CHARACTERS = {
     id: HERR_DOKTOR,
     visible: 0.7,
     name: 'Herr Doktor von Reichshoffen',
+    position: LEFT,
     avatar: {
       gen: '/images/characters/avatars/herr-doktor_gen.png',
       adm: '/images/characters/avatars/herr-doktor_adm.png',
@@ -24,6 +28,7 @@ const CHARACTERS = {
     id: MRS_T,
     visible: 0.6,
     name: 'Mrs T',
+    position: LEFT,
     avatar: {
       gen: '/images/characters/avatars/mrs-t_gen.png',
       upset: '/images/characters/avatars/mrs-t_upset.png'
@@ -39,6 +44,7 @@ const CHARACTERS = {
   [KARINA]: {
     id: KARINA,
     visible: 0.7,
+    position: LEFT,
     name: 'Karina Saroyan',
     avatar: {
       gen: '/images/characters/avatars/karina_gen.png',
@@ -50,6 +56,7 @@ const CHARACTERS = {
   [ARYLHAN]: {
     id: ARYLHAN,
     visible: 0.7,
+    position: RIGHT,
     name: 'Arylhan Ivanov',
     avatar: {
       gen: '/images/characters/avatars/arylhan_gen.png',
@@ -639,6 +646,18 @@ window.OverworldMaps = {
           ]
         }
       ],
+      [utils.asGridCoord(7,12)]: [{
+        events: [
+          { type: "addStoryFlag", flag: "MET_STUDENTS"},
+          { type: "textMessage", text: "Don't mind her, she's a bit–", character: CHARACTERS[ARYLHAN]},
+          { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: CHARACTERS[KARINA]},
+          { type: "textMessage", text: "That's what I-", character: CHARACTERS[ARYLHAN]},
+          { type: "textMessage", text: "Don't be rude.", character: CHARACTERS[KARINA]},
+          { type: "textMessage", text: "She's loony.", character: CHARACTERS[ARYLHAN]},
+          { type: "textMessage", text: "Eccentric.", character: CHARACTERS[KARINA]},
+          { type: "textMessage", text: "That's what I said. Anyway. Hiya there", character: CHARACTERS[ARYLHAN]},
+        ]
+      }],
     }
   },
   Shop: {
