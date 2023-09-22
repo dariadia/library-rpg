@@ -40,8 +40,8 @@ class TextMessage {
       let { name, position = 'left' } = this.character
       name = typeof name === 'string' ? name : name()
       const characterBox = document.createElement("div")
-      characterBox.classList.add("TextMessage_character")
-      characterBox.innerHTML = `<div class="TextMessage_character-name ${position}">${name}<img class="TextMessage_character-avatar" src="${this.character?.avatar[this.emotion || 'gen']}" alt="${name} speaking" /></div>`
+      characterBox.classList.add("TextMessage_character", position)
+      characterBox.innerHTML = `<div class="TextMessage_character-name">${name}<img class="TextMessage_character-avatar" src="${this.character?.avatar[this.emotion || 'gen']}" alt="${name} speaking" /></div>`
 
       this.element.insertBefore(characterBox, this.element.firstChild)
     }

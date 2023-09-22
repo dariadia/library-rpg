@@ -42,6 +42,9 @@
 .TextMessage_character-name {
   position: relative;
   z-index: 2;
+  color: white;
+  text-shadow: 0.5px 0.5px var(--menu-background);
+  padding: 0 4px;
 }
 .TextMessage_character-avatar {
   width: 95px;
@@ -49,14 +52,19 @@
   position: absolute;
   z-index: -1;
   top: -76px;
+  left: 0;
   opacity: 0.7;
   filter: drop-shadow(0 0 0.75rem rgba(255,255,255, 0.4));
 }
-.TextMessage_character-avatar.left {
+.TextMessage_character.left {
   left: 0;
 }
-.TextMessage_character-avatar.right {
+.TextMessage_character.right {
   right: 0;
+}
+.TextMessage_character.right > .TextMessage_character-name > .TextMessage_character-avatar {
+  right: 0;
+  left: inherit;
 }
 .TextMessage span {
   opacity: 0;
