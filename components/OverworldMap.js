@@ -217,6 +217,7 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
+          // mock for dev
           // { type: "textMessage", text: "February, 29. 1992.", effect: "intro" },
           // { type: "textMessage", text: "Kaliningrad, Russia.", effect: "intro" },
           // { type: "textMessage", text: "You stay late in the library writing your thesis.", effect: "intro", effectType: "text" },
