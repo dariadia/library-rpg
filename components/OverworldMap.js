@@ -1,5 +1,7 @@
 const LEFT = 'left'
 const RIGHT = 'right'
+const UPSET = 'upset'
+const SCEPTIC = 'sceptic'
 
 const HERR_DOKTOR = 'HerrDoktor'
 const HERO = 'hero'
@@ -48,8 +50,8 @@ const CHARACTERS = {
     name: 'Karina Saroyan',
     avatar: {
       gen: '/images/characters/avatars/karina_gen.png',
-      upset: '/images/characters/avatars/karina_upset.png',
-      spectic: '/images/characters/avatars/karina_spectic.png'
+      [UPSET]: '/images/characters/avatars/karina_upset.png',
+      [SCEPTIC]: '/images/characters/avatars/karina_sceptic.png'
     },
     character: '/images/characters/icons/karina.png',
   },
@@ -60,8 +62,8 @@ const CHARACTERS = {
     name: 'Arylhan Ivanov',
     avatar: {
       gen: '/images/characters/avatars/arylhan_gen.png',
-      upset: '/images/characters/avatars/arylhan_upset.png',
-      spectic: '/images/characters/avatars/arylhan_spectic.png'
+      [UPSET]: '/images/characters/avatars/arylhan_upset.png',
+      [SCEPTIC]: '/images/characters/avatars/arylhan_sceptic.png'
     },
     character: '/images/characters/icons/arylhan.png',
   },
@@ -378,7 +380,7 @@ window.OverworldMaps = {
             { name: () => window.playerState.storyFlags.GREETED_BY_MRS_T 
                 ? CHARACTERS[MRS_T].name 
                 : "another ghost???", 
-              avatar: CHARACTERS[MRS_T].avatar, emotion: "upset" }},
+              avatar: CHARACTERS[MRS_T].avatar, emotion: UPSET }},
           { type: "stand", who: MRS_T, direction: "left", time: 500},
           { type: "stand", who: MRS_T, direction: "right", time: 500},
           { type: "walk", who: MRS_T, direction: "left"},
@@ -406,7 +408,7 @@ window.OverworldMaps = {
           {
             required: ["GREETED_BY_MRS_T"],
             events: [
-              { type: "textMessage", text: "Goodness gracious, where are my manners?", faceHero: MRS_T, character: CHARACTERS[MRS_T], emotion: 'upset' },
+              { type: "textMessage", text: "Goodness gracious, where are my manners?", faceHero: MRS_T, character: CHARACTERS[MRS_T], emotion: UPSET },
               { type: "textMessage", text: "Please, accept my apologies... I am Mrs... do you happen to know my name?", faceHero: MRS_T, character: CHARACTERS[MRS_T] },
             ]
           },
@@ -649,12 +651,12 @@ window.OverworldMaps = {
       [utils.asGridCoord(7,12)]: [{
         events: [
           { type: "addStoryFlag", flag: "MET_STUDENTS"},
-          { type: "textMessage", text: "Don't mind her, she's a bit–", character: CHARACTERS[ARYLHAN]},
+          { type: "textMessage", text: "Don't mind her, she's a bit–", character: CHARACTERS[ARYLHAN] },
           { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: CHARACTERS[KARINA]},
-          { type: "textMessage", text: "That's what I-", character: CHARACTERS[ARYLHAN]},
-          { type: "textMessage", text: "Don't be rude.", character: CHARACTERS[KARINA]},
-          { type: "textMessage", text: "She's loony.", character: CHARACTERS[ARYLHAN]},
-          { type: "textMessage", text: "Eccentric.", italics: true, character: CHARACTERS[KARINA]},
+          { type: "textMessage", text: "That's what I-", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
+          { type: "textMessage", text: "Don't be rude.", character: CHARACTERS[KARINA] },
+          { type: "textMessage", text: "She's loony.", character: CHARACTERS[ARYLHAN], emotion: UPSET },
+          { type: "textMessage", text: "Eccentric.", italics: true, character: CHARACTERS[KARINA], emotion: SCEPTIC },
           { type: "textMessage", text: "That's what I said. Anyway. Hiya there!", character: CHARACTERS[ARYLHAN]},
         ]
       }],
