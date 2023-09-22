@@ -39,6 +39,9 @@
   top: -20px;
   font-size: 12px;
 }
+.TextMessage_p.italics {
+  font-style: italic;
+}
 .TextMessage_character-name {
   position: relative;
   z-index: 2;

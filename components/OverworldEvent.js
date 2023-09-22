@@ -60,6 +60,7 @@ class OverworldEvent {
     const message = new TextMessage({
       text: this.event.text,
       character: this.event.character,
+      italics: this.event.italics,
       sayRandom: this.event.sayRandom,
       emotion: this.event.emotion,
       cb: this.event.cb,

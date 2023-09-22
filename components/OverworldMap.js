@@ -654,8 +654,8 @@ window.OverworldMaps = {
           { type: "textMessage", text: "That's what I-", character: CHARACTERS[ARYLHAN]},
           { type: "textMessage", text: "Don't be rude.", character: CHARACTERS[KARINA]},
           { type: "textMessage", text: "She's loony.", character: CHARACTERS[ARYLHAN]},
-          { type: "textMessage", text: "Eccentric.", character: CHARACTERS[KARINA]},
-          { type: "textMessage", text: "That's what I said. Anyway. Hiya there", character: CHARACTERS[ARYLHAN]},
+          { type: "textMessage", text: "Eccentric.", italics: true, character: CHARACTERS[KARINA]},
+          { type: "textMessage", text: "That's what I said. Anyway. Hiya there!", character: CHARACTERS[ARYLHAN]},
         ]
       }],
     }

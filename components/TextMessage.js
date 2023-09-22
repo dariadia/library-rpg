@@ -9,7 +9,7 @@ const getRandomPhrase = (character) => {
 }
 
 class TextMessage {
-  constructor({ text, character, onComplete, sayRandom, emotion, cb, effect, effectType }) {
+  constructor({ text, character, onComplete, sayRandom, emotion, cb, effect, effectType, italics }) {
     this.text = text
     this.character = character
     this.onComplete = onComplete
@@ -19,6 +19,7 @@ class TextMessage {
     this.cb = cb
     this.effect = effect
     this.effectType = effectType
+    this.italics = italics
   }
 
   createElement() {
@@ -32,7 +33,7 @@ class TextMessage {
     if (this.effectType) this.effectParent.classList.add(this.effectType)
 
     this.element.innerHTML = (`
-      <p class="TextMessage_p"></p>
+      <p class="TextMessage_p${this.italics ? ' italics' : ''}"></p>
       <button class="TextMessage_button">Next</button>
     `)
 
