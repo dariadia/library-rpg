@@ -684,7 +684,7 @@ window.OverworldMaps = {
             : `So they're others?` },
           { type: "textMessage", text: "Aha! See? I told you, this one is funny!", character: {...CHARACTERS[ARYLHAN],  name: '???'} },
           { type: "textMessage", text: "...", character: {...CHARACTERS[KARINA],  name: 'grumpy'}, emotion: UPSET },
-          { type: "textMessage", text: "Yeah, mostly Germans, considering they've had this town longer and all.", character: {...CHARACTERS[ARYLHAN],  name: '???'} },
+          { type: "textMessage", text: "Yeah, there're others, mostly Germans, considering they've had this town longer and all.", character: {...CHARACTERS[ARYLHAN],  name: '???'} },
           { type: "textMessage", text: "Most of the time I don't get a word they're saying!", character: {...CHARACTERS[ARYLHAN],  name: '???'}, emotion: SCEPTIC },
           { type: "textMessage", text: "Oh, sorry. Forgot to introduce ourselves. We rarely see new faces, you know?", character: {...CHARACTERS[ARYLHAN],  name: '???'}, emotion: UPSET },
           { type: "textMessage", text: `The name's ${ARYLHAN}, ${CHARACTERS[ARYLHAN].name}`, character: CHARACTERS[ARYLHAN] },
