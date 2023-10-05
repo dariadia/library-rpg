@@ -9,7 +9,7 @@ const getRandomPhrase = (character) => {
 }
 
 class TextMessage {
-  constructor({ text, character, onComplete, sayRandom, emotion, cb, effect, effectType }) {
+  constructor({ text, character, onComplete, sayRandom, emotion, cb, effect, effectType, italics }) {
     this.text = text
     this.character = character
     this.onComplete = onComplete
@@ -19,6 +19,7 @@ class TextMessage {
     this.cb = cb
     this.effect = effect
     this.effectType = effectType
+    this.italics = italics
   }
 
   createElement() {
@@ -32,16 +33,16 @@ class TextMessage {
     if (this.effectType) this.effectParent.classList.add(this.effectType)
 
     this.element.innerHTML = (`
-      <p class="TextMessage_p"></p>
+      <p class="TextMessage_p${this.italics ? ' italics' : ''}"></p>
       <button class="TextMessage_button">Next</button>
     `)
 
     if (this.character) {
-      let { name } = this.character
+      let { name, position = 'left' } = this.character
       name = typeof name === 'string' ? name : name()
       const characterBox = document.createElement("div")
-      characterBox.classList.add("TextMessage_character")
-      characterBox.innerHTML = `<div class="TextMessage_character-name">${name}<img class="TextMessage_character-avatar" src="${this.character?.avatar[this.emotion || 'gen']}" alt="${this.character?.name} speaking" /></div>`
+      characterBox.classList.add("TextMessage_character", position)
+      characterBox.innerHTML = `<div class="TextMessage_character-name">${name}<img class="TextMessage_character-avatar" src="${this.character?.avatar[this.emotion || 'gen']}" alt="${name} speaking" /></div>`
 
       this.element.insertBefore(characterBox, this.element.firstChild)
     }

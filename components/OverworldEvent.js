@@ -57,9 +57,12 @@ class OverworldEvent {
       obj.direction = utils.oppositeDirection(this.map.gameObjects["hero"].direction)
     }
 
+    this.text = typeof this.event.text === 'string' ? this.event.text : this.event.text()
+
     const message = new TextMessage({
-      text: this.event.text,
+      text: this.text,
       character: this.event.character,
+      italics: this.event.italics,
       sayRandom: this.event.sayRandom,
       emotion: this.event.emotion,
       cb: this.event.cb,

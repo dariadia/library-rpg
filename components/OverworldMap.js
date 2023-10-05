@@ -1,3 +1,8 @@
+const LEFT = 'left'
+const RIGHT = 'right'
+const UPSET = 'upset'
+const SCEPTIC = 'sceptic'
+
 const HERR_DOKTOR = 'HerrDoktor'
 const HERO = 'hero'
 const MRS_T = 'MrsT'
@@ -7,11 +12,25 @@ const ARYLHAN = 'Arylhan'
 const RAN_AWAY = 'INTRO:RAN_AWAY'
 const QUIET_WATCH = 'INTRO:QUIET_WATCH'
 
+const getPronouns = (pronoun) => {
+  switch (pronoun) {
+    case 'he':
+      return "him"
+    case 'she':
+      return "her"
+    case 'they':
+      return "them"
+    default:
+      return "them"
+  }
+}
+
 const CHARACTERS = {
   [HERR_DOKTOR]: {
     id: HERR_DOKTOR,
     visible: 0.7,
     name: 'Herr Doktor von Reichshoffen',
+    position: LEFT,
     avatar: {
       gen: '/images/characters/avatars/herr-doktor_gen.png',
       adm: '/images/characters/avatars/herr-doktor_adm.png',
@@ -24,6 +43,7 @@ const CHARACTERS = {
     id: MRS_T,
     visible: 0.6,
     name: 'Mrs T',
+    position: LEFT,
     avatar: {
       gen: '/images/characters/avatars/mrs-t_gen.png',
       upset: '/images/characters/avatars/mrs-t_upset.png'
@@ -39,22 +59,24 @@ const CHARACTERS = {
   [KARINA]: {
     id: KARINA,
     visible: 0.7,
+    position: LEFT,
     name: 'Karina Saroyan',
     avatar: {
       gen: '/images/characters/avatars/karina_gen.png',
-      upset: '/images/characters/avatars/karina_upset.png',
-      spectic: '/images/characters/avatars/karina_spectic.png'
+      [UPSET]: '/images/characters/avatars/karina_upset.png',
+      [SCEPTIC]: '/images/characters/avatars/karina_sceptic.png'
     },
     character: '/images/characters/icons/karina.png',
   },
   [ARYLHAN]: {
     id: ARYLHAN,
     visible: 0.7,
+    position: RIGHT,
     name: 'Arylhan Ivanov',
     avatar: {
       gen: '/images/characters/avatars/arylhan_gen.png',
-      upset: '/images/characters/avatars/arylhan_upset.png',
-      spectic: '/images/characters/avatars/arylhan_spectic.png'
+      [UPSET]: '/images/characters/avatars/arylhan_upset.png',
+      [SCEPTIC]: '/images/characters/avatars/arylhan_sceptic.png'
     },
     character: '/images/characters/icons/arylhan.png',
   },
@@ -217,23 +239,24 @@ window.OverworldMaps = {
       [utils.asGridCoord(11,6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
-          { type: "textMessage", text: "February, 29. 1992.", effect: "intro" },
-          { type: "textMessage", text: "Kaliningrad, Russia.", effect: "intro" },
-          { type: "textMessage", text: "You stay late in the library writing your thesis.", effect: "intro", effectType: "text" },
-          { type: "externalEffect", kind: "darkMax", time: 5000},
-          { type: "stand", who: HERO, direction: "up", time: 200},
-          { type: "stand", who: HERO, direction: "left", time: 200},
-          { type: "textMessage", text: "Ugh...."},
-          { type: "stand", who: HERO, direction: "right", time: 200},
-          { type: "stand", who: HERO, direction: "down", time: 200},
-          { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          { type: "textMessage", text: "... did I fall asleep? Ugh... "},
-          { type: "stand", who: HERO, direction: "left", time: 200},
-          { type: "textMessage", text: "... wha-at"},
-          { type: "walk", who: HERR_DOKTOR, direction: "left"},
-          { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
-          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar }},
-          { type: "textMessage", text: "WHAT?!"},
+          // mock for dev
+          // { type: "textMessage", text: "February, 29. 1992.", effect: "intro" },
+          // { type: "textMessage", text: "Kaliningrad, Russia.", effect: "intro" },
+          // { type: "textMessage", text: "You stay late in the library writing your thesis.", effect: "intro", effectType: "text" },
+          // { type: "externalEffect", kind: "darkMax", time: 5000},
+          // { type: "stand", who: HERO, direction: "up", time: 200},
+          // { type: "stand", who: HERO, direction: "left", time: 200},
+          // { type: "textMessage", text: "Ugh...."},
+          // { type: "stand", who: HERO, direction: "right", time: 200},
+          // { type: "stand", who: HERO, direction: "down", time: 200},
+          // { type: "addStoryFlag", flag: "SEEN_INTRO"},
+          // { type: "textMessage", text: "... did I fall asleep? Ugh... "},
+          // { type: "stand", who: HERO, direction: "left", time: 200},
+          // { type: "textMessage", text: "... wha-at"},
+          // { type: "walk", who: HERR_DOKTOR, direction: "left"},
+          // { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
+          // { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar }},
+          // { type: "textMessage", text: "WHAT?!"},
           { type: "prompt", options: [
             { text: "run away", actions: [
               { type: "addStoryFlag",  flag: RAN_AWAY, upSkill: '0quick' },
@@ -370,7 +393,7 @@ window.OverworldMaps = {
             { name: () => window.playerState.storyFlags.GREETED_BY_MRS_T 
                 ? CHARACTERS[MRS_T].name 
                 : "another ghost???", 
-              avatar: CHARACTERS[MRS_T].avatar, emotion: "upset" }},
+              avatar: CHARACTERS[MRS_T].avatar, emotion: UPSET }},
           { type: "stand", who: MRS_T, direction: "left", time: 500},
           { type: "stand", who: MRS_T, direction: "right", time: 500},
           { type: "walk", who: MRS_T, direction: "left"},
@@ -398,7 +421,7 @@ window.OverworldMaps = {
           {
             required: ["GREETED_BY_MRS_T"],
             events: [
-              { type: "textMessage", text: "Goodness gracious, where are my manners?", faceHero: MRS_T, character: CHARACTERS[MRS_T], emotion: 'upset' },
+              { type: "textMessage", text: "Goodness gracious, where are my manners?", faceHero: MRS_T, character: CHARACTERS[MRS_T], emotion: UPSET },
               { type: "textMessage", text: "Please, accept my apologies... I am Mrs... do you happen to know my name?", faceHero: MRS_T, character: CHARACTERS[MRS_T] },
             ]
           },
@@ -638,6 +661,39 @@ window.OverworldMaps = {
           ]
         }
       ],
+      [utils.asGridCoord(7,12)]: [{
+        events: [
+          { type: "addStoryFlag", flag: "MET_STUDENTS"},
+          { type: "textMessage", text: "Don't mind her, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
+          { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: { ...CHARACTERS[KARINA], name: 'another one' } },
+          { type: "textMessage", text: "That's what I-", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
+          { type: "textMessage", text: "Don't be rude.", character: {...CHARACTERS[KARINA],  name: '???'} },
+          { type: "textMessage", text: "She's loony.", character: {...CHARACTERS[ARYLHAN],  name: '???'}, emotion: UPSET },
+          { type: "textMessage", text: "Eccentric.", italics: true, character: {...CHARACTERS[KARINA],  name: '???'}, emotion: SCEPTIC },
+          { type: "textMessage", text: "That's what I said. Anyway. Hiya there!", character: {...CHARACTERS[ARYLHAN],  name: '???'}},
+          { type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"] 
+            ? "... please tell me this is all but a weird dream."
+            : `Hey. I'm ${window.playerState.hero.your_name}. So. Do you guys live here? Like, all the time?` },
+          { type: "textMessage", text: "Heh, this one is funny.", emotion: UPSET, character: {...CHARACTERS[ARYLHAN],  name: '???'} },
+          { type: "textMessage", text: () => `I like ${getPronouns(window.playerState.hero.pronouns)}.`, character: {...CHARACTERS[ARYLHAN], name: 'the friendliest ghost so far'} },
+          { type: "textMessage", text: "....", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' } },
+          { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' }, emotion: SCEPTIC },
+          { type: "textMessage", text: () => `Oh, come on! At least ${window.playerState.hero.pronouns} ${window.playerState.hero.pronouns === 'they' ? 'speak' : 'speaks'} the same language we do.`, character: {...CHARACTERS[ARYLHAN],  name: '???'} },
+          { type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"] 
+            ? "... a blessing, indeed."
+            : `So they're others?` },
+          { type: "textMessage", text: "Aha! See? I told you, this one is funny!", character: {...CHARACTERS[ARYLHAN],  name: '???'} },
+          { type: "textMessage", text: "...", character: {...CHARACTERS[KARINA],  name: 'grumpy'}, emotion: UPSET },
+          { type: "textMessage", text: "Yeah, there're others, mostly Germans, considering they've had this town longer and all.", character: {...CHARACTERS[ARYLHAN],  name: '???'} },
+          { type: "textMessage", text: "Most of the time I don't get a word they're saying!", character: {...CHARACTERS[ARYLHAN],  name: '???'}, emotion: SCEPTIC },
+          { type: "textMessage", text: "Oh, sorry. Forgot to introduce ourselves. We rarely see new faces, you know?", character: {...CHARACTERS[ARYLHAN],  name: '???'}, emotion: UPSET },
+          { type: "textMessage", text: `The name's ${ARYLHAN}, ${CHARACTERS[ARYLHAN].name}`, character: CHARACTERS[ARYLHAN] },
+          { type: "textMessage", text: "...", character: {...CHARACTERS[KARINA], name: 'grumpy' }, emotion: SCEPTIC },
+          { type: "textMessage", text: `And my comrade there is ${KARINA}. ${CHARACTERS[KARINA].name}`, character: CHARACTERS[ARYLHAN] },
+          { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
+          { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around. ", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
+        ]
+      }],
     }
   },
   Shop: {
