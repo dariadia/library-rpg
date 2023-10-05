@@ -12,6 +12,19 @@ const ARYLHAN = 'Arylhan'
 const RAN_AWAY = 'INTRO:RAN_AWAY'
 const QUIET_WATCH = 'INTRO:QUIET_WATCH'
 
+const getPronouns = (pronoun) => {
+  switch (pronoun) {
+    case 'he':
+      return "him"
+    case 'she':
+      return "her"
+    case 'they':
+      return "them"
+    default:
+      return "them"
+  }
+}
+
 const CHARACTERS = {
   [HERR_DOKTOR]: {
     id: HERR_DOKTOR,
@@ -658,9 +671,11 @@ window.OverworldMaps = {
           { type: "textMessage", text: "She's loony.", character: CHARACTERS[ARYLHAN], emotion: UPSET },
           { type: "textMessage", text: "Eccentric.", italics: true, character: CHARACTERS[KARINA], emotion: SCEPTIC },
           { type: "textMessage", text: "That's what I said. Anyway. Hiya there!", character: CHARACTERS[ARYLHAN]},
-          { type: "textMessage", text: window.playerState.storyFlags["INTRO:RAN_AWAY"] 
+          { type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"] 
             ? "... please tell me this is all but a weird dream."
-            : `Hey. I'm ${window.playerState.hero.your_name}. So. Do you guys live here? Like, all the time?` }
+            : `Hey. I'm ${window.playerState.hero.your_name}. So. Do you guys live here? Like, all the time?` },
+          { type: "textMessage", text: "Heh, this one is funny.", emotion: UPSET, character: CHARACTERS[ARYLHAN] },
+          { type: "textMessage", text: () => `I like ${getPronouns(window.playerState.hero.pronouns)}.`, character: CHARACTERS[ARYLHAN] },
         ]
       }],
     }
