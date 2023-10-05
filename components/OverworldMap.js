@@ -691,6 +691,7 @@ window.OverworldMaps = {
           { type: "textMessage", text: "...", character: {...CHARACTERS[KARINA], name: 'grumpy' }, emotion: SCEPTIC },
           { type: "textMessage", text: `And my comrade there is ${KARINA}. ${CHARACTERS[KARINA].name}`, character: CHARACTERS[ARYLHAN] },
           { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
+          { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around. ", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
         ]
       }],
     }
