@@ -658,6 +658,9 @@ window.OverworldMaps = {
           { type: "textMessage", text: "She's loony.", character: CHARACTERS[ARYLHAN], emotion: UPSET },
           { type: "textMessage", text: "Eccentric.", italics: true, character: CHARACTERS[KARINA], emotion: SCEPTIC },
           { type: "textMessage", text: "That's what I said. Anyway. Hiya there!", character: CHARACTERS[ARYLHAN]},
+          { type: "textMessage", text: window.playerState.storyFlags["INTRO:RAN_AWAY"] 
+            ? "... please tell me this is all but a weird dream."
+            : `Hey. I'm ${window.playerState.hero.your_name}. So. Do you guys live here? Like, all the time?` }
         ]
       }],
     }
