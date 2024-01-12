@@ -594,7 +594,7 @@ window.OverworldMaps = {
           { type: "textMessage", text: "....", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' } },
           { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' }, emotion: SCEPTIC },
           { type: "textMessage", text: () => `Oh, come on! At least ${window.playerState.hero.pronouns} ${window.playerState.hero.pronouns === 'they' ? 'speak' : 'speaks'} the same language we do.`, character: {...CHARACTERS[ARYLHAN],  name: '???'} },
-          { type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"] 
+          { type: "textMessage", emotion: SCEPTIC, character: { ...CHARACTERS[KARINA], name: 'his not amused friend' }, text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"] 
             ? "... a blessing, indeed."
             : `So they're others?` },
           { type: "textMessage", text: "Aha! See? I told you, this one is funny!", character: {...CHARACTERS[ARYLHAN],  name: '???'} },
