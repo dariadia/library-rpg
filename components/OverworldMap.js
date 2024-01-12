@@ -467,11 +467,11 @@ window.OverworldMaps = {
               { type: "walk", who: MRS_T, direction: "down" },
               { type: "walk", who: MRS_T, direction: "down" },
               { type: "walk", who: MRS_T, direction: "down" },
-              { type: "walk", who: MRS_T, direction: "down" },
               { type: "stand", who: HERO, direction: "left" },
               { type: "stand", who: HERO, direction: "right" },
               { type: "textMessage", text: "Great. Now she's gone too!" },
               { type: "stand", who: HERO, direction: "down" },
+              { type: "textMessage", text: "*some noise*" },
               { type: "textMessage", text: "Huh?" },
               { type: "walk", who: HERO, direction: "right" },
               { type: "walk", who: HERO, direction: "right" },
@@ -570,7 +570,7 @@ window.OverworldMaps = {
     },
     walls: function () {
       let walls = {};
-      ["8,9",
+      ["6,12","5,12","4,12","3,12","2,12","1,12","0,12","0,11","0,10","0,9","0,8","0,7","0,6","0,4","1,4","2,4","3,3","4,3",
       ].forEach(coord => {
         let [x, y] = coord.split(",")
         walls[utils.asGridCoord(x, y)] = true
