@@ -441,17 +441,20 @@ window.OverworldMaps = {
              { type: "walk", who: HERO, direction: "right"},
              { type: "walk", who: MRS_T, direction: "right"},
              { type: "walk", who: MRS_T, direction: "right"},
+             { type: "walk", who: MRS_T, direction: "right"},
+             { type: "walk", who: MRS_T, direction: "right"},
+             { type: "walk", who: MRS_T, direction: "right"},
              { type: "textMessage", text: "Great. Now she's gone too!" },
              { type: "stand", who: HERO, direction: "left"},
              { type: "stand", who: HERO, direction: "down"},
               { type: "textMessage", text: "Huh?" },
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
-              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "right"},
+              { type: "walk", who: HERO, direction: "right"},
+              { type: "walk", who: HERO, direction: "right"},
+              { type: "walk", who: HERO, direction: "right"},
+              { type: "walk", who: HERO, direction: "right"},
+              { type: "walk", who: HERO, direction: "right"},
+              { type: "walk", who: HERO, direction: "right"},
               { type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"] 
                 ? "... ugh, let's hope they're friendly and don't eat people."
                 : `Anyone in there? Helloooo!` },
@@ -459,8 +462,8 @@ window.OverworldMaps = {
               { 
                 type: "changeMap",
                 map: "ThirdHall",
-                x: utils.withGrid(20),
-                y: utils.withGrid(10),
+                x: utils.withGrid(7),
+                y: utils.withGrid(8),
                 direction: "left",
                 noTransition: true,
               }
@@ -508,9 +511,9 @@ window.OverworldMaps = {
     }
   },
   ThirdHall: {
-    id: "ThirdHall",
-    lowerSrc: "/images/maps/HallLower.png",
-    upperSrc: "/images/maps/HallUpper.png",
+    id: "StorageRoom",
+    lowerSrc: "/images/maps/RoomLower.png",
+    upperSrc: "/images/maps/RoomUpper.png",
     configObjects: {
       hero: {
         type: "Person",
