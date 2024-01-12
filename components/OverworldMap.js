@@ -544,7 +544,7 @@ window.OverworldMaps = {
       },
       [ARYLHAN]: {
         type: "Person",
-        x: utils.withGrid(2),
+        x: utils.withGrid(1),
         y: utils.withGrid(7),
         direction: "right",
         visible: CHARACTERS[ARYLHAN].visible,
@@ -576,7 +576,7 @@ window.OverworldMaps = {
           ]
         }
       ],
-      [utils.asGridCoord(7,12)]: [{
+      [utils.asGridCoord(7,11)]: [{
         events: [
           { type: "addStoryFlag", flag: "MET_STUDENTS"},
           { type: "textMessage", text: "Don't mind her, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
