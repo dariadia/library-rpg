@@ -5,7 +5,7 @@ class Question {
     this.onComplete = onComplete
     this.arena = arena
 
-    this.combatants = {} // todo: player can choose "supporting" charcter to help them out. e.g. Ludwig or Rose 
+    this.combatants = {} // todo: player can choose "supporting" character to help them out. e.g. Ludwig or Rose 
 
     this.activeCombatants = {
       player: null,
@@ -35,6 +35,7 @@ class Question {
         ...Skills[config.skillId],
         ...config,
         team,
+        name: this.enemy.name,
         isPlayerControlled: team === "player"
       }, this)
       this.activeCombatants[team] = this.activeCombatants[team] || id

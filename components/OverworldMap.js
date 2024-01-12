@@ -444,6 +444,8 @@ window.OverworldMaps = {
              { type: "walk", who: MRS_T, direction: "right"},
              { type: "walk", who: MRS_T, direction: "right"},
              { type: "walk", who: MRS_T, direction: "right"},
+             { type: "walk", who: MRS_T, direction: "right"},
+             { type: "walk", who: MRS_T, direction: "right"},
              { type: "textMessage", text: "Great. Now she's gone too!" },
              { type: "stand", who: HERO, direction: "left"},
              { type: "stand", who: HERO, direction: "down"},

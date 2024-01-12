@@ -15,7 +15,7 @@ class QuestionEvent {
     const message = new TextMessage({
       text: this.text,
       emotion: this.event.emotion,
-      character: this.event.character,
+      character: { ...this.event.character, name: this.event.caster.name },
       cb: this.event.cb,
       onComplete: () => resolve()
     })
