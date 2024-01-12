@@ -535,8 +535,8 @@ window.OverworldMaps = {
       },
       [KARINA]: {
         type: "Person",
-        x: utils.withGrid(2),
-        y: utils.withGrid(6),
+        x: utils.withGrid(6),
+        y: utils.withGrid(11),
         direction: "right",
         visible: CHARACTERS[KARINA].visible,
         src: CHARACTERS[KARINA].character,
@@ -544,9 +544,9 @@ window.OverworldMaps = {
       },
       [ARYLHAN]: {
         type: "Person",
-        x: utils.withGrid(1),
-        y: utils.withGrid(7),
-        direction: "right",
+        x: utils.withGrid(8),
+        y: utils.withGrid(11),
+        direction: "left",
         visible: CHARACTERS[ARYLHAN].visible,
         src: CHARACTERS[ARYLHAN].character,
         behaviorLoop: []
