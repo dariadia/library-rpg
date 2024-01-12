@@ -428,8 +428,8 @@ window.OverworldMaps = {
           {
             events: [
              { type: "textMessage", character: { name: "a ghost?", avatar: CHARACTERS[MRS_T].avatar }, text: "Oh, hello, dear. I believe we never were introduced?", faceHero: MRS_T },
-             { type: "question", enemy: CHARACTERS[MRS_T], arena: "hall" },
-             { type: "addStoryFlag", flag: "GREETED_BY_MRS_T"},
+            { type: "addStoryFlag", flag: "GREETED_BY_MRS_T"},
+             { type: "question", enemy: { ...CHARACTERS[MRS_T], name: "Mrs Ghost Lady" }, arena: "hall" },
              { type: "textMessage", text: "Oh dear. So many things to do, so little time! Please, excuse me, dear.", character: CHARACTERS[MRS_T] },
              { type: "stand", who: MRS_T, direction: "down", time: 500},
              { type: "walk", who: MRS_T, direction: "right"},
