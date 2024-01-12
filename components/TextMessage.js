@@ -37,7 +37,7 @@ class TextMessage {
       <button class="TextMessage_button">Next</button>
     `)
 
-    if (this.character) {
+    if (this.character?.avatar) {
       let { name, position = 'left' } = this.character
       name = typeof name === 'string' ? name : name()
       const characterBox = document.createElement("div")
