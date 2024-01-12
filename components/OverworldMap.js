@@ -441,12 +441,29 @@ window.OverworldMaps = {
              { type: "walk", who: HERO, direction: "right"},
              { type: "walk", who: MRS_T, direction: "right"},
              { type: "walk", who: MRS_T, direction: "right"},
-             { 
-              type: "changeMap", 
-              map: "SecondHall",
-              direction: "right",
-              noTransition: true,
-            },
+             { type: "textMessage", text: "Great. Now she's gone too!" },
+             { type: "stand", who: HERO, direction: "left"},
+             { type: "stand", who: HERO, direction: "down"},
+              { type: "textMessage", text: "Huh?" },
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "walk", who: HERO, direction: "left"},
+              { type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"] 
+                ? "... ugh, let's hope they're friendly and don't eat people."
+                : `Anyone in there? Helloooo!` },
+              { type: "walk", who: HERO, direction: "up"},
+              { 
+                type: "changeMap",
+                map: "ThirdHall",
+                x: utils.withGrid(20),
+                y: utils.withGrid(10),
+                direction: "left",
+                noTransition: true,
+              }
             ]
           },
         ]
@@ -486,115 +503,6 @@ window.OverworldMaps = {
       [utils.asGridCoord(9,11)]: [{
         events: [
           { type: "textMessage", text: "Huh? Who's there?"},
-        ]
-      }],
-    }
-  },
-  SecondHall: {
-    id: "SecondHall",
-    lowerSrc: "/images/maps/HallLower.png",
-    upperSrc: "/images/maps/HallUpper.png",
-    configObjects: {
-      hero: {
-        type: "Person",
-        isPlayerControlled: true,
-        x: utils.withGrid(20),
-        y: utils.withGrid(10),
-      },
-    },
-    walls: function() {
-      let walls = {};
-      ["8,9","7,9","6,9","5,9","4,9",
-      "10,8","11,8","12,8","13,8","14,8","15,8","16,8","17,8","18,8","19,8",
-      "20,7","21,7","22,7","23,7","24,6","25,6","26,6","27,6","27,7","28,8","29,9","30,9",
-      "31,9","32,9","33,9",
-      "34,10","34,11","34,12","34,13","34,14","34,15","34,16","34,17","34,18","34,19",
-      "24,20","25,20","26,20","27,20","28,20","29,20","30,20","31,20","32,20","33,20","34,20",
-      "23,19","23,18","22,18","18,18","18,19","18,20","18,17","19,20","20,20","21,20","22,20",
-      "17,18","16,18","15,18","14,18","13,18","12,19","11,19","10,18","9,18","8,18","7,18","6,19","5,19","4,18",
-      "3,18","3,17","3,16","3,15","3,14","3,13","3,12","3,11","3,10",
-      ].forEach(coord => {
-        let [x,y] = coord.split(",")
-        walls[utils.asGridCoord(x,y)] = true
-      })
-      return walls
-    }(),
-    cutsceneSpaces: {
-      [utils.asGridCoord(9,9)]: [
-        {
-          events: [
-            { 
-              type: "changeMap",
-              map: "ReadingRoomEmpty",
-              x: utils.withGrid(5),
-              y: utils.withGrid(10),
-              direction: "up"
-            }
-          ]
-        }
-      ],
-      [utils.asGridCoord(18,10)]: [{
-        events: [
-          { type: "textMessage", text: "Great. Now she's gone too!" },
-          { type: "stand", who: HERO, direction: "up"},
-          { type: "stand", who: HERO, direction: "left"},
-          { type: "textMessage", text: "Huh?" },
-          { 
-            type: "changeMap",
-            map: "ThirdHall",
-            x: utils.withGrid(18),
-            y: utils.withGrid(10),
-            direction: "left",
-            noTransition: true,
-          }
-        ]
-      }],
-      [utils.asGridCoord(20,10)]: [{
-        events: [
-          { type: "textMessage", text: "Great. Now she's gone too!" },
-          { type: "stand", who: HERO, direction: "up"},
-          { type: "stand", who: HERO, direction: "left"},
-          { type: "textMessage", text: "Huh?" },
-          { 
-            type: "changeMap",
-            map: "ThirdHall",
-            x: utils.withGrid(20),
-            y: utils.withGrid(10),
-            direction: "left",
-            noTransition: true,
-          }
-        ]
-      }],
-      [utils.asGridCoord(19,11)]: [{
-        events: [
-          { type: "textMessage", text: "Great. Now she's gone too!" },
-          { type: "stand", who: HERO, direction: "up"},
-          { type: "stand", who: HERO, direction: "left"},
-          { type: "textMessage", text: "Huh?" },
-          { 
-            type: "changeMap",
-            map: "ThirdHall",
-            x: utils.withGrid(19),
-            y: utils.withGrid(11),
-            direction: "left",
-            noTransition: true,
-          }
-        ]
-      }],
-      [utils.asGridCoord(19,9)]: [{
-        events: [
-          { type: "textMessage", text: "Great. Now she's gone too!" },
-          { type: "stand", who: HERO, direction: "up"},
-          { type: "stand", who: HERO, direction: "left"},
-          { type: "textMessage", text: "Huh?" },
-          { 
-            type: "changeMap",
-            map: "ThirdHall",
-            x: utils.withGrid(19),
-            y: utils.withGrid(9),
-            direction: "left",
-            noTransition: true,
-          }
         ]
       }],
     }
