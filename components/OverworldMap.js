@@ -587,7 +587,7 @@ window.OverworldMaps = {
             avatar: CHARACTERS[KARINA].avatar,
             emotion: SCEPTIC
           }
-        },{
+        }, {
           type: "textMessage", text: "...", character:
           {
             name: () => window.playerState.storyFlags[MET_STUDENTS]
@@ -604,7 +604,7 @@ window.OverworldMaps = {
         direction: "left",
         visible: CHARACTERS[ARYLHAN].visible,
         src: CHARACTERS[ARYLHAN].character,
-        behaviorLoop: [          { type: "stand", who: MRS_T, direction: "left", time: 5000 },
+        behaviorLoop: [{ type: "stand", who: MRS_T, direction: "left", time: 5000 },
         {
           type: "textMessage", text: "You can talk to us, you know?", character:
           {
@@ -651,7 +651,7 @@ window.OverworldMaps = {
     },
     walls: function () {
       let walls = {};
-      ["6,12","5,12","4,12","3,12","2,12","1,12","0,12","0,11","0,10","0,9","0,8","0,7","0,6","0,5","1,4","2,4","3,3","4,3","5,3","6,3","7,3","8,3","9,3","10,3","11,3","12,3","13,3","13,4","13,5","13,6","13,7","13,8","13,9","13,10","13,11","12,12","11,12","10,12","9,12","8,12","10,7","9,7","11,7"
+      ["6,12", "5,12", "4,12", "3,12", "2,12", "1,12", "0,12", "0,11", "0,10", "0,9", "0,8", "0,7", "0,6", "0,5", "1,4", "2,4", "3,3", "4,3", "5,3", "6,3", "7,3", "8,3", "9,3", "10,3", "11,3", "12,3", "13,3", "13,4", "13,5", "13,6", "13,7", "13,8", "13,9", "13,10", "13,11", "12,12", "11,12", "10,12", "9,12", "8,12", "10,7", "9,7", "11,7"
       ].forEach(coord => {
         let [x, y] = coord.split(",")
         walls[utils.asGridCoord(x, y)] = true
