@@ -397,7 +397,7 @@ window.OverworldMaps = {
           {
             type: "textMessage", text: "Oh, dear, oh dear!", character:
             {
-              name: () => window.playerState.storyFlags.GREETED_BY_MRS_T
+              name: () => window.playerState.storyFlags[GREETED_BY_MRS_T]
                 ? CHARACTERS[MRS_T].name
                 : "another ghost???",
               avatar: CHARACTERS[MRS_T].avatar, emotion: UPSET
@@ -414,7 +414,7 @@ window.OverworldMaps = {
           {
             type: "textMessage", text: "Isn't the weather just lovely today?", character:
             {
-              name: () => window.playerState.storyFlags.GREETED_BY_MRS_T
+              name: () => window.playerState.storyFlags[GREETED_BY_MRS_T]
                 ? CHARACTERS[MRS_T].name
                 : "another ghost???",
               avatar: CHARACTERS[MRS_T].avatar
@@ -503,7 +503,7 @@ window.OverworldMaps = {
       let walls = {};
       ["8,9", "7,9", "6,9", "5,9", "4,9",
         "10,8", "11,8", "12,8", "13,8", "14,8", "15,8", "16,8", "17,8", "18,8", "19,8",
-        "20,7", "21,7", "22,7", "23,7", "24,6", "25,6", "26,6", "27,6", "27,7", "28,8", "29,9", "30,9",
+        "20,7", "21,7", "22,7", "23,7", "24,6", "25,6", "26,6", "27,6", "27,7", "28,8", "30,9",
         "31,9", "32,9", "33,9",
         "34,10", "34,11", "34,12", "34,13", "34,14", "34,15", "34,16", "34,17", "34,18", "34,19",
         "24,20", "25,20", "26,20", "27,20", "28,20", "29,20", "30,20", "31,20", "32,20", "33,20", "34,20",
@@ -526,6 +526,19 @@ window.OverworldMaps = {
               x: utils.withGrid(5),
               y: utils.withGrid(10),
               direction: "up"
+            }
+          ]
+        }
+      ],
+      [utils.asGridCoord(29, 9)]: [
+        {
+          events: [
+            {
+              type: "changeMap",
+              map: "StorageRoom",
+              x: utils.withGrid(7),
+              y: utils.withGrid(12),
+              direction: "up",
             }
           ]
         }
@@ -555,7 +568,34 @@ window.OverworldMaps = {
         direction: "right",
         visible: CHARACTERS[KARINA].visible,
         src: CHARACTERS[KARINA].character,
-        behaviorLoop: []
+        behaviorLoop: [{ type: "stand", who: MRS_T, direction: "left", time: 10000 },
+        {
+          type: "textMessage", text: "...", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[KARINA].name
+              : "???",
+            avatar: CHARACTERS[KARINA].avatar,
+          }
+        },
+        {
+          type: "textMessage", text: "...", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[KARINA].name
+              : "???",
+            avatar: CHARACTERS[KARINA].avatar,
+            emotion: SCEPTIC
+          }
+        }, {
+          type: "textMessage", text: "...", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[KARINA].name
+              : "???",
+            avatar: CHARACTERS[KARINA].avatar,
+          }
+        }, { type: "stand", who: MRS_T, direction: "left", time: 5000 }]
       },
       [ARYLHAN]: {
         type: "Person",
@@ -564,12 +604,54 @@ window.OverworldMaps = {
         direction: "left",
         visible: CHARACTERS[ARYLHAN].visible,
         src: CHARACTERS[ARYLHAN].character,
-        behaviorLoop: []
+        behaviorLoop: [{ type: "stand", who: MRS_T, direction: "left", time: 5000 },
+        {
+          type: "textMessage", text: "You can talk to us, you know?", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[ARYLHAN].name
+              : "a friendly guy",
+            avatar: CHARACTERS[ARYLHAN].avatar,
+          }
+        },
+        {
+          type: "textMessage", text: "Please do! It's so-o-o boring in here.", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[ARYLHAN].name
+              : "a friendly guy",
+            avatar: CHARACTERS[ARYLHAN].avatar,
+          }
+        },
+        { type: "walk", who: ARYLHAN, direction: "up" },
+        { type: "walk", who: ARYLHAN, direction: "up" },
+        { type: "stand", who: ARYLHAN, direction: "left", time: 1000 },
+        {
+          type: "textMessage", text: "How's it out there? Did we send more people into space?", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[ARYLHAN].name
+              : "a friendly guy",
+            avatar: CHARACTERS[ARYLHAN].avatar,
+          }
+        },
+        { type: "walk", who: ARYLHAN, direction: "down" },
+        { type: "walk", who: ARYLHAN, direction: "down" },
+        { type: "stand", who: ARYLHAN, direction: "left", time: 4000 },
+        {
+          type: "textMessage", text: "Oh! Tell me about the latest USSR space program!", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[ARYLHAN].name
+              : "a friendly guy",
+            avatar: CHARACTERS[ARYLHAN].avatar,
+          }
+        },]
       },
     },
     walls: function () {
       let walls = {};
-      ["6,12","5,12","4,12","3,12","2,12","1,12","0,12","0,11","0,10","0,9","0,8","0,7","0,6","0,5","1,4","2,4","3,3","4,3","5,3","6,3","7,3","8,3","9,3","10,3","11,3","12,3","13,3","13,4","13,5","13,6","13,7","13,8","13,9","13,10","13,11","12,12","11,12","10,12","9,12","8,12","10,7","9,7","11,7"
+      ["6,12", "5,12", "4,12", "3,12", "2,12", "1,12", "0,12", "0,11", "0,10", "0,9", "0,8", "0,7", "0,6", "0,5", "1,4", "2,4", "3,3", "4,3", "5,3", "6,3", "7,3", "8,3", "9,3", "10,3", "11,3", "12,3", "13,3", "13,4", "13,5", "13,6", "13,7", "13,8", "13,9", "13,10", "13,11", "12,12", "11,12", "10,12", "9,12", "8,12", "10,7", "9,7", "11,7"
       ].forEach(coord => {
         let [x, y] = coord.split(",")
         walls[utils.asGridCoord(x, y)] = true
@@ -577,16 +659,16 @@ window.OverworldMaps = {
       return walls
     }(),
     cutsceneSpaces: {
-      [utils.asGridCoord(14, 14)]: [
+      [utils.asGridCoord(7, 13)]: [
         {
           events: [
             {
               type: "changeMap",
-              map: "ReadingRoomEmpty",
-              x: utils.withGrid(5),
+              map: "Hall",
+              x: utils.withGrid(30),
               y: utils.withGrid(10),
-              back: "ThirdHall",
-              direction: "up"
+              back: "StorageRoom",
+              direction: "down"
             }
           ]
         }
@@ -628,605 +710,6 @@ window.OverworldMaps = {
           { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around. ", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
         ]
       }],
-    }
-  },
-  Shop: {
-    id: "Shop",
-    lowerSrc: "/images/maps/someRandom.png",
-    upperSrc: "/images/maps/someRandom.png",
-    configObjects: {
-      hero: {
-        type: "Person",
-        isPlayerControlled: true,
-        x: utils.withGrid(3),
-        y: utils.withGrid(7),
-      },
-      shopNpcA: {
-        type: "Person",
-        x: utils.withGrid(6),
-        y: utils.withGrid(5),
-        src: "/images/characters/icons/npc2.png",
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "All of the chef rivalries have been good for business.", faceHero: "shopNpcA" },
-            ]
-          }
-        ]
-      },
-      shopNpcB: {
-        type: "Person",
-        x: utils.withGrid(5),
-        y: utils.withGrid(9),
-        src: "/images/characters/icons/npc2.png",
-        behaviorLoop: [
-          { type: "stand", direction: "left", time: 400, },
-        ],
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "Which peel will make me a better chef?", faceHero: "shopNpcB" },
-            ]
-          }
-        ]
-      },
-      skillBook: {
-        type: "SkillBook",
-        x: utils.withGrid(1),
-        y: utils.withGrid(4),
-        storyFlag: "STONE_SHOP",
-        skills: ["v002", "f002"],
-      },
-    },
-    cutsceneSpaces: {
-      [utils.asGridCoord(5, 12)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "Hall",
-              x: utils.withGrid(29),
-              y: utils.withGrid(9),
-              direction: "down"
-            }
-          ]
-        }
-      ],
-    },
-    walls: {
-      [utils.asGridCoord(2, 4)]: true,
-      [utils.asGridCoord(2, 5)]: true,
-      [utils.asGridCoord(2, 6)]: true,
-      [utils.asGridCoord(3, 6)]: true,
-      [utils.asGridCoord(4, 6)]: true,
-      [utils.asGridCoord(5, 6)]: true,
-      [utils.asGridCoord(7, 6)]: true,
-      [utils.asGridCoord(8, 6)]: true,
-      [utils.asGridCoord(9, 6)]: true,
-      [utils.asGridCoord(9, 5)]: true,
-      [utils.asGridCoord(9, 4)]: true,
-      [utils.asGridCoord(3, 8)]: true,
-      [utils.asGridCoord(3, 9)]: true,
-      [utils.asGridCoord(3, 10)]: true,
-      [utils.asGridCoord(4, 8)]: true,
-      [utils.asGridCoord(4, 9)]: true,
-      [utils.asGridCoord(4, 10)]: true,
-      [utils.asGridCoord(7, 8)]: true,
-      [utils.asGridCoord(7, 9)]: true,
-      [utils.asGridCoord(8, 8)]: true,
-      [utils.asGridCoord(8, 9)]: true,
-      [utils.asGridCoord(1, 12)]: true,
-      [utils.asGridCoord(2, 12)]: true,
-      [utils.asGridCoord(3, 12)]: true,
-      [utils.asGridCoord(4, 12)]: true,
-      [utils.asGridCoord(6, 12)]: true,
-      [utils.asGridCoord(7, 12)]: true,
-      [utils.asGridCoord(8, 12)]: true,
-      [utils.asGridCoord(9, 12)]: true,
-      [utils.asGridCoord(10, 12)]: true,
-      [utils.asGridCoord(0, 4)]: true,
-      [utils.asGridCoord(0, 5)]: true,
-      [utils.asGridCoord(0, 6)]: true,
-      [utils.asGridCoord(0, 7)]: true,
-      [utils.asGridCoord(0, 8)]: true,
-      [utils.asGridCoord(0, 9)]: true,
-      [utils.asGridCoord(0, 10)]: true,
-      [utils.asGridCoord(0, 11)]: true,
-      [utils.asGridCoord(11, 4)]: true,
-      [utils.asGridCoord(11, 5)]: true,
-      [utils.asGridCoord(11, 6)]: true,
-      [utils.asGridCoord(11, 7)]: true,
-      [utils.asGridCoord(11, 8)]: true,
-      [utils.asGridCoord(11, 9)]: true,
-      [utils.asGridCoord(11, 10)]: true,
-      [utils.asGridCoord(11, 11)]: true,
-
-      [utils.asGridCoord(1, 3)]: true,
-      [utils.asGridCoord(2, 3)]: true,
-      [utils.asGridCoord(3, 3)]: true,
-      [utils.asGridCoord(4, 3)]: true,
-      [utils.asGridCoord(5, 3)]: true,
-      [utils.asGridCoord(6, 3)]: true,
-      [utils.asGridCoord(7, 3)]: true,
-      [utils.asGridCoord(8, 3)]: true,
-      [utils.asGridCoord(9, 3)]: true,
-      [utils.asGridCoord(10, 3)]: true,
-
-      [utils.asGridCoord(5, 13)]: true,
-    }
-  },
-  DarkHall: {
-    id: "DarkHall",
-    lowerSrc: "/images/maps/DarkHallLower.png",
-    upperSrc: "/images/maps/DarkHallUpper.png",
-    configObjects: {
-      hero: {
-        type: "Person",
-        isPlayerControlled: true,
-        x: utils.withGrid(3),
-        y: utils.withGrid(8),
-      },
-      darkHallNpcA: {
-        type: "Person",
-        x: utils.withGrid(8),
-        y: utils.withGrid(8),
-        src: "/images/characters/icons/npc2.png",
-        behaviorLoop: [
-          { type: "stand", direction: "up", time: 400, },
-          { type: "stand", direction: "left", time: 800, },
-          { type: "stand", direction: "down", time: 400, },
-          { type: "stand", direction: "left", time: 800, },
-        ],
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "Chef Rootie uses the best seasoning.", faceHero: "darkHallNpcA" },
-            ]
-          }
-        ]
-      },
-      darkHallNpcB: {
-        type: "Person",
-        x: utils.withGrid(1),
-        y: utils.withGrid(8),
-        src: "/images/characters/icons/npc2.png",
-        behaviorLoop: [
-          { type: "stand", direction: "up", time: 900, },
-          { type: "walk", direction: "down" },
-          { type: "walk", direction: "down" },
-          { type: "stand", direction: "right", time: 800, },
-          { type: "stand", direction: "down", time: 400, },
-          { type: "stand", direction: "right", time: 800, },
-          { type: "walk", direction: "up" },
-          { type: "walk", direction: "up" },
-          { type: "stand", direction: "up", time: 600, },
-          { type: "stand", direction: "right", time: 900, },
-        ],
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "Finally...", faceHero: "darkHallNpcB" },
-            ]
-          }
-        ]
-      },
-      darkHallNpcC: {
-        type: "Person",
-        x: utils.withGrid(3),
-        y: utils.withGrid(5),
-        src: "/images/characters/icons/npc2.png",
-        talking: [
-          {
-            required: ["chefRootie"],
-            events: [{ type: "textMessage", faceHero: ["darkHallNpcC"], text: "My veggies need more growth." }]
-          },
-          {
-            events: [
-              { type: "textMessage", text: "Veggies are the fuel for the heart and soul!", faceHero: "darkHallNpcC" },
-              { type: "question", enemy: "chefRootie", arena: "dark-hall" },
-              { type: "addStoryFlag", flag: "chefRootie" },
-            ]
-          }
-        ]
-      },
-    },
-    cutsceneSpaces: {
-      [utils.asGridCoord(5, 12)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "HallNorth",
-              x: utils.withGrid(7),
-              y: utils.withGrid(5),
-              direction: "down"
-            }
-          ]
-        }
-      ],
-    },
-    walls: {
-      [utils.asGridCoord(1, 4)]: true,
-      [utils.asGridCoord(3, 4)]: true,
-      [utils.asGridCoord(4, 4)]: true,
-      [utils.asGridCoord(6, 4)]: true,
-      [utils.asGridCoord(7, 4)]: true,
-      [utils.asGridCoord(8, 5)]: true,
-      [utils.asGridCoord(9, 4)]: true,
-      [utils.asGridCoord(1, 6)]: true,
-      [utils.asGridCoord(2, 6)]: true,
-      [utils.asGridCoord(3, 6)]: true,
-      [utils.asGridCoord(4, 6)]: true,
-      [utils.asGridCoord(5, 6)]: true,
-      [utils.asGridCoord(6, 6)]: true,
-      [utils.asGridCoord(3, 7)]: true,
-      [utils.asGridCoord(4, 7)]: true,
-      [utils.asGridCoord(6, 7)]: true,
-      [utils.asGridCoord(2, 9)]: true,
-      [utils.asGridCoord(3, 9)]: true,
-      [utils.asGridCoord(4, 9)]: true,
-      [utils.asGridCoord(7, 10)]: true,
-      [utils.asGridCoord(8, 10)]: true,
-      [utils.asGridCoord(9, 10)]: true,
-      [utils.asGridCoord(1, 12)]: true,
-      [utils.asGridCoord(2, 12)]: true,
-      [utils.asGridCoord(3, 12)]: true,
-      [utils.asGridCoord(4, 12)]: true,
-      [utils.asGridCoord(6, 12)]: true,
-      [utils.asGridCoord(7, 12)]: true,
-      [utils.asGridCoord(8, 12)]: true,
-      [utils.asGridCoord(9, 12)]: true,
-      [utils.asGridCoord(0, 5)]: true,
-      [utils.asGridCoord(0, 6)]: true,
-      [utils.asGridCoord(0, 7)]: true,
-      [utils.asGridCoord(0, 8)]: true,
-      [utils.asGridCoord(0, 9)]: true,
-      [utils.asGridCoord(0, 10)]: true,
-      [utils.asGridCoord(0, 11)]: true,
-      [utils.asGridCoord(10, 5)]: true,
-      [utils.asGridCoord(10, 6)]: true,
-      [utils.asGridCoord(10, 7)]: true,
-      [utils.asGridCoord(10, 8)]: true,
-      [utils.asGridCoord(10, 9)]: true,
-      [utils.asGridCoord(10, 10)]: true,
-      [utils.asGridCoord(10, 11)]: true,
-      [utils.asGridCoord(5, 13)]: true,
-    }
-  },
-  HallNorth: {
-    id: "HallNorth",
-    lowerSrc: "/images/maps/HallNorthLower.png",
-    upperSrc: "/images/maps/HallNorthUpper.png",
-    configObjects: {
-      hero: {
-        type: "Person",
-        isPlayerControlled: true,
-        x: utils.withGrid(3),
-        y: utils.withGrid(8),
-      },
-      streetNorthNpcA: {
-        type: "Person",
-        x: utils.withGrid(9),
-        y: utils.withGrid(6),
-        src: "/images/characters/icons/npc2.png",
-        behaviorLoop: [
-          { type: "walk", direction: "left", },
-          { type: "walk", direction: "down", },
-          { type: "walk", direction: "right", },
-          { type: "stand", direction: "right", time: 800, },
-          { type: "walk", direction: "up", },
-          { type: "stand", direction: "up", time: 400, },
-        ],
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "This place is famous for veggie!", faceHero: "streetNorthNpcA" },
-            ]
-          }
-        ]
-      },
-      streetNorthNpcB: {
-        type: "Person",
-        x: utils.withGrid(4),
-        y: utils.withGrid(12),
-        src: "/images/characters/icons/npc2.png",
-        behaviorLoop: [
-          { type: "stand", direction: "up", time: 400, },
-          { type: "stand", direction: "left", time: 800, },
-          { type: "stand", direction: "down", time: 400, },
-          { type: "stand", direction: "left", time: 800, },
-          { type: "stand", direction: "right", time: 800, },
-        ],
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "I love the fresh smell of garlic in the air.", faceHero: "streetNorthNpcB" },
-            ]
-          }
-        ]
-      },
-      streetNorthNpcC: {
-        type: "Person",
-        x: utils.withGrid(12),
-        y: utils.withGrid(9),
-        src: "/images/characters/icons/npc2.png",
-        talking: [
-          {
-            required: ["streetNorthQuestion"],
-            events: [
-              { type: "textMessage", text: "Could you be the Legendary one?", faceHero: "streetNorthNpcC" },
-            ]
-          },
-          {
-            events: [
-              { type: "textMessage", text: "This is my turf!", faceHero: "streetNorthNpcC" },
-              { type: "question", enemy: "streetNorthQuestion" },
-              { type: "addStoryFlag", flag: "streetNorthQuestion" },
-            ]
-          },
-        ]
-      },
-      skillBook: {
-        type: "SkillBook",
-        x: utils.withGrid(2),
-        y: utils.withGrid(9),
-        storyFlag: "STONE_STREET_NORTH",
-        skills: ["v001", "f001"],
-      },
-    },
-    walls: {
-      [utils.asGridCoord(2, 7)]: true,
-      [utils.asGridCoord(3, 7)]: true,
-      [utils.asGridCoord(3, 6)]: true,
-      [utils.asGridCoord(4, 5)]: true,
-      [utils.asGridCoord(5, 5)]: true,
-      [utils.asGridCoord(6, 5)]: true,
-      [utils.asGridCoord(8, 5)]: true,
-      [utils.asGridCoord(9, 5)]: true,
-      [utils.asGridCoord(10, 5)]: true,
-      [utils.asGridCoord(11, 6)]: true,
-      [utils.asGridCoord(12, 6)]: true,
-      [utils.asGridCoord(13, 6)]: true,
-      [utils.asGridCoord(7, 8)]: true,
-      [utils.asGridCoord(8, 8)]: true,
-      [utils.asGridCoord(7, 9)]: true,
-      [utils.asGridCoord(8, 9)]: true,
-      [utils.asGridCoord(7, 10)]: true,
-      [utils.asGridCoord(8, 10)]: true,
-      [utils.asGridCoord(9, 10)]: true,
-      [utils.asGridCoord(10, 10)]: true,
-      [utils.asGridCoord(2, 15)]: true,
-      [utils.asGridCoord(3, 15)]: true,
-      [utils.asGridCoord(4, 15)]: true,
-      [utils.asGridCoord(5, 15)]: true,
-      [utils.asGridCoord(6, 15)]: true,
-      [utils.asGridCoord(6, 16)]: true,
-      [utils.asGridCoord(8, 16)]: true,
-      [utils.asGridCoord(8, 15,)]: true,
-      [utils.asGridCoord(9, 15)]: true,
-      [utils.asGridCoord(10, 15)]: true,
-      [utils.asGridCoord(11, 15)]: true,
-      [utils.asGridCoord(12, 15)]: true,
-      [utils.asGridCoord(13, 15)]: true,
-
-      [utils.asGridCoord(1, 8)]: true,
-      [utils.asGridCoord(1, 9)]: true,
-      [utils.asGridCoord(1, 10)]: true,
-      [utils.asGridCoord(1, 11)]: true,
-      [utils.asGridCoord(1, 12)]: true,
-      [utils.asGridCoord(1, 13)]: true,
-      [utils.asGridCoord(1, 14)]: true,
-
-      [utils.asGridCoord(14, 7)]: true,
-      [utils.asGridCoord(14, 8)]: true,
-      [utils.asGridCoord(14, 9)]: true,
-      [utils.asGridCoord(14, 10)]: true,
-      [utils.asGridCoord(14, 11)]: true,
-      [utils.asGridCoord(14, 12)]: true,
-      [utils.asGridCoord(14, 13)]: true,
-      [utils.asGridCoord(14, 14)]: true,
-
-      [utils.asGridCoord(7, 17)]: true,
-      [utils.asGridCoord(7, 4)]: true,
-    },
-    cutsceneSpaces: {
-      [utils.asGridCoord(7, 5)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "DarkHall",
-              x: utils.withGrid(5),
-              y: utils.withGrid(12),
-              direction: "up"
-            }
-          ]
-        }
-      ],
-      [utils.asGridCoord(7, 16)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "Hall",
-              x: utils.withGrid(25),
-              y: utils.withGrid(5),
-              direction: "down"
-            }
-          ]
-        }
-      ],
-    }
-  },
-  Storage: {
-    id: "Storage",
-    lowerSrc: "/images/maps/StorageLower.png",
-    upperSrc: "/images/maps/StorageUpper.png",
-    configObjects: {
-      hero: {
-        type: "Person",
-        isPlayerControlled: true,
-        x: utils.withGrid(5),
-        y: utils.withGrid(8),
-      },
-      storageNpcA: {
-        type: "Person",
-        x: utils.withGrid(12),
-        y: utils.withGrid(8),
-        src: "/images/characters/icons/npc2.png",
-        talking: [
-          {
-            required: ["storageQuestion"],
-            events: [
-              { type: "textMessage", text: "Maybe I am not ready for this place.", faceHero: "storageNpcA" },
-            ]
-          },
-          {
-            events: [
-              { type: "textMessage", text: "You think you have what it takes to cook here?!", faceHero: "storageNpcA" },
-              { type: "question", enemy: "storageQuestion", arena: "storage-room" },
-              { type: "addStoryFlag", flag: "storageQuestion" },
-            ]
-          },
-        ]
-      },
-      storageNpcB: {
-        type: "Person",
-        x: utils.withGrid(9),
-        y: utils.withGrid(5),
-        src: "/images/characters/icons/npc2.png",
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "People come from all over to dine here.", faceHero: "storageNpcB" },
-            ]
-          },
-        ]
-      },
-      storageNpcC: {
-        type: "Person",
-        x: utils.withGrid(2),
-        y: utils.withGrid(8),
-        src: "/images/characters/icons/npc2.png",
-        behaviorLoop: [
-          { type: "stand", direction: "right", time: 800, },
-          { type: "stand", direction: "down", time: 700, },
-          { type: "stand", direction: "right", time: 800, },
-        ],
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "I was so lucky to score a reservation!", faceHero: "storageNpcC" },
-            ]
-          },
-        ]
-      },
-      storageNpcD: {
-        type: "Person",
-        x: utils.withGrid(8),
-        y: utils.withGrid(9),
-        src: "/images/characters/icons/npc2.png",
-        behaviorLoop: [
-          { type: "stand", direction: "right", time: 1200, },
-          { type: "stand", direction: "down", time: 900, },
-          { type: "stand", direction: "left", time: 800, },
-          { type: "stand", direction: "down", time: 700, },
-          { type: "stand", direction: "right", time: 400, },
-          { type: "stand", direction: "up", time: 800, },
-        ],
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "I've been dreaming of this for weeks!", faceHero: "storageNpcD" },
-            ]
-          },
-        ]
-      },
-    },
-    cutsceneSpaces: {
-      [utils.asGridCoord(7, 3)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "ReadingRoom",
-              x: utils.withGrid(5),
-              y: utils.withGrid(10),
-              direction: "up"
-            }
-          ]
-        }
-      ],
-      [utils.asGridCoord(6, 12)]: [
-        {
-          events: [
-            {
-              type: "changeMap",
-              map: "Hall",
-              x: utils.withGrid(5),
-              y: utils.withGrid(9),
-              direction: "down"
-            }
-          ]
-        }
-      ],
-    },
-    walls: {
-      [utils.asGridCoord(6, 3)]: true,
-      [utils.asGridCoord(7, 2)]: true,
-      [utils.asGridCoord(6, 13)]: true,
-      [utils.asGridCoord(1, 5)]: true,
-      [utils.asGridCoord(2, 5)]: true,
-      [utils.asGridCoord(3, 5)]: true,
-      [utils.asGridCoord(4, 5)]: true,
-      [utils.asGridCoord(4, 4)]: true,
-      [utils.asGridCoord(5, 3)]: true,
-      [utils.asGridCoord(6, 4)]: true,
-      [utils.asGridCoord(6, 5)]: true,
-      [utils.asGridCoord(8, 3)]: true,
-      [utils.asGridCoord(9, 4)]: true,
-      [utils.asGridCoord(10, 5)]: true,
-      [utils.asGridCoord(11, 5)]: true,
-      [utils.asGridCoord(12, 5)]: true,
-      [utils.asGridCoord(11, 7)]: true,
-      [utils.asGridCoord(12, 7)]: true,
-      [utils.asGridCoord(2, 7)]: true,
-      [utils.asGridCoord(3, 7)]: true,
-      [utils.asGridCoord(4, 7)]: true,
-      [utils.asGridCoord(7, 7)]: true,
-      [utils.asGridCoord(8, 7)]: true,
-      [utils.asGridCoord(9, 7)]: true,
-      [utils.asGridCoord(2, 10)]: true,
-      [utils.asGridCoord(3, 10)]: true,
-      [utils.asGridCoord(4, 10)]: true,
-      [utils.asGridCoord(7, 10)]: true,
-      [utils.asGridCoord(8, 10)]: true,
-      [utils.asGridCoord(9, 10)]: true,
-      [utils.asGridCoord(1, 12)]: true,
-      [utils.asGridCoord(2, 12)]: true,
-      [utils.asGridCoord(3, 12)]: true,
-      [utils.asGridCoord(4, 12)]: true,
-      [utils.asGridCoord(5, 12)]: true,
-      [utils.asGridCoord(7, 12)]: true,
-      [utils.asGridCoord(8, 12)]: true,
-      [utils.asGridCoord(9, 12)]: true,
-      [utils.asGridCoord(10, 12)]: true,
-      [utils.asGridCoord(11, 12)]: true,
-      [utils.asGridCoord(12, 12)]: true,
-      [utils.asGridCoord(0, 4)]: true,
-      [utils.asGridCoord(0, 5)]: true,
-      [utils.asGridCoord(0, 6)]: true,
-      [utils.asGridCoord(0, 8)]: true,
-      [utils.asGridCoord(0, 9)]: true,
-      [utils.asGridCoord(0, 10)]: true,
-      [utils.asGridCoord(0, 11)]: true,
-      [utils.asGridCoord(13, 4)]: true,
-      [utils.asGridCoord(13, 5)]: true,
-      [utils.asGridCoord(13, 6)]: true,
-      [utils.asGridCoord(13, 8)]: true,
-      [utils.asGridCoord(13, 9)]: true,
-      [utils.asGridCoord(13, 10)]: true,
-      [utils.asGridCoord(13, 11)]: true,
     }
   },
 }
