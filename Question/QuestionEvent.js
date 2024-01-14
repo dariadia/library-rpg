@@ -3,7 +3,7 @@ class QuestionEvent {
     this.event = event
     this.question = question
   }
-  
+
   textMessage(resolve) {
     this.text = typeof this.event.text === 'string' ? this.event.text : this.event.text()
     this.text = this.text
@@ -15,17 +15,17 @@ class QuestionEvent {
     const message = new TextMessage({
       text: this.text,
       emotion: this.event.emotion,
-      character: this.event.caster 
-        ? { ...this.event.character, name: this.event.caster?.name } 
+      character: this.event.caster
+        ? { ...this.event.character, name: this.event.caster?.name }
         : this.event.character,
       cb: this.event.cb,
       onComplete: () => resolve()
     })
-    message.init( this.question.element )
+    message.init(this.question.element)
   }
 
   async stateChange(resolve) {
-    const {caster, target, damage, recover, status } = this.event
+    const { caster, target, damage, recover, status } = this.event
     let who = this.event.onCaster ? caster : target
 
     if (damage) {
@@ -44,7 +44,7 @@ class QuestionEvent {
 
     if (status) {
       who.update({
-        status: {...status}
+        status: { ...status }
       })
     }
     if (status === null) {
@@ -61,7 +61,7 @@ class QuestionEvent {
   }
 
   submissionMenu(resolve) {
-    const {caster} = this.event
+    const { caster } = this.event
     const menu = new SubmissionMenu({
       caster: caster,
       enemy: this.event.enemy,
@@ -73,21 +73,21 @@ class QuestionEvent {
         resolve(submission)
       }
     })
-    menu.init( this.question.element )
+    menu.init(this.question.element)
   }
 
   replacementMenu(resolve) {
     const menu = new ReplacementMenu({
-      replacements: Object.values(this.question.combatants).filter(c => 
+      replacements: Object.values(this.question.combatants).filter(c =>
         c.team === this.event.team && c.hp > 0
       ),
       onComplete: replacement => resolve(replacement)
     })
-    menu.init( this.question.element )
+    menu.init(this.question.element)
   }
 
   async replace(resolve) {
-    const {replacement} = this.event
+    const { replacement } = this.event
     const prevCombatant = this.question.combatants[this.question.activeCombatants[replacement.team]]
     this.question.activeCombatants[replacement.team] = null
     prevCombatant.update()
@@ -105,14 +105,14 @@ class QuestionEvent {
 
   addStoryFlag(resolve) {
     window.playerState.storyFlags[this.event.flag] = true
-    if (this.event.upSkill) 
-      playerState.addSkill(this.event.upSkill) 
+    if (this.event.upSkill)
+      playerState.addSkill(this.event.upSkill)
     resolve()
   }
 
   giveXp(resolve) {
     let amount = this.event.xp
-    const {combatant} = this.event
+    const { combatant } = this.event
     const step = () => {
       if (amount > 0) {
         amount -= 1

@@ -11,6 +11,8 @@ const ARYLHAN = 'Arylhan'
 
 const RAN_AWAY = 'INTRO:RAN_AWAY'
 const QUIET_WATCH = 'INTRO:QUIET_WATCH'
+const MET_STUDENTS = 'MET_STUDENTS'
+const GREETED_BY_MRS_T = 'GREETED_BY_MRS_T'
 
 const getPronouns = (pronoun) => {
   switch (pronoun) {
@@ -195,7 +197,9 @@ class OverworldMap {
     const hero = this.gameObjects[HERO]
     const match = this.cutsceneSpaces[`${hero.x},${hero.y}`]
     if (!this.isCutscenePlaying && match) {
-      this.startCutscene(match[0].events)
+      const _events = match[0]?.events
+      const events = typeof _events === 'function' ? _events() : _events
+      this.startCutscene(events)
     }
   }
 }
@@ -432,7 +436,7 @@ window.OverworldMaps = {
         ],
         talking: [
           {
-            required: ["GREETED_BY_MRS_T"],
+            required: [GREETED_BY_MRS_T],
             events: [
               { type: "textMessage", text: "Goodness gracious, where are my manners?", faceHero: MRS_T, character: CHARACTERS[MRS_T], emotion: UPSET },
               { type: "textMessage", text: "Please, accept my apologies... I am Mrs... do you happen to know my name?", faceHero: MRS_T, character: CHARACTERS[MRS_T] },
@@ -441,7 +445,7 @@ window.OverworldMaps = {
           {
             events: [
               { type: "textMessage", character: { name: "a ghost?", avatar: CHARACTERS[MRS_T].avatar }, text: "Oh, hello, dear. I believe we never were introduced?", faceHero: MRS_T },
-              { type: "addStoryFlag", flag: "GREETED_BY_MRS_T" },
+              { type: "addStoryFlag", flag: GREETED_BY_MRS_T },
               { type: "question", enemy: { ...CHARACTERS[MRS_T], name: "Mrs Ghost Lady" }, arena: "hall" },
               { type: "textMessage", text: "Oh dear. So many things to do, so little time! Please, excuse me, dear.", character: { ...CHARACTERS[MRS_T], name: "" } },
               { type: "stand", who: MRS_T, direction: "down", time: 500 },
@@ -565,10 +569,10 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(6),
         y: utils.withGrid(11),
-        direction: "right",
+        direction: "left",
         visible: CHARACTERS[KARINA].visible,
         src: CHARACTERS[KARINA].character,
-        behaviorLoop: [{ type: "stand", who: MRS_T, direction: "left", time: 10000 },
+        behaviorLoop: [{ type: "stand", who: KARINA, direction: "left", time: 10000 },
         {
           type: "textMessage", text: "...", character:
           {
@@ -595,7 +599,7 @@ window.OverworldMaps = {
               : "???",
             avatar: CHARACTERS[KARINA].avatar,
           }
-        }, { type: "stand", who: MRS_T, direction: "left", time: 5000 }]
+        }, { type: "stand", who: KARINA, direction: "left", time: 5000 }]
       },
       [ARYLHAN]: {
         type: "Person",
@@ -674,8 +678,8 @@ window.OverworldMaps = {
         }
       ],
       [utils.asGridCoord(7, 11)]: [{
-        events: [
-          { type: "addStoryFlag", flag: "MET_STUDENTS" },
+        events: () => window.playerState.storyFlags[MET_STUDENTS] ? [] :[
+          { type: "addStoryFlag", flag: MET_STUDENTS },
           { type: "textMessage", text: "Don't mind her, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
           { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: { ...CHARACTERS[KARINA], name: 'another one' } },
           { type: "textMessage", text: "That's what I-", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
