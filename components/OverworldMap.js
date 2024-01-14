@@ -608,7 +608,7 @@ window.OverworldMaps = {
         direction: "left",
         visible: CHARACTERS[ARYLHAN].visible,
         src: CHARACTERS[ARYLHAN].character,
-        behaviorLoop: [{ type: "stand", who: MRS_T, direction: "left", time: 5000 },
+        behaviorLoop: [{ type: "stand", who: ARYLHAN, direction: "left", time: 5000 },
         {
           type: "textMessage", text: "You can talk to us, you know?", character:
           {
