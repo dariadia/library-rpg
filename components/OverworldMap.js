@@ -690,7 +690,7 @@ window.OverworldMaps = {
       [utils.asGridCoord(7, 11)]: [{
         events: () => window.playerState.storyFlags[MET_STUDENTS] ? [] : [
           { type: "addStoryFlag", flag: MET_STUDENTS },
-          { type: "textMessage", text: "Don't mind her, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
+          { type: "textMessage", text: "Don't mind Mrs T, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
           { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: { ...CHARACTERS[KARINA], name: 'another one' } },
           { type: "textMessage", text: "That's what I-", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
           { type: "textMessage", text: "Don't be rude.", character: { ...CHARACTERS[KARINA], name: '???' } },
