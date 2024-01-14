@@ -256,55 +256,55 @@ window.OverworldMaps = {
           // { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
           // { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar }},
           // { type: "textMessage", text: "WHAT?!"},
-          // {
-          //   type: "prompt", options: [
-          //     {
-          //       text: "run away", actions: [
-          //         { type: "addStoryFlag", flag: RAN_AWAY, upSkill: '0quick' },
-          //         { type: "textMessage", text: "A-A-A-A!!!" },
-          //         { type: "walk", who: HERO, direction: "right" },
-          //         { type: "walk", who: HERO, direction: "down" },
-          //         { type: "walk", who: HERO, direction: "down" },
-          //         { type: "walk", who: HERO, direction: "left" },
-          //         { type: "walk", who: HERO, direction: "left" },
-          //         { type: "walk", who: HERO, direction: "left" },
-          //         { type: "walk", who: HERO, direction: "left" },
-          //         { type: "walk", who: HERO, direction: "left" },
-          //         { type: "walk", who: HERO, direction: "down" },
-          //         { type: "walk", who: HERO, direction: "left" },
-          //         { type: "walk", who: HERO, direction: "left" },
-          //         { type: "walk", who: HERO, direction: "down" },
-          //         {
-          //           type: "changeMap",
-          //           map: "Hall",
-          //           x: utils.withGrid(9),
-          //           y: utils.withGrid(10),
-          //           direction: "down"
-          //         }
-          //       ]
-          //     },
-          //     {
-          //       text: "keep quiet and watch", actions: [
-          //         { type: "addStoryFlag", flag: QUIET_WATCH, upSkill: '0obs' },
-          //         { type: "stand", who: HERR_DOKTOR, direction: "up", time: 1000 },
-          //         { type: "walk", who: HERR_DOKTOR, direction: "left" },
-          //         { type: "stand", who: HERR_DOKTOR, direction: "left", time: 500 },
-          //         { type: "stand", who: HERR_DOKTOR, direction: "up", time: 500 },
-          //         {
-          //           type: "changeMap",
-          //           map: "ReadingRoomEmpty",
-          //           x: utils.withGrid(11),
-          //           y: utils.withGrid(6),
-          //           direction: "left",
-          //           disappear: true,
-          //           shadeOptions: "width:14px;height:18px;top:60px;left:9px;border-radius:50px;filter:blur(3px);"
-          //         },
-          //         { type: "textMessage", text: "...a-and he went through the bookshelves..." },
-          //         { type: "textMessage", text: "Of course." },
-          //       ]
-          //     }
-          //   ]
-          // },
+          {
+            type: "prompt", options: [
+              {
+                text: "run away", actions: [
+                  { type: "addStoryFlag", flag: RAN_AWAY, upSkill: '0quick' },
+                  { type: "textMessage", text: "A-A-A-A!!!" },
+                  { type: "walk", who: HERO, direction: "right" },
+                  { type: "walk", who: HERO, direction: "down" },
+                  { type: "walk", who: HERO, direction: "down" },
+                  { type: "walk", who: HERO, direction: "left" },
+                  { type: "walk", who: HERO, direction: "left" },
+                  { type: "walk", who: HERO, direction: "left" },
+                  { type: "walk", who: HERO, direction: "left" },
+                  { type: "walk", who: HERO, direction: "left" },
+                  { type: "walk", who: HERO, direction: "down" },
+                  { type: "walk", who: HERO, direction: "left" },
+                  { type: "walk", who: HERO, direction: "left" },
+                  { type: "walk", who: HERO, direction: "down" },
+                  {
+                    type: "changeMap",
+                    map: "Hall",
+                    x: utils.withGrid(9),
+                    y: utils.withGrid(10),
+                    direction: "down"
+                  }
+                ]
+              },
+              {
+                text: "keep quiet and watch", actions: [
+                  { type: "addStoryFlag", flag: QUIET_WATCH, upSkill: '0obs' },
+                  { type: "stand", who: HERR_DOKTOR, direction: "up", time: 1000 },
+                  { type: "walk", who: HERR_DOKTOR, direction: "left" },
+                  { type: "stand", who: HERR_DOKTOR, direction: "left", time: 500 },
+                  { type: "stand", who: HERR_DOKTOR, direction: "up", time: 500 },
+                  {
+                    type: "changeMap",
+                    map: "ReadingRoomEmpty",
+                    x: utils.withGrid(11),
+                    y: utils.withGrid(6),
+                    direction: "left",
+                    disappear: true,
+                    shadeOptions: "width:14px;height:18px;top:60px;left:9px;border-radius:50px;filter:blur(3px);"
+                  },
+                  { type: "textMessage", text: "...a-and he went through the bookshelves..." },
+                  { type: "textMessage", text: "Of course." },
+                ]
+              }
+            ]
+          },
         ]
       }],
       [utils.asGridCoord(4, 4)]: [{
@@ -397,7 +397,7 @@ window.OverworldMaps = {
           {
             type: "textMessage", text: "Oh, dear, oh dear!", character:
             {
-              name: () => window.playerState.storyFlags.GREETED_BY_MRS_T
+              name: () => window.playerState.storyFlags[GREETED_BY_MRS_T]
                 ? CHARACTERS[MRS_T].name
                 : "another ghost???",
               avatar: CHARACTERS[MRS_T].avatar, emotion: UPSET
@@ -414,7 +414,7 @@ window.OverworldMaps = {
           {
             type: "textMessage", text: "Isn't the weather just lovely today?", character:
             {
-              name: () => window.playerState.storyFlags.GREETED_BY_MRS_T
+              name: () => window.playerState.storyFlags[GREETED_BY_MRS_T]
                 ? CHARACTERS[MRS_T].name
                 : "another ghost???",
               avatar: CHARACTERS[MRS_T].avatar
@@ -503,7 +503,7 @@ window.OverworldMaps = {
       let walls = {};
       ["8,9", "7,9", "6,9", "5,9", "4,9",
         "10,8", "11,8", "12,8", "13,8", "14,8", "15,8", "16,8", "17,8", "18,8", "19,8",
-        "20,7", "21,7", "22,7", "23,7", "24,6", "25,6", "26,6", "27,6", "27,7", "28,8", "29,9", "30,9",
+        "20,7", "21,7", "22,7", "23,7", "24,6", "25,6", "26,6", "27,6", "27,7", "28,8", "30,9",
         "31,9", "32,9", "33,9",
         "34,10", "34,11", "34,12", "34,13", "34,14", "34,15", "34,16", "34,17", "34,18", "34,19",
         "24,20", "25,20", "26,20", "27,20", "28,20", "29,20", "30,20", "31,20", "32,20", "33,20", "34,20",
@@ -577,7 +577,49 @@ window.OverworldMaps = {
         direction: "left",
         visible: CHARACTERS[ARYLHAN].visible,
         src: CHARACTERS[ARYLHAN].character,
-        behaviorLoop: []
+        behaviorLoop: [          { type: "stand", who: MRS_T, direction: "left", time: 5000 },
+        {
+          type: "textMessage", text: "You can talk to us, you know?", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[ARYLHAN].name
+              : "a friendly guy",
+            avatar: CHARACTERS[ARYLHAN].avatar,
+          }
+        },
+        {
+          type: "textMessage", text: "Please do! It's so-o-o boring in here.", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[ARYLHAN].name
+              : "a friendly guy",
+            avatar: CHARACTERS[ARYLHAN].avatar,
+          }
+        },
+        { type: "walk", who: ARYLHAN, direction: "up" },
+        { type: "walk", who: ARYLHAN, direction: "up" },
+        { type: "stand", who: ARYLHAN, direction: "left", time: 1000 },
+        {
+          type: "textMessage", text: "How's it out there? Did we send more people into space?", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[ARYLHAN].name
+              : "a friendly guy",
+            avatar: CHARACTERS[ARYLHAN].avatar,
+          }
+        },
+        { type: "walk", who: ARYLHAN, direction: "down" },
+        { type: "walk", who: ARYLHAN, direction: "down" },
+        { type: "stand", who: ARYLHAN, direction: "left", time: 4000 },
+        {
+          type: "textMessage", text: "Oh! Tell me about the latest USSR space program!", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[ARYLHAN].name
+              : "a friendly guy",
+            avatar: CHARACTERS[ARYLHAN].avatar,
+          }
+        },]
       },
     },
     walls: function () {
