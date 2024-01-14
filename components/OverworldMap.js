@@ -572,6 +572,23 @@ window.OverworldMaps = {
         direction: "right",
         visible: CHARACTERS[KARINA].visible,
         src: CHARACTERS[KARINA].character,
+        talking: [
+          {
+            required: ["TALKED_TO_KARINA"],
+            events: [
+              { type: "textMessage", text: "todo", faceHero: KARINA, character: CHARACTERS[KARINA], emotion: UPSET },
+              { type: "textMessage", text: "todo", faceHero: KARINA, character: CHARACTERS[KARINA] },
+            ]
+          },
+          {
+            events: [
+              { type: "textMessage", character: CHARACTERS[KARINA], text: "todo", faceHero: KARINA },
+              { type: "addStoryFlag", flag: "TALKED_TO_KARINA" },
+              { type: "question", enemy: CHARACTERS[KARINA], arena: "storage-room" },
+              { type: "textMessage", text: "todo", character: CHARACTERS[KARINA] },
+            ]
+          },
+        ],
         behaviorLoop: [{ type: "stand", who: KARINA, direction: "right", time: 30000 },
         {
           type: "textMessage", text: "...", character:
@@ -608,6 +625,24 @@ window.OverworldMaps = {
         direction: "left",
         visible: CHARACTERS[ARYLHAN].visible,
         src: CHARACTERS[ARYLHAN].character,
+        talking: [
+          {
+            required: ["TALKED_TO_ARYLHAN"],
+            events: [
+              { type: "textMessage", text: "Karina's been teaching me German so that I understand the others. Dunno, sometimes they seem to get me just fine.", faceHero: ARYLHAN, character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
+              { type: "textMessage", text: "Guess you don't wanna run into the Doctor. Don't tell him I said that.", faceHero: ARYLHAN, character: CHARACTERS[ARYLHAN], emotion: UPSET },
+              { type: "textMessage", text: "You'll be fi-i-i-i-ine. Probably.", faceHero: ARYLHAN, character: CHARACTERS[ARYLHAN] },
+            ]
+          },
+          {
+            events: [
+              { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "Hiya", faceHero: ARYLHAN },
+              { type: "addStoryFlag", flag: "TALKED_TO_ARYLHAN" },
+              { type: "question", enemy: CHARACTERS[ARYLHAN], arena: "storage-room" },
+              { type: "textMessage", text: "todo", character: CHARACTERS[ARYLHAN] },
+            ]
+          },
+        ],
         behaviorLoop: [{ type: "stand", who: ARYLHAN, direction: "left", time: 15000 },
         {
           type: "textMessage", text: "You can talk to us, you know?", character:
@@ -716,12 +751,12 @@ window.OverworldMaps = {
           { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'grumpy' }, emotion: UPSET },
           { type: "textMessage", text: "Yeah, there're others, mostly Germans, considering they've had this town longer and all.", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
           { type: "textMessage", text: "Most of the time I don't get a word they're saying!", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
-          { type: "textMessage", text: "Oh, sorry. Forgot to introduce ourselves. We rarely see new faces, you know?", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: UPSET },
+          { type: "textMessage", text: "Oh, sorry. Forgot to introduce ourselves. We rarely see new faces, ya know?", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: UPSET },
           { type: "textMessage", text: `The name's ${ARYLHAN}, ${CHARACTERS[ARYLHAN].name}`, character: CHARACTERS[ARYLHAN] },
           { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'grumpy' }, emotion: SCEPTIC },
           { type: "textMessage", text: `And my comrade there is ${KARINA}. ${CHARACTERS[KARINA].name}`, character: CHARACTERS[ARYLHAN] },
           { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
-          { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around. ", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
+          { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around.", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
         ]
       }],
     }
