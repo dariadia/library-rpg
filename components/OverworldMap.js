@@ -569,10 +569,10 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(6),
         y: utils.withGrid(11),
-        direction: "left",
+        direction: "right",
         visible: CHARACTERS[KARINA].visible,
         src: CHARACTERS[KARINA].character,
-        behaviorLoop: [{ type: "stand", who: KARINA, direction: "left", time: 10000 },
+        behaviorLoop: [{ type: "stand", who: KARINA, direction: "right", time: 30000 },
         {
           type: "textMessage", text: "...", character:
           {
@@ -599,7 +599,7 @@ window.OverworldMaps = {
               : "???",
             avatar: CHARACTERS[KARINA].avatar,
           }
-        }, { type: "stand", who: KARINA, direction: "left", time: 5000 }]
+        }, { type: "stand", who: KARINA, direction: "right", time: 20000 }]
       },
       [ARYLHAN]: {
         type: "Person",
@@ -608,7 +608,7 @@ window.OverworldMaps = {
         direction: "left",
         visible: CHARACTERS[ARYLHAN].visible,
         src: CHARACTERS[ARYLHAN].character,
-        behaviorLoop: [{ type: "stand", who: ARYLHAN, direction: "left", time: 5000 },
+        behaviorLoop: [{ type: "stand", who: ARYLHAN, direction: "left", time: 15000 },
         {
           type: "textMessage", text: "You can talk to us, you know?", character:
           {
@@ -629,7 +629,7 @@ window.OverworldMaps = {
         },
         { type: "walk", who: ARYLHAN, direction: "up" },
         { type: "walk", who: ARYLHAN, direction: "up" },
-        { type: "stand", who: ARYLHAN, direction: "left", time: 1000 },
+        { type: "stand", who: ARYLHAN, direction: "left", time: 3000 },
         {
           type: "textMessage", text: "How's it out there? Did we send more people into space?", character:
           {
@@ -641,7 +641,7 @@ window.OverworldMaps = {
         },
         { type: "walk", who: ARYLHAN, direction: "down" },
         { type: "walk", who: ARYLHAN, direction: "down" },
-        { type: "stand", who: ARYLHAN, direction: "left", time: 4000 },
+        { type: "stand", who: ARYLHAN, direction: "left", time: 20000 },
         {
           type: "textMessage", text: "Oh! Tell me about the latest USSR space program!", character:
           {
@@ -677,6 +677,16 @@ window.OverworldMaps = {
           ]
         }
       ],
+      [utils.asGridCoord(11, 4)]: [{
+        events: [
+          { type: "textMessage", text: "They got some really weird stuff in here." },
+        ]
+      }],
+      [utils.asGridCoord(4, 4)]: [{
+        events: [
+          { type: "textMessage", text: "Wonder how long these books have been here. Wait. Are those German?.." },
+        ]
+      }],
       [utils.asGridCoord(7, 11)]: [{
         events: () => window.playerState.storyFlags[MET_STUDENTS] ? [] : [
           { type: "addStoryFlag", flag: MET_STUDENTS },
