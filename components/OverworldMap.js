@@ -568,7 +568,34 @@ window.OverworldMaps = {
         direction: "right",
         visible: CHARACTERS[KARINA].visible,
         src: CHARACTERS[KARINA].character,
-        behaviorLoop: []
+        behaviorLoop: [{ type: "stand", who: MRS_T, direction: "left", time: 10000 },
+        {
+          type: "textMessage", text: "...", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[KARINA].name
+              : "???",
+            avatar: CHARACTERS[KARINA].avatar,
+          }
+        },
+        {
+          type: "textMessage", text: "...", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[KARINA].name
+              : "???",
+            avatar: CHARACTERS[KARINA].avatar,
+            emotion: SCEPTIC
+          }
+        },{
+          type: "textMessage", text: "...", character:
+          {
+            name: () => window.playerState.storyFlags[MET_STUDENTS]
+              ? CHARACTERS[KARINA].name
+              : "???",
+            avatar: CHARACTERS[KARINA].avatar,
+          }
+        }, { type: "stand", who: MRS_T, direction: "left", time: 5000 }]
       },
       [ARYLHAN]: {
         type: "Person",
