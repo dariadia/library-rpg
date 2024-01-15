@@ -69,6 +69,12 @@ const CHARACTERS = {
       [SCEPTIC]: '/images/characters/avatars/karina_sceptic.png'
     },
     character: '/images/characters/icons/karina.png',
+    skills: {
+      "a": {
+        skillId: "karina",
+        maxHp: 100,
+      }
+    }
   },
   [ARYLHAN]: {
     id: ARYLHAN,
@@ -588,6 +594,9 @@ window.OverworldMaps = {
               { type: "addStoryFlag", flag: "TALKED_TO_KARINA" },
               { type: "question", enemy: CHARACTERS[KARINA], arena: "storage-room" },
               { type: "textMessage", text: "A piece of advice? Try not to end up like us. Watch your back, it's like the walls here have ears.", character: CHARACTERS[KARINA] },
+              { type: "textMessage", text: "...", character: CHARACTERS[KARINA] },
+              { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
+              { type: "textMessage", text: "Off you go.", character: CHARACTERS[KARINA] },
             ]
           },
         ],
