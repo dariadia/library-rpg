@@ -116,7 +116,27 @@ window.Actions = {
       { type: "textMessage", character: CHARACTERS[MRS_T],text: "Oh dear, I was so sure this is the West wing..."},
     ]
   },
-  //Items
+  ask_about_place: {
+    name: "Ask if she's a ghost",
+    description: "What can go wrong, right?",
+    success: [
+      { type: "textMessage", text: "So. How come you're a ghost?"},
+      { type: "textMessage", text: "What could you possibly mean, dear?..", character: CHARACTERS[MRS_T], emotion: 'upset' },
+      { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
+      { type: "stateChange", damage: 10 }
+    ]
+  },
+  silent_treatment: {
+    name: "Silent treatment",
+    description: "She just doesn't want to talk to anyone.",
+    success: [
+      { type: "textMessage",  character: CHARACTERS[KARINA], text: "..." },
+      { type: "textMessage",  character: CHARACTERS[KARINA], text: "...", emotion: SCEPTIC },
+      { type: "stateChange", status: { type: "uneasy", expiresIn: 3 } },
+    ]
+  },
+
+  // Items
   item_recoverStatus: {
     name: "Heating Lamp",
     description: "Feeling fresh and warm",

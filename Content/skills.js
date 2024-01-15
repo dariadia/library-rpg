@@ -7,6 +7,8 @@ window.SkillTypes = {
   disoriented: "disoriented",
   sleepy: "sleepy",
   chill: "chill",
+  grumpy: "grympy",
+  friendly: "friendly"
 }
 
 window.Skills = {
@@ -36,52 +38,12 @@ window.Skills = {
     icon: "/images/icons/question-mark.png",
     actions: [ "disoriented1", "disoriented2", "sleepy" ],
   },
-  "s001": {
-    name: "some name",
-    description: "Skill desc here",
-    type: SkillTypes.normal,
+  "karina": {
+    name: "Karina Saroyan",
+    description: "Grumpy but helpful.",
+    type: SkillTypes.grumpy,
     src: "/images/characters/skills/s001.png",
-    icon: "/images/icons/spicy.png",
-    actions: [ "confident", "sleepy", "damage1" ],
+    icon: "/images/icons/question-mark.png",
+    actions: [ "silent_treatment" ],
   },
-  "s002": {
-    name: "Bacon Brigade",
-    description: "A salty warrior who fears nothing",
-    type: SkillTypes.normal,
-    src: "/images/characters/skills/s002.png",
-    icon: "/images/icons/spicy.png",
-    actions: [ "damage1", "confident", "sleepy" ],
-  },
-  "v001": {
-    name: "Call Me Kale",
-    description: "Skill desc here",
-    type: SkillTypes.normal,
-    src: "/images/characters/skills/v001.png",
-    icon: "/images/icons/veggie.png",
-    actions: [ "damage1" ],
-  },
-  "v002": {
-    name: "Archie Artichoke",
-    description: "Skill desc here",
-    type: SkillTypes.normal,
-    src: "/images/characters/skills/v001.png",
-    icon: "/images/icons/veggie.png",
-    actions: [ "damage1" ],
-  },
-  "f001": {
-    name: "Portobello Express",
-    description: "Skill desc here",
-    type: SkillTypes.normal,
-    src: "/images/characters/skills/f001.png",
-    icon: "/images/icons/fungi.png",
-    actions: [ "damage1" ],
-  },
-  "f002": {
-    name: "some name",
-    description: "Skill desc here",
-    type: SkillTypes.normal,
-    src: "/images/characters/skills/f001.png",
-    icon: "/images/icons/fungi.png",
-    actions: [ "damage1" ],
-  }
 }
