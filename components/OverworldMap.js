@@ -576,16 +576,18 @@ window.OverworldMaps = {
           {
             required: ["TALKED_TO_KARINA"],
             events: [
-              { type: "textMessage", text: "todo", faceHero: KARINA, character: CHARACTERS[KARINA], emotion: UPSET },
-              { type: "textMessage", text: "todo", faceHero: KARINA, character: CHARACTERS[KARINA] },
+              { type: "textMessage", text: "Ugh.", faceHero: KARINA, character: CHARACTERS[KARINA], emotion: UPSET },
+              { type: "textMessage", text: "It's not you, I don't like talking to people.", faceHero: KARINA, character: CHARACTERS[KARINA], emotion: UPSET },
+              { type: "textMessage", text: "Found out anything yet?", faceHero: KARINA, character: CHARACTERS[KARINA], emotion: SCEPTIC },
             ]
           },
           {
             events: [
-              { type: "textMessage", character: CHARACTERS[KARINA], text: "todo", faceHero: KARINA },
+              { type: "textMessage", character: CHARACTERS[KARINA], text: "Uh. Do I have to? Fi-i-ine.", faceHero: KARINA, emotion:  UPSET },
+              { type: "textMessage", character: CHARACTERS[KARINA], text: "But I don't know much.", faceHero: KARINA },
               { type: "addStoryFlag", flag: "TALKED_TO_KARINA" },
               { type: "question", enemy: CHARACTERS[KARINA], arena: "storage-room" },
-              { type: "textMessage", text: "todo", character: CHARACTERS[KARINA] },
+              { type: "textMessage", text: "A piece of advice? Try not to end up like us. Watch your back, it's like the walls here have ears.", character: CHARACTERS[KARINA] },
             ]
           },
         ],
@@ -636,10 +638,10 @@ window.OverworldMaps = {
           },
           {
             events: [
-              { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "Hiya", faceHero: ARYLHAN },
+              { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "Hiya. I can show you around but there isn't much to do.", faceHero: ARYLHAN },
               { type: "addStoryFlag", flag: "TALKED_TO_ARYLHAN" },
               { type: "question", enemy: CHARACTERS[ARYLHAN], arena: "storage-room" },
-              { type: "textMessage", text: "todo", character: CHARACTERS[ARYLHAN] },
+              { type: "textMessage", text: "See ya around!", character: CHARACTERS[ARYLHAN], emotion: UPSET },
             ]
           },
         ],
