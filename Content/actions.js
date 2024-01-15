@@ -116,7 +116,47 @@ window.Actions = {
       { type: "textMessage", character: CHARACTERS[MRS_T],text: "Oh dear, I was so sure this is the West wing..."},
     ]
   },
-  //Items
+  ask_about_place: {
+    name: "Ask if she's a ghost",
+    description: "What can go wrong, right?",
+    success: [
+      { type: "textMessage", text: "So. How come you're a ghost?"},
+      { type: "textMessage", text: "What could you possibly mean, dear?..", character: CHARACTERS[MRS_T], emotion: 'upset' },
+      { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
+      { type: "stateChange", damage: 10 }
+    ]
+  },
+  silent_treatment: {
+    name: "Silent treatment",
+    description: "She just doesn't want to talk to anyone.",
+    success: [
+      { type: "textMessage",  character: CHARACTERS[KARINA], text: "..." },
+      { type: "textMessage",  character: CHARACTERS[KARINA], text: "...", emotion: SCEPTIC },
+      { type: "stateChange", status: { type: "uneasy", expiresIn: 3 } },
+    ]
+  },
+  chatter: {
+    name: "Chatter",
+    description: "He talks way too much.",
+    success: [
+      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "I came here to study. All across the USSR, can you image? Took me two weeks by train." },
+      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "Possibly would've taken less if I took the right train. I was lucky they just left me at the next station, and I went back to catch my train. Anyway.", emotion: SCEPTIC },
+      { type: "stateChange", status: { type: "disoriented", expiresIn: 5 } },
+      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "Did I tell you about how I met Karina?" },
+    ]
+  },
+  chatter2: {
+    name: "Chatter",
+    description: "He talks way too much.",
+    success: [
+      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "Some people say I talk too much, I know, I know! Karina told me that the first day we met." },
+      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "Heh, such a long time ago it was! I just saw her standing by the wall, it was our start of the year greeting ceremony.", emotion: UPSET },
+      { type: "stateChange", status: { type: "disoriented", expiresIn: 5 } },
+      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "She looked so serious, I was surprised we were in the same class. First years!" },
+    ]
+  },
+
+  // Items
   item_recoverStatus: {
     name: "Heating Lamp",
     description: "Feeling fresh and warm",

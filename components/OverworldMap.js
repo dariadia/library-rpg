@@ -11,6 +11,8 @@ const ARYLHAN = 'Arylhan'
 
 const RAN_AWAY = 'INTRO:RAN_AWAY'
 const QUIET_WATCH = 'INTRO:QUIET_WATCH'
+const MET_STUDENTS = 'MET_STUDENTS'
+const GREETED_BY_MRS_T = 'GREETED_BY_MRS_T'
 
 const getPronouns = (pronoun) => {
   switch (pronoun) {
@@ -67,6 +69,12 @@ const CHARACTERS = {
       [SCEPTIC]: '/images/characters/avatars/karina_sceptic.png'
     },
     character: '/images/characters/icons/karina.png',
+    skills: {
+      "a": {
+        skillId: "karina",
+        maxHp: 100,
+      }
+    }
   },
   [ARYLHAN]: {
     id: ARYLHAN,
@@ -79,6 +87,12 @@ const CHARACTERS = {
       [SCEPTIC]: '/images/characters/avatars/arylhan_sceptic.png'
     },
     character: '/images/characters/icons/arylhan.png',
+    skills: {
+      "a": {
+        skillId: "arylhan",
+        maxHp: 30,
+      }
+    }
   },
 }
 
@@ -195,7 +209,9 @@ class OverworldMap {
     const hero = this.gameObjects[HERO]
     const match = this.cutsceneSpaces[`${hero.x},${hero.y}`]
     if (!this.isCutscenePlaying && match) {
-      this.startCutscene(match[0].events)
+      const _events = match[0]?.events
+      const events = typeof _events === 'function' ? _events() : _events
+      this.startCutscene(events)
     }
   }
 }
@@ -239,23 +255,23 @@ window.OverworldMaps = {
       [utils.asGridCoord(11, 6)]: [{
         disqualify: ["SEEN_INTRO"],
         events: [
-          { type: "textMessage", text: "February, 29. 1992.", effect: "intro" },
-          { type: "textMessage", text: "Kaliningrad, Russia.", effect: "intro" },
-          { type: "textMessage", text: "You stay late in the library writing your thesis.", effect: "intro", effectType: "text" },
-          { type: "externalEffect", kind: "darkMax", time: 5000},
-          { type: "stand", who: HERO, direction: "up", time: 200},
-          { type: "stand", who: HERO, direction: "left", time: 200},
-          { type: "textMessage", text: "Ugh...."},
-          { type: "stand", who: HERO, direction: "right", time: 200},
-          { type: "stand", who: HERO, direction: "down", time: 200},
-          { type: "addStoryFlag", flag: "SEEN_INTRO"},
-          { type: "textMessage", text: "... did I fall asleep? Ugh... "},
-          { type: "stand", who: HERO, direction: "left", time: 200},
-          { type: "textMessage", text: "... wha-at"},
-          { type: "walk", who: HERR_DOKTOR, direction: "left"},
-          { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
-          { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar }},
-          { type: "textMessage", text: "WHAT?!"},
+          // { type: "textMessage", text: "February, 29. 1992.", effect: "intro" },
+          // { type: "textMessage", text: "Kaliningrad, Russia.", effect: "intro" },
+          // { type: "textMessage", text: "You stay late in the library writing your thesis.", effect: "intro", effectType: "text" },
+          // { type: "externalEffect", kind: "darkMax", time: 5000},
+          // { type: "stand", who: HERO, direction: "up", time: 200},
+          // { type: "stand", who: HERO, direction: "left", time: 200},
+          // { type: "textMessage", text: "Ugh...."},
+          // { type: "stand", who: HERO, direction: "right", time: 200},
+          // { type: "stand", who: HERO, direction: "down", time: 200},
+          // { type: "addStoryFlag", flag: "SEEN_INTRO"},
+          // { type: "textMessage", text: "... did I fall asleep? Ugh... "},
+          // { type: "stand", who: HERO, direction: "left", time: 200},
+          // { type: "textMessage", text: "... wha-at"},
+          // { type: "walk", who: HERR_DOKTOR, direction: "left"},
+          // { type: "stand", who: HERR_DOKTOR, direction: "up", time: 200},
+          // { type: "textMessage", text: "...", character: { name: "ghost???", avatar: CHARACTERS[HERR_DOKTOR].avatar }},
+          // { type: "textMessage", text: "WHAT?!"},
           {
             type: "prompt", options: [
               {
@@ -432,7 +448,7 @@ window.OverworldMaps = {
         ],
         talking: [
           {
-            required: ["GREETED_BY_MRS_T"],
+            required: [GREETED_BY_MRS_T],
             events: [
               { type: "textMessage", text: "Goodness gracious, where are my manners?", faceHero: MRS_T, character: CHARACTERS[MRS_T], emotion: UPSET },
               { type: "textMessage", text: "Please, accept my apologies... I am Mrs... do you happen to know my name?", faceHero: MRS_T, character: CHARACTERS[MRS_T] },
@@ -441,7 +457,7 @@ window.OverworldMaps = {
           {
             events: [
               { type: "textMessage", character: { name: "a ghost?", avatar: CHARACTERS[MRS_T].avatar }, text: "Oh, hello, dear. I believe we never were introduced?", faceHero: MRS_T },
-              { type: "addStoryFlag", flag: "GREETED_BY_MRS_T" },
+              { type: "addStoryFlag", flag: GREETED_BY_MRS_T },
               { type: "question", enemy: { ...CHARACTERS[MRS_T], name: "Mrs Ghost Lady" }, arena: "hall" },
               { type: "textMessage", text: "Oh dear. So many things to do, so little time! Please, excuse me, dear.", character: { ...CHARACTERS[MRS_T], name: "" } },
               { type: "stand", who: MRS_T, direction: "down", time: 500 },
@@ -568,7 +584,29 @@ window.OverworldMaps = {
         direction: "right",
         visible: CHARACTERS[KARINA].visible,
         src: CHARACTERS[KARINA].character,
-        behaviorLoop: [{ type: "stand", who: MRS_T, direction: "left", time: 10000 },
+        talking: [
+          {
+            required: ["TALKED_TO_KARINA"],
+            events: [
+              { type: "textMessage", text: "Ugh.", faceHero: KARINA, character: CHARACTERS[KARINA], emotion: UPSET },
+              { type: "textMessage", text: "It's not you, I don't like talking to people.", faceHero: KARINA, character: CHARACTERS[KARINA], emotion: UPSET },
+              { type: "textMessage", text: "Found out anything yet?", faceHero: KARINA, character: CHARACTERS[KARINA], emotion: SCEPTIC },
+            ]
+          },
+          {
+            events: [
+              { type: "textMessage", character: CHARACTERS[KARINA], text: "Uh. Do I have to? Fi-i-ine.", faceHero: KARINA, emotion:  UPSET },
+              { type: "textMessage", character: CHARACTERS[KARINA], text: "But I don't know much.", faceHero: KARINA },
+              { type: "addStoryFlag", flag: "TALKED_TO_KARINA" },
+              { type: "question", enemy: CHARACTERS[KARINA], arena: "storage-room" },
+              { type: "textMessage", text: "A piece of advice? Try not to end up like us. Watch your back, it's like the walls here have ears.", character: CHARACTERS[KARINA] },
+              { type: "textMessage", text: "...", character: CHARACTERS[KARINA] },
+              { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
+              { type: "textMessage", text: "Off you go.", character: CHARACTERS[KARINA] },
+            ]
+          },
+        ],
+        behaviorLoop: [{ type: "stand", who: KARINA, direction: "right", time: 30000 },
         {
           type: "textMessage", text: "...", character:
           {
@@ -595,7 +633,7 @@ window.OverworldMaps = {
               : "???",
             avatar: CHARACTERS[KARINA].avatar,
           }
-        }, { type: "stand", who: MRS_T, direction: "left", time: 5000 }]
+        }, { type: "stand", who: KARINA, direction: "right", time: 20000 }]
       },
       [ARYLHAN]: {
         type: "Person",
@@ -604,7 +642,25 @@ window.OverworldMaps = {
         direction: "left",
         visible: CHARACTERS[ARYLHAN].visible,
         src: CHARACTERS[ARYLHAN].character,
-        behaviorLoop: [{ type: "stand", who: MRS_T, direction: "left", time: 5000 },
+        talking: [
+          {
+            required: ["TALKED_TO_ARYLHAN"],
+            events: [
+              { type: "textMessage", text: "Karina's been teaching me German so that I understand the others. Dunno, sometimes they seem to get me just fine.", faceHero: ARYLHAN, character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
+              { type: "textMessage", text: "Guess you don't wanna run into the Doctor. Don't tell him I said that.", faceHero: ARYLHAN, character: CHARACTERS[ARYLHAN], emotion: UPSET },
+              { type: "textMessage", text: "You'll be fi-i-i-i-ine. Probably.", faceHero: ARYLHAN, character: CHARACTERS[ARYLHAN] },
+            ]
+          },
+          {
+            events: [
+              { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "Hiya. I can show you around but there isn't much to do.", faceHero: ARYLHAN },
+              { type: "addStoryFlag", flag: "TALKED_TO_ARYLHAN" },
+              { type: "question", enemy: CHARACTERS[ARYLHAN], arena: "storage-room" },
+              { type: "textMessage", text: "See ya around!", character: CHARACTERS[ARYLHAN], emotion: UPSET },
+            ]
+          },
+        ],
+        behaviorLoop: [{ type: "stand", who: ARYLHAN, direction: "left", time: 15000 },
         {
           type: "textMessage", text: "You can talk to us, you know?", character:
           {
@@ -625,7 +681,7 @@ window.OverworldMaps = {
         },
         { type: "walk", who: ARYLHAN, direction: "up" },
         { type: "walk", who: ARYLHAN, direction: "up" },
-        { type: "stand", who: ARYLHAN, direction: "left", time: 1000 },
+        { type: "stand", who: ARYLHAN, direction: "left", time: 3000 },
         {
           type: "textMessage", text: "How's it out there? Did we send more people into space?", character:
           {
@@ -637,7 +693,7 @@ window.OverworldMaps = {
         },
         { type: "walk", who: ARYLHAN, direction: "down" },
         { type: "walk", who: ARYLHAN, direction: "down" },
-        { type: "stand", who: ARYLHAN, direction: "left", time: 4000 },
+        { type: "stand", who: ARYLHAN, direction: "left", time: 20000 },
         {
           type: "textMessage", text: "Oh! Tell me about the latest USSR space program!", character:
           {
@@ -673,10 +729,20 @@ window.OverworldMaps = {
           ]
         }
       ],
-      [utils.asGridCoord(7, 11)]: [{
+      [utils.asGridCoord(11, 4)]: [{
         events: [
-          { type: "addStoryFlag", flag: "MET_STUDENTS" },
-          { type: "textMessage", text: "Don't mind her, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
+          { type: "textMessage", text: "They got some really weird stuff in here." },
+        ]
+      }],
+      [utils.asGridCoord(4, 4)]: [{
+        events: [
+          { type: "textMessage", text: "Wonder how long these books have been here. Wait. Are those German?.." },
+        ]
+      }],
+      [utils.asGridCoord(7, 11)]: [{
+        events: () => window.playerState.storyFlags[MET_STUDENTS] ? [] : [
+          { type: "addStoryFlag", flag: MET_STUDENTS },
+          { type: "textMessage", text: "Don't mind Mrs T, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
           { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: { ...CHARACTERS[KARINA], name: 'another one' } },
           { type: "textMessage", text: "That's what I-", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
           { type: "textMessage", text: "Don't be rude.", character: { ...CHARACTERS[KARINA], name: '???' } },
@@ -702,12 +768,12 @@ window.OverworldMaps = {
           { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'grumpy' }, emotion: UPSET },
           { type: "textMessage", text: "Yeah, there're others, mostly Germans, considering they've had this town longer and all.", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
           { type: "textMessage", text: "Most of the time I don't get a word they're saying!", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
-          { type: "textMessage", text: "Oh, sorry. Forgot to introduce ourselves. We rarely see new faces, you know?", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: UPSET },
+          { type: "textMessage", text: "Oh, sorry. Forgot to introduce ourselves. We rarely see new faces, ya know?", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: UPSET },
           { type: "textMessage", text: `The name's ${ARYLHAN}, ${CHARACTERS[ARYLHAN].name}`, character: CHARACTERS[ARYLHAN] },
           { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'grumpy' }, emotion: SCEPTIC },
           { type: "textMessage", text: `And my comrade there is ${KARINA}. ${CHARACTERS[KARINA].name}`, character: CHARACTERS[ARYLHAN] },
           { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
-          { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around. ", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
+          { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around.", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
         ]
       }],
     }

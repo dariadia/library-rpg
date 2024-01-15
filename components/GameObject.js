@@ -26,7 +26,7 @@ class GameObject {
   }
 
   async doBehaviorEvent(map) { 
-    if (this.behaviorLoop.length === 0) return
+    if (this.behaviorLoop.length === 0 || !this.isMounted) return
 
     if (map.isCutscenePlaying) {
       if (this.retryTimeout) clearTimeout(this.retryTimeout)

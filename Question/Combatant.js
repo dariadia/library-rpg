@@ -95,6 +95,11 @@ class Combatant {
           { type: "textMessage", text: `${this.name} is taken aback!` },
           { type: "stateChange", damage: 5 }
         ]
+      case "uneasy": 
+        return [
+          { type: "textMessage", text: `Uh. This is slightly uncomfortable.` },
+          { type: "stateChange", damage: 2 }
+        ]
       default:
         return originalEvents
     }
