@@ -46,4 +46,12 @@ window.Skills = {
     icon: "/images/icons/question-mark.png",
     actions: [ "silent_treatment" ],
   },
+  "arylhan": {
+    name: "Arylhan Ivanov",
+    description: "Friendly but naive.",
+    type: SkillTypes.grumpy,
+    src: "/images/characters/skills/s001.png",
+    icon: "/images/icons/question-mark.png",
+    actions: [ "chatter", "chatter2" ],
+  },
 }

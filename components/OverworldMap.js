@@ -87,6 +87,12 @@ const CHARACTERS = {
       [SCEPTIC]: '/images/characters/avatars/arylhan_sceptic.png'
     },
     character: '/images/characters/icons/arylhan.png',
+    skills: {
+      "a": {
+        skillId: "arylhan",
+        maxHp: 30,
+      }
+    }
   },
 }
 
