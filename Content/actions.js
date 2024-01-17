@@ -1,11 +1,11 @@
-const shouldGiveClue = (level) => 
-  window.playerState.clues === level 
-    ? window.playerState.clues++ 
+const shouldGiveClue = (level) =>
+  window.playerState.clues === level
+    ? window.playerState.clues++
     : window.playerState.clues
 
-const isRepeat = (level) => 
+const isRepeat = (level) =>
   window.playerState.clues < level
-    ? "You got a clue!" 
+    ? "You got a clue!"
     : "Haven't you heard that somewhere before?"
 
 window.Actions = {
@@ -17,23 +17,24 @@ window.Actions = {
       { type: "stateChange", status: { type: "disoriented", expiresIn: 3 } },
       { type: "textMessage", text: "Nice to meet you.", character: CHARACTERS[MRS_T] },
       { type: "textMessage", text: "It's Mrs... Mrs... Mrs Ta- Mrs Te... Oh dear, oh dear...", character: CHARACTERS[MRS_T], emotion: 'upset' },
-      { type: "stateChange", damage: 5}
+      { type: "stateChange", damage: 5 }
     ]
   },
   ask_death: {
     name: "Ask how she died",
     description: "Because you're curious",
     success: [
-      { type: "textMessage", text: "How did you die?"},
+      { type: "textMessage", text: "How did you die?" },
       { type: "textMessage", text: "I am not dead, dear...", character: CHARACTERS[MRS_T] },
       { type: "textMessage", text: "What a sense of humour you have there!", character: CHARACTERS[MRS_T] },
       { type: "textMessage", text: "I am not dead... Am I? That bookcase looked so heavy.", character: CHARACTERS[MRS_T], emotion: 'upset' },
       { type: "textMessage", text: "Imagine being buried by that many books all at once!", character: CHARACTERS[MRS_T] },
-      { type: "textMessage", 
-        text: () => isRepeat(1), 
+      {
+        type: "textMessage",
+        text: () => isRepeat(1),
         cb: () => shouldGiveClue(0),
       },
-      { type: "addStoryFlag", flag: "CLUES:BOOKCASE"},
+      { type: "addStoryFlag", flag: "CLUES:BOOKCASE" },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
       { type: "stateChange", damage: 10 }
     ]
@@ -42,16 +43,17 @@ window.Actions = {
     name: "Ask about death",
     description: "In general. Because you're curious",
     success: [
-      { type: "textMessage", text: "How does one die in a library? I mean, does your soul stay here forever?"},
+      { type: "textMessage", text: "How does one die in a library? I mean, does your soul stay here forever?" },
       { type: "textMessage", text: "Oh dear, what an interesting question.", character: CHARACTERS[MRS_T] },
       { type: "textMessage", text: "I have no idea, I am afraid.", character: CHARACTERS[MRS_T], emotion: 'upset' },
       { type: "textMessage", text: "Some days I think I work so much in this library, I might be dead myself!", character: CHARACTERS[MRS_T] },
       { type: "textMessage", text: "Haunting a library, can you imagine? ", character: CHARACTERS[MRS_T], emotion: "upset" },
-      { type: "textMessage", 
-        text: () => isRepeat(1), 
-        cb: () => shouldGiveClue(0), 
+      {
+        type: "textMessage",
+        text: () => isRepeat(1),
+        cb: () => shouldGiveClue(0),
       },
-      { type: "addStoryFlag", flag: "CLUES:BOOKCASE"},
+      { type: "addStoryFlag", flag: "CLUES:BOOKCASE" },
       { type: "stateChange", damage: 10 }
     ]
   },
@@ -59,7 +61,7 @@ window.Actions = {
     name: "Ask if she's a ghost",
     description: "What can go wrong, right?",
     success: [
-      { type: "textMessage", text: "So. How come you're a ghost?"},
+      { type: "textMessage", text: "So. How come you're a ghost?" },
       { type: "textMessage", text: "What could you possibly mean, dear?..", character: CHARACTERS[MRS_T], emotion: 'upset' },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
       { type: "stateChange", damage: 10 }
@@ -69,10 +71,10 @@ window.Actions = {
     name: "Walk through her",
     description: "Because you can",
     success: [
-      { type: "animation", animation: "move", direction: "forward"  },
+      { type: "animation", animation: "move", direction: "forward" },
       { type: "textMessage", text: "Oh shit, this feels weird" },
       { type: "textMessage", text: "*gasps*", character: CHARACTERS[MRS_T], emotion: 'upset' },
-      { type: "animation", animation: "move", direction: "backward"  },
+      { type: "animation", animation: "move", direction: "backward" },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
       { type: "stateChange", damage: 10 }
     ]
@@ -82,7 +84,7 @@ window.Actions = {
     description: "Emergency confidence boost",
     targetType: "friendly",
     success: [
-      { type: "textMessage", text: "{CASTER} uses {ACTION}!"},
+      { type: "textMessage", text: "{CASTER} uses {ACTION}!" },
       { type: "animation", animation: "glob", color: "#dafd2a" },
       { type: "stateChange", status: { type: "confident", expiresIn: 3 } }
     ]
@@ -91,19 +93,19 @@ window.Actions = {
     name: "sleepy",
     description: "Do they all talk without a point this much?..",
     success: [
-      { type: "textMessage", text: "Oh dear, oh dear, the weather today is just lovely, isn't it?", character: CHARACTERS[MRS_T]},
-      { type: "textMessage", character: CHARACTERS[MRS_T],text: "I remember when my husband was still around, we would..." },
-      { type: "textMessage", character: CHARACTERS[MRS_T],text: "... and then, oh, do you remind me of our neighbour, dearest Frau Schmidt! So lively, so animated..." },
-      { type: "textMessage", character: CHARACTERS[MRS_T],emotion: 'upset', text: "... my poor Karl left us so early. My job here keeps me going, of course. Oh dear, all the books to look after..." },
+      { type: "textMessage", text: "Oh dear, oh dear, the weather today is just lovely, isn't it?", character: CHARACTERS[MRS_T] },
+      { type: "textMessage", character: CHARACTERS[MRS_T], text: "I remember when my husband was still around, we would..." },
+      { type: "textMessage", character: CHARACTERS[MRS_T], text: "... and then, oh, do you remind me of our neighbour, dearest Frau Schmidt! So lively, so animated..." },
+      { type: "textMessage", character: CHARACTERS[MRS_T], emotion: 'upset', text: "... my poor Karl left us so early. My job here keeps me going, of course. Oh dear, all the books to look after..." },
       { type: "stateChange", status: { type: "sleepy", expiresIn: 3 } },
-      { type: "textMessage", text: "Ugh... she has a point, right?.."},
+      { type: "textMessage", text: "Ugh... she has a point, right?.." },
     ]
   },
   disoriented1: {
     name: "Disoriented",
     description: "No longer has any idea what's going on!",
     success: [
-      { type: "textMessage", character: CHARACTERS[MRS_T], text: "Hello, dear. Sorry, I did not see you there!"},
+      { type: "textMessage", character: CHARACTERS[MRS_T], text: "Hello, dear. Sorry, I did not see you there!" },
       { type: "stateChange", damage: 3 }
     ]
   },
@@ -111,16 +113,16 @@ window.Actions = {
     name: "Disoriented",
     description: "No longer has any idea what's going on!",
     success: [
-      { type: "textMessage",  character: CHARACTERS[MRS_T], text: "What book did you come for? Let me check..."},
+      { type: "textMessage", character: CHARACTERS[MRS_T], text: "What book did you come for? Let me check..." },
       { type: "stateChange", status: { type: "disoriented", expiresIn: 2 } },
-      { type: "textMessage", character: CHARACTERS[MRS_T],text: "Oh dear, I was so sure this is the West wing..."},
+      { type: "textMessage", character: CHARACTERS[MRS_T], text: "Oh dear, I was so sure this is the West wing..." },
     ]
   },
   ask_about_place: {
     name: "Ask if she's a ghost",
     description: "What can go wrong, right?",
     success: [
-      { type: "textMessage", text: "So. How come you're a ghost?"},
+      { type: "textMessage", text: "So. How come you're a ghost?" },
       { type: "textMessage", text: "What could you possibly mean, dear?..", character: CHARACTERS[MRS_T], emotion: 'upset' },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
       { type: "stateChange", damage: 10 }
@@ -130,8 +132,8 @@ window.Actions = {
     name: "Silent treatment",
     description: "She just doesn't want to talk to anyone.",
     success: [
-      { type: "textMessage",  character: CHARACTERS[KARINA], text: "..." },
-      { type: "textMessage",  character: CHARACTERS[KARINA], text: "...", emotion: SCEPTIC },
+      { type: "textMessage", character: CHARACTERS[KARINA], text: "..." },
+      { type: "textMessage", character: CHARACTERS[KARINA], text: "...", emotion: SCEPTIC },
       { type: "stateChange", status: { type: "uneasy", expiresIn: 3 } },
     ]
   },
@@ -139,20 +141,20 @@ window.Actions = {
     name: "Chatter",
     description: "He talks way too much.",
     success: [
-      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "I came here to study. All across the USSR, can you image? Took me two weeks by train." },
-      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "Possibly would've taken less if I took the right train. I was lucky they just left me at the next station, and I went back to catch my train. Anyway.", emotion: SCEPTIC },
+      { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "I came here to study. All across the USSR, can you image? Took me two weeks by train." },
+      { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "Possibly would've taken less if I took the right train. I was lucky they just left me at the next station, and I went back to catch my train. Anyway.", emotion: SCEPTIC },
       { type: "stateChange", status: { type: "disoriented", expiresIn: 5 } },
-      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "Did I tell you about how I met Karina?" },
+      { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "Did I tell you about how I met Karina?" },
     ]
   },
   chatter2: {
     name: "Chatter",
     description: "He talks way too much.",
     success: [
-      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "Some people say I talk too much, I know, I know! Karina told me that the first day we met." },
-      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "Heh, such a long time ago it was! I just saw her standing by the wall, it was our start of the year greeting ceremony.", emotion: UPSET },
+      { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "Some people say I talk too much, I know, I know! Karina told me that the first day we met." },
+      { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "Heh, such a long time ago it was! I just saw her standing by the wall, it was our start of the year greeting ceremony.", emotion: UPSET },
       { type: "stateChange", status: { type: "disoriented", expiresIn: 5 } },
-      { type: "textMessage",  character: CHARACTERS[ARYLHAN], text: "She looked so serious, I was surprised we were in the same class. First years!" },
+      { type: "textMessage", character: CHARACTERS[ARYLHAN], text: "She looked so serious, I was surprised we were in the same class. First years!" },
     ]
   },
 
@@ -162,7 +164,7 @@ window.Actions = {
     description: "Feeling fresh and warm",
     targetType: "friendly",
     success: [
-      { type: "textMessage", text: "{CASTER} uses a {ACTION}!"},
+      { type: "textMessage", text: "{CASTER} uses a {ACTION}!" },
       { type: "stateChange", status: null },
       { type: "textMessage", text: "Feeling fresh!", },
     ]
@@ -172,9 +174,9 @@ window.Actions = {
     description: "Tastes better when hungry",
     targetType: "friendly",
     success: [
-      { type:"textMessage", text: `{HERO} finds a {ACTION} in their bag!` },
-      { type:"stateChange", recover: 10, },
-      { type:"textMessage", text: `{HERO} recovers HP!`, },
+      { type: "textMessage", text: `{HERO} finds a {ACTION} in their bag!` },
+      { type: "stateChange", recover: 10, },
+      { type: "textMessage", text: `{HERO} recovers HP!`, },
     ]
   },
 }

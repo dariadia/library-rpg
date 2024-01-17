@@ -19,7 +19,7 @@ window.Skills = {
     type: SkillTypes.observant,
     src: "/images/icons/notepad.png",
     icon: "/images/icons/notepad.png",
-    actions: [ "ask_name", "ask_death_gen", "damage1" ],
+    actions: ["ask_name", "ask_death_gen", "damage1"],
   },
   "0quick": {
     name: "Skill: quick",
@@ -28,7 +28,7 @@ window.Skills = {
     type: SkillTypes.quick,
     src: "/images/icons/quick.png",
     icon: "/images/icons/quick.png",
-    actions: [ "ask_death", "ask_ghost", "damage1" ],
+    actions: ["ask_death", "ask_ghost", "damage1"],
   },
   "mrsT": {
     name: "Mrs T (widowed)",
@@ -36,7 +36,7 @@ window.Skills = {
     type: SkillTypes.disoriented,
     src: "/images/characters/skills/s001.png",
     icon: "/images/icons/question-mark.png",
-    actions: [ "disoriented1", "disoriented2", "sleepy" ],
+    actions: ["disoriented1", "disoriented2", "sleepy"],
   },
   "karina": {
     name: "Karina Saroyan",
@@ -44,7 +44,7 @@ window.Skills = {
     type: SkillTypes.grumpy,
     src: "/images/characters/skills/s001.png",
     icon: "/images/icons/question-mark.png",
-    actions: [ "silent_treatment" ],
+    actions: ["silent_treatment"],
   },
   "arylhan": {
     name: "Arylhan Ivanov",
@@ -52,6 +52,6 @@ window.Skills = {
     type: SkillTypes.grumpy,
     src: "/images/characters/skills/s001.png",
     icon: "/images/icons/question-mark.png",
-    actions: [ "chatter", "chatter2" ],
+    actions: ["chatter", "chatter2"],
   },
 }

@@ -3,7 +3,7 @@ class Combatant {
     Object.keys(config).forEach(key => {
       this[key] = config[key]
     })
-    this.hp = typeof(this.hp) === "undefined" ? this.maxHp : this.hp
+    this.hp = typeof (this.hp) === "undefined" ? this.maxHp : this.hp
     this.question = question
   }
 
@@ -51,7 +51,7 @@ class Combatant {
     this.xpFills = this.hudElement.querySelectorAll(".Player_clues-container > rect")
   }
 
-  update(changes={}) {
+  update(changes = {}) {
     Object.keys(changes).forEach(key => {
       this[key] = changes[key]
     })
@@ -90,12 +90,12 @@ class Combatant {
           { type: "textMessage", text: `${this.name} no longer has any idea what's going on!` },
           { type: "stateChange", damage: 3 }
         ]
-      case "shocked": 
+      case "shocked":
         return [
           { type: "textMessage", text: `${this.name} is taken aback!` },
           { type: "stateChange", damage: 5 }
         ]
-      case "uneasy": 
+      case "uneasy":
         return [
           { type: "textMessage", text: `Uh. This is slightly uncomfortable.` },
           { type: "stateChange", damage: 2 }
