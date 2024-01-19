@@ -102,7 +102,7 @@ window.Actions = {
         cb: () => shouldGiveClue(2),
       },
       { type: "addStoryFlag", flag: window.Clues.ACHOKED },
-      { type: "stateChange", damage: 30 }
+      { type: "stateChange", damage: 40 }
     ]
   },
   damage1: {
