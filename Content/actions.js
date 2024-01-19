@@ -72,11 +72,37 @@ window.Actions = {
     description: "Because you can",
     success: [
       { type: "animation", animation: "move", direction: "forward" },
-      { type: "textMessage", text: "Oh shit, this feels weird" },
-      { type: "textMessage", text: "*gasps*", character: CHARACTERS[MRS_T], emotion: 'upset' },
+      { type: "textMessage", text: "Oh shit, this feels weird." },
+      { type: "textMessage", text: "*gasps*", character: CHARACTERS[MRS_T], emotion: UPSET },
       { type: "animation", animation: "move", direction: "backward" },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
       { type: "stateChange", damage: 10 }
+    ]
+  },
+  damage2: {
+    name: "Walk through her",
+    description: "Let's try this?..",
+    success: [
+      { type: "animation", animation: "move", direction: "forward" },
+      { type: "textMessage", text: "This is so weird." },
+      { type: "textMessage", text: "Did you – have to – do that?", character: CHARACTERS[KARINA], emotion: UPSET },
+      { type: "animation", animation: "move", direction: "backward" },
+      { type: "stateChange", status: { type: "upset", expiresIn: 5 } },
+      { type: "stateChange", damage: 10 }
+    ]
+  },
+  damage3: {
+    name: "Walk through him",
+    description: "He won't get mad, right?",
+    success: [
+      { type: "animation", animation: "move", direction: "forward" },
+      { type: "textMessage", text: "Oh shit, this feels weird" },
+      { type: "textMessage", text: "Hey, what the heck?!", character: CHARACTERS[ARYLHAN], emotion: UPSET },
+      { type: "animation", animation: "move", direction: "backward" },
+      { type: "textMessage", text: "Oh, wait.", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
+      { type: "textMessage", text: "Is this a game? How do I play? Do I walk through you next? I'm doing it, I'm doing it, what did I win??", character: CHARACTERS[ARYLHAN] },
+      { type: "stateChange", status: { type: "disoriented", expiresIn: 3 } },
+      { type: "stateChange", damage: 5 }
     ]
   },
   confident: {
