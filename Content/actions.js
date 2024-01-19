@@ -8,6 +8,14 @@ const isRepeat = (level) =>
     ? "You got a clue!"
     : "Haven't you heard that somewhere before?"
 
+const CLUES = 'CLUES'
+
+window.Clues = {
+  BOOKCASE: `${CLUES}:BOOKCASE`,
+  FOOTSTEPS: `${CLUES}:FOOTSTEPS`,
+  ACHOKED: `${CLUES}:ACHOKED`,
+}
+
 window.Actions = {
   ask_name: {
     name: "Ask for her name",
@@ -34,7 +42,7 @@ window.Actions = {
         text: () => isRepeat(1),
         cb: () => shouldGiveClue(0),
       },
-      { type: "addStoryFlag", flag: "CLUES:BOOKCASE" },
+      { type: "addStoryFlag", flag: window.Clues.BOOKCASE },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
       { type: "stateChange", damage: 10 }
     ]
@@ -53,7 +61,7 @@ window.Actions = {
         text: () => isRepeat(1),
         cb: () => shouldGiveClue(0),
       },
-      { type: "addStoryFlag", flag: "CLUES:BOOKCASE" },
+      { type: "addStoryFlag", flag: window.Clues.BOOKCASE },
       { type: "stateChange", damage: 10 }
     ]
   },
@@ -65,6 +73,36 @@ window.Actions = {
       { type: "textMessage", text: "What could you possibly mean, dear?..", character: CHARACTERS[MRS_T], emotion: 'upset' },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
       { type: "stateChange", damage: 10 }
+    ]
+  },
+  ask_neck: {
+    name: "Ask about the bruise around her neck",
+    description: "You're observant so you notice the thin mark on her neck.",
+    success: [
+      { type: "textMessage", text: "Do you mind me asking what's with your neck?" },
+      { type: "textMessage", text: "I actually do.", character: CHARACTERS[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "...", character: CHARACTERS[KARINA] },
+      { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
+      { type: "textMessage", text: "...mind you asking.", character: CHARACTERS[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "But you already did that. So.", character: CHARACTERS[KARINA] },
+      { type: "textMessage", text: "See this necklace? It was my favourite. Apparently whoever came behind me liked it too.", character: CHARACTERS[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "We were studying, cheated the guard and stayed the night in the library. Then I went to the bathroom.", character: CHARACTERS[KARINA] },
+      { type: "textMessage", text: "I heard footsteps. Remember? Footsteps, I didn't see them when they grabbed me by my necklace.", character: CHARACTERS[KARINA] },
+      {
+        type: "textMessage",
+        text: () => isRepeat(2),
+        cb: () => shouldGiveClue(1),
+      },
+      { type: "addStoryFlag", flag: window.Clues.FOOTSTEPS },
+      { type: "textMessage", text: "I struggled. Then choked. Then I woke up with my cold body on the floor and that one choking himself to death because he's allergic to nuts but grabbed my snacks.", character: CHARACTERS[KARINA] },
+      { type: "textMessage", text: "Ugh. That idiot...", character: CHARACTERS[KARINA], emotion: UPSET },
+      {
+        type: "textMessage",
+        text: () => isRepeat(3),
+        cb: () => shouldGiveClue(2),
+      },
+      { type: "addStoryFlag", flag: window.Clues.ACHOKED },
+      { type: "stateChange", damage: 30 }
     ]
   },
   damage1: {
