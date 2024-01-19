@@ -742,38 +742,38 @@ window.OverworldMaps = {
       [utils.asGridCoord(7, 11)]: [{
         events: () => window.playerState.storyFlags[MET_STUDENTS] ? [] : [
           { type: "addStoryFlag", flag: MET_STUDENTS },
-          { type: "textMessage", text: "Don't mind Mrs T, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
-          { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: { ...CHARACTERS[KARINA], name: 'another one' } },
-          { type: "textMessage", text: "That's what I-", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
-          { type: "textMessage", text: "Don't be rude.", character: { ...CHARACTERS[KARINA], name: '???' } },
-          { type: "textMessage", text: "She's loony.", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: UPSET },
-          { type: "textMessage", text: "Eccentric.", italics: true, character: { ...CHARACTERS[KARINA], name: '???' }, emotion: SCEPTIC },
-          { type: "textMessage", text: "That's what I said. Anyway. Hiya there!", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
-          {
-            type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"]
-              ? "... please tell me this is all but a weird dream."
-              : `Hey. I'm ${window.playerState.hero.your_name}. So. Do you guys live here? Like, all the time?`
-          },
-          { type: "textMessage", text: "Heh, this one is funny.", emotion: UPSET, character: { ...CHARACTERS[ARYLHAN], name: '???' } },
-          { type: "textMessage", text: () => `I like ${getPronouns(window.playerState.hero.pronouns)}.`, character: { ...CHARACTERS[ARYLHAN], name: 'the friendliest ghost so far' } },
-          { type: "textMessage", text: "....", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' } },
-          { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' }, emotion: SCEPTIC },
-          { type: "textMessage", text: () => `Oh, come on! At least ${window.playerState.hero.pronouns} ${window.playerState.hero.pronouns === 'they' ? 'speak' : 'speaks'} the same language we do.`, character: { ...CHARACTERS[ARYLHAN], name: '???' } },
-          {
-            type: "textMessage", emotion: SCEPTIC, text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"]
-              ? "... a blessing, indeed."
-              : `So they're others?`
-          },
-          { type: "textMessage", text: "Aha! See? I told you, this one is funny!", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
-          { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'grumpy' }, emotion: UPSET },
-          { type: "textMessage", text: "Yeah, there're others, mostly Germans, considering they've had this town longer and all.", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
-          { type: "textMessage", text: "Most of the time I don't get a word they're saying!", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
-          { type: "textMessage", text: "Oh, sorry. Forgot to introduce ourselves. We rarely see new faces, ya know?", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: UPSET },
-          { type: "textMessage", text: `The name's ${ARYLHAN}, ${CHARACTERS[ARYLHAN].name}`, character: CHARACTERS[ARYLHAN] },
-          { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'grumpy' }, emotion: SCEPTIC },
-          { type: "textMessage", text: `And my comrade there is ${KARINA}. ${CHARACTERS[KARINA].name}`, character: CHARACTERS[ARYLHAN] },
-          { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
-          { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around.", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
+          // { type: "textMessage", text: "Don't mind Mrs T, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
+          // { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: { ...CHARACTERS[KARINA], name: 'another one' } },
+          // { type: "textMessage", text: "That's what I-", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
+          // { type: "textMessage", text: "Don't be rude.", character: { ...CHARACTERS[KARINA], name: '???' } },
+          // { type: "textMessage", text: "She's loony.", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: UPSET },
+          // { type: "textMessage", text: "Eccentric.", italics: true, character: { ...CHARACTERS[KARINA], name: '???' }, emotion: SCEPTIC },
+          // { type: "textMessage", text: "That's what I said. Anyway. Hiya there!", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
+          // {
+          //   type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"]
+          //     ? "... please tell me this is all but a weird dream."
+          //     : `Hey. I'm ${window.playerState.hero.your_name}. So. Do you guys live here? Like, all the time?`
+          // },
+          // { type: "textMessage", text: "Heh, this one is funny.", emotion: UPSET, character: { ...CHARACTERS[ARYLHAN], name: '???' } },
+          // { type: "textMessage", text: () => `I like ${getPronouns(window.playerState.hero.pronouns)}.`, character: { ...CHARACTERS[ARYLHAN], name: 'the friendliest ghost so far' } },
+          // { type: "textMessage", text: "....", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' } },
+          // { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' }, emotion: SCEPTIC },
+          // { type: "textMessage", text: () => `Oh, come on! At least ${window.playerState.hero.pronouns} ${window.playerState.hero.pronouns === 'they' ? 'speak' : 'speaks'} the same language we do.`, character: { ...CHARACTERS[ARYLHAN], name: '???' } },
+          // {
+          //   type: "textMessage", emotion: SCEPTIC, text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"]
+          //     ? "... a blessing, indeed."
+          //     : `So they're others?`
+          // },
+          // { type: "textMessage", text: "Aha! See? I told you, this one is funny!", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
+          // { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'grumpy' }, emotion: UPSET },
+          // { type: "textMessage", text: "Yeah, there're others, mostly Germans, considering they've had this town longer and all.", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
+          // { type: "textMessage", text: "Most of the time I don't get a word they're saying!", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: SCEPTIC },
+          // { type: "textMessage", text: "Oh, sorry. Forgot to introduce ourselves. We rarely see new faces, ya know?", character: { ...CHARACTERS[ARYLHAN], name: '???' }, emotion: UPSET },
+          // { type: "textMessage", text: `The name's ${ARYLHAN}, ${CHARACTERS[ARYLHAN].name}`, character: CHARACTERS[ARYLHAN] },
+          // { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'grumpy' }, emotion: SCEPTIC },
+          // { type: "textMessage", text: `And my comrade there is ${KARINA}. ${CHARACTERS[KARINA].name}`, character: CHARACTERS[ARYLHAN] },
+          // { type: "textMessage", text: "...", character: CHARACTERS[KARINA], emotion: SCEPTIC },
+          // { type: "textMessage", text: "Oh, come on! Maybe this one doesn't stick around.", character: CHARACTERS[ARYLHAN], emotion: SCEPTIC },
         ]
       }],
     }
