@@ -33,6 +33,9 @@ class SubmissionMenu {
       }
     }
 
+    const _actions = this.caster.actions
+    const actions = Array.isArray(_actions) ? _actions : _actions[this.caster.name]
+
     return {
       root: [
         {
@@ -58,7 +61,7 @@ class SubmissionMenu {
         },
       ],
       attacks: [
-        ...this.caster.actions.map(key => {
+        ...actions.map(key => {
           const action = Actions[key]
           return {
             label: action.name,
