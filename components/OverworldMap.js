@@ -725,7 +725,7 @@ window.OverworldMaps = {
             {
               type: "changeMap",
               map: "Hall",
-              x: utils.withGrid(30),
+              x: utils.withGrid(29),
               y: utils.withGrid(10),
               back: "StorageRoom",
               direction: "down"
