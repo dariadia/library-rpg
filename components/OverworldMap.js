@@ -9,10 +9,6 @@ const MRS_T = 'MrsT'
 const KARINA = 'Karina'
 const ARYLHAN = 'Arylhan'
 
-window.Characters = {
-  HERR_DOKTOR, HERO, MRS_T, KARINA, ARYLHAN
-}
-
 const RAN_AWAY = 'INTRO:RAN_AWAY'
 const QUIET_WATCH = 'INTRO:QUIET_WATCH'
 const MET_STUDENTS = 'MET_STUDENTS'
@@ -57,7 +53,7 @@ const CHARACTERS = {
     character: '/images/characters/icons/mrs-t.png',
     skills: {
       "a": {
-        skillId: [window.Characters.MRS_T],
+        skillId: MRS_T,
         maxHp: 20,
       }
     }
@@ -75,7 +71,7 @@ const CHARACTERS = {
     character: '/images/characters/icons/karina.png',
     skills: {
       "a": {
-        skillId: [window.Characters.KARINA],
+        skillId: KARINA,
         maxHp: 100,
       }
     }
@@ -93,12 +89,14 @@ const CHARACTERS = {
     character: '/images/characters/icons/arylhan.png',
     skills: {
       "a": {
-        skillId: [window.Characters.ARYLHAN],
+        skillId: ARYLHAN,
         maxHp: 30,
       }
     }
   },
 }
+
+window.Characters = CHARACTERS
 
 class OverworldMap {
   constructor(config) {
