@@ -9,6 +9,10 @@ const MRS_T = 'MrsT'
 const KARINA = 'Karina'
 const ARYLHAN = 'Arylhan'
 
+window.Characters = {
+  HERR_DOKTOR, HERO, MRS_T, KARINA, ARYLHAN
+}
+
 const RAN_AWAY = 'INTRO:RAN_AWAY'
 const QUIET_WATCH = 'INTRO:QUIET_WATCH'
 const MET_STUDENTS = 'MET_STUDENTS'
@@ -53,7 +57,7 @@ const CHARACTERS = {
     character: '/images/characters/icons/mrs-t.png',
     skills: {
       "a": {
-        skillId: "mrsT",
+        skillId: [window.Characters.MRS_T],
         maxHp: 20,
       }
     }
@@ -71,7 +75,7 @@ const CHARACTERS = {
     character: '/images/characters/icons/karina.png',
     skills: {
       "a": {
-        skillId: "karina",
+        skillId: [window.Characters.KARINA],
         maxHp: 100,
       }
     }
@@ -89,7 +93,7 @@ const CHARACTERS = {
     character: '/images/characters/icons/arylhan.png',
     skills: {
       "a": {
-        skillId: "arylhan",
+        skillId: [window.Characters.ARYLHAN],
         maxHp: 30,
       }
     }
