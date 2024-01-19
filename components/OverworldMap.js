@@ -599,7 +599,7 @@ window.OverworldMaps = {
           },
           {
             events: [
-              { type: "textMessage", character: CHARACTERS[KARINA], text: "Uh. Do I have to? Fi-i-ine.", faceHero: KARINA, emotion:  UPSET },
+              { type: "textMessage", character: CHARACTERS[KARINA], text: "Uh. Do I have to? Fi-i-ine.", faceHero: KARINA, emotion: UPSET },
               { type: "textMessage", character: CHARACTERS[KARINA], text: "But I don't know much.", faceHero: KARINA },
               { type: "addStoryFlag", flag: "TALKED_TO_KARINA" },
               { type: "question", enemy: CHARACTERS[KARINA], arena: "storage-room" },

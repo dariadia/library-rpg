@@ -19,9 +19,11 @@ window.Skills = {
     type: SkillTypes.observant,
     src: "/images/icons/notepad.png",
     icon: "/images/icons/notepad.png",
-    actions: { [window.Characters.MRS_T]: ["ask_name", "ask_death_gen", "damage1"],
-    [window.Characters.KARINA]: ["ask_neck", "ask_hlong", "kadvice", "damage2"],
-    [window.Characters.ARYLHAN]: ["damage2"] },
+    actions: {
+      [window.Characters.MRS_T]: ["ask_name", "ask_death_gen", "damage1"],
+      [window.Characters.KARINA]: ["ask_neck", "ask_hlong", "kadvice", "damage2"],
+      [window.Characters.ARYLHAN]: ["damage2"]
+    },
   },
   "0quick": {
     name: "Skill: quick",
@@ -30,9 +32,11 @@ window.Skills = {
     type: SkillTypes.quick,
     src: "/images/icons/quick.png",
     icon: "/images/icons/quick.png",
-    actions: { [window.Characters.MRS_T]: ["ask_death", "ask_ghost", "damage1"],
-    [window.Characters.KARINA]: ["ask_hlong", "ask_hdied", "damage2"],
-    [window.Characters.ARYLHAN]: ["damage3"]  },
+    actions: {
+      [window.Characters.MRS_T]: ["ask_death", "ask_ghost", "damage1"],
+      [window.Characters.KARINA]: ["ask_hlong", "ask_hdied", "damage2"],
+      [window.Characters.ARYLHAN]: ["damage3"]
+    },
   },
   [window.Characters.MRS_T]: {
     name: window.Characters.MRS_T,
