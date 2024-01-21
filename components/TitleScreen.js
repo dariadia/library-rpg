@@ -6,7 +6,7 @@ class TitleScreen {
   getOptions(resolve) {
     const safeFile = this.progress.getSaveFile()
     return [
-      { 
+      {
         label: "New Game",
         description: "Start a new adventure!",
         handler: () => {
@@ -38,7 +38,7 @@ class TitleScreen {
     this.keyboardMenu.end()
     this.element.remove()
   }
-  
+
   init(container) {
     return new Promise(resolve => {
       this.createElement()
@@ -48,5 +48,4 @@ class TitleScreen {
       this.keyboardMenu.setOptions(this.getOptions(resolve))
     })
   }
-
 }
