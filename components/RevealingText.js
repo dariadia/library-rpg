@@ -8,16 +8,13 @@ class RevealingText {
   }
 
   revealOneCharacter(list) {
-    const next = list.splice(0,1)[0]
+    const next = list.splice(0, 1)[0]
     next.span.classList.add("revealed")
-
     if (list.length > 0) {
       this.timeout = setTimeout(() => {
         this.revealOneCharacter(list)
       }, next.delayAfter)
-    } else {
-      this.isDone = true
-    }
+    } else this.isDone = true
   }
 
   warpToDone() {
@@ -36,12 +33,9 @@ class RevealingText {
       this.element.appendChild(span)
       characters.push({
         span,
-        delayAfter: character === " " ? 0 : this.speed         
+        delayAfter: character === " " ? 0 : this.speed
       })
     })
-
     this.revealOneCharacter(characters)
-
   }
-
 }

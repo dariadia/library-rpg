@@ -19,7 +19,11 @@ window.Skills = {
     type: SkillTypes.observant,
     src: "/images/icons/notepad.png",
     icon: "/images/icons/notepad.png",
-    actions: ["ask_name", "ask_death_gen", "damage1"],
+    actions: {
+      [window.Characters[MRS_T].id]: ["ask_name", "ask_death_gen", "damage1"],
+      [window.Characters[KARINA].id]: ["ask_neck", "ask_hlong", "kadvice", "damage2"],
+      [window.Characters[ARYLHAN].id]: ["damage2"]
+    },
   },
   "0quick": {
     name: "Skill: quick",
@@ -28,26 +32,30 @@ window.Skills = {
     type: SkillTypes.quick,
     src: "/images/icons/quick.png",
     icon: "/images/icons/quick.png",
-    actions: ["ask_death", "ask_ghost", "damage1"],
+    actions: {
+      [window.Characters[MRS_T].id]: ["ask_death", "ask_ghost", "damage1"],
+      [window.Characters[KARINA].id]: ["ask_hlong", "ask_hdied", "damage2"],
+      [window.Characters[ARYLHAN].id]: ["damage3"]
+    },
   },
-  "mrsT": {
-    name: "Mrs T (widowed)",
+  [window.Characters[MRS_T].id]: {
+    name: window.Characters[MRS_T].name,
     description: "Has no idea what's going on.",
     type: SkillTypes.disoriented,
     src: "/images/characters/skills/s001.png",
     icon: "/images/icons/question-mark.png",
     actions: ["disoriented1", "disoriented2", "sleepy"],
   },
-  "karina": {
-    name: "Karina Saroyan",
+  [window.Characters[KARINA].id]: {
+    name: window.Characters[KARINA].name,
     description: "Grumpy but helpful.",
     type: SkillTypes.grumpy,
     src: "/images/characters/skills/s001.png",
     icon: "/images/icons/question-mark.png",
     actions: ["silent_treatment"],
   },
-  "arylhan": {
-    name: "Arylhan Ivanov",
+  [window.Characters[ARYLHAN].id]: {
+    name: window.Characters[ARYLHAN].name,
     description: "Friendly but naive.",
     type: SkillTypes.grumpy,
     src: "/images/characters/skills/s001.png",

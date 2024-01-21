@@ -9,7 +9,7 @@ class Prompt {
 
   async menuSubmit(actions = []) {
     this.keyboardMenu?.end()
-    for (let i=0; i<actions.length; i++) {
+    for (let i = 0; i < actions.length; i++) {
       const eventHandler = new OverworldEvent({
         event: actions[i],
         map: this.map,
@@ -36,9 +36,7 @@ class Prompt {
         this.menuSubmit(option.actions)
       }
     }))
-
     if (this.withBackOption) options.push(backOption)
-
     return options
   }
 

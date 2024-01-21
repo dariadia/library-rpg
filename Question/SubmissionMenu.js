@@ -1,4 +1,4 @@
-class SubmissionMenu { 
+class SubmissionMenu {
   constructor({ caster, enemy, onComplete, items, replacements }) {
     this.caster = caster
     this.enemy = enemy
@@ -17,7 +17,7 @@ class SubmissionMenu {
             quantity: 1,
             instanceId: item.instanceId,
           }
-       }
+        }
       }
     })
     this.items = Object.values(quantityMap)
@@ -33,32 +33,35 @@ class SubmissionMenu {
       }
     }
 
+    const _actions = this.caster.actions
+    const actions = Array.isArray(_actions) ? _actions : _actions[this.caster.key]
+
     return {
       root: [
         {
           label: "Actions",
           description: "Choose what to do",
           handler: () => {
-            this.keyboardMenu.setOptions( this.getPages().attacks )
+            this.keyboardMenu.setOptions(this.getPages().attacks)
           }
         },
         {
           label: "Items",
           description: "Choose an item",
           handler: () => {
-            this.keyboardMenu.setOptions( this.getPages().items )
+            this.keyboardMenu.setOptions(this.getPages().items)
           }
         },
         {
           label: "Skills",
           description: "Change to another skill",
-          handler: () => { 
-            this.keyboardMenu.setOptions( this.getPages().replacements )
+          handler: () => {
+            this.keyboardMenu.setOptions(this.getPages().replacements)
           }
         },
       ],
       attacks: [
-        ...this.caster.actions.map(key => {
+        ...actions.map(key => {
           const action = Actions[key]
           return {
             label: action.name,
@@ -77,7 +80,7 @@ class SubmissionMenu {
             label: action.name,
             description: action.description,
             right: () => {
-              return "x"+item.quantity
+              return "x" + item.quantity
             },
             handler: () => {
               this.menuSubmit(action, item.instanceId)
@@ -108,7 +111,7 @@ class SubmissionMenu {
     })
   }
 
-  menuSubmit(action, instanceId=null) {
+  menuSubmit(action, instanceId = null) {
 
     this.keyboardMenu?.end()
 
@@ -121,13 +124,13 @@ class SubmissionMenu {
 
   decide() {
     //TODO: enemies can randomly decide what they do
-    this.menuSubmit(Actions[ this.caster.actions[0] ])
+    this.menuSubmit(Actions[this.caster.actions[0]])
   }
 
   showMenu(container) {
     this.keyboardMenu = new KeyboardMenu()
     this.keyboardMenu.init(container)
-    this.keyboardMenu.setOptions( this.getPages().root )
+    this.keyboardMenu.setOptions(this.getPages().root)
   }
 
   init(container) {
