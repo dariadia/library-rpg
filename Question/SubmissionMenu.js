@@ -34,8 +34,8 @@ class SubmissionMenu {
     }
 
     const _actions = this.caster.actions
-    const actions = Array.isArray(_actions) ? _actions : _actions[this.caster.name]
-
+    const actions = Array.isArray(_actions) ? _actions : _actions[this.caster.key]
+console.log(_actions, this.caster)
     return {
       root: [
         {

@@ -20,9 +20,9 @@ window.Skills = {
     src: "/images/icons/notepad.png",
     icon: "/images/icons/notepad.png",
     actions: {
-      [window.Characters[MRS_T].name]: ["ask_name", "ask_death_gen", "damage1"],
-      [window.Characters[KARINA].name]: ["ask_neck", "ask_hlong", "kadvice", "damage2"],
-      [window.Characters[ARYLHAN].name]: ["damage2"]
+      [window.Characters[MRS_T].id]: ["ask_name", "ask_death_gen", "damage1"],
+      [window.Characters[KARINA].id]: ["ask_neck", "ask_hlong", "kadvice", "damage2"],
+      [window.Characters[ARYLHAN].id]: ["damage2"]
     },
   },
   "0quick": {
@@ -33,9 +33,9 @@ window.Skills = {
     src: "/images/icons/quick.png",
     icon: "/images/icons/quick.png",
     actions: {
-      [window.Characters[MRS_T].name]: ["ask_death", "ask_ghost", "damage1"],
-      [window.Characters[KARINA].name]: ["ask_hlong", "ask_hdied", "damage2"],
-      [window.Characters[ARYLHAN].name]: ["damage3"]
+      [window.Characters[MRS_T].id]: ["ask_death", "ask_ghost", "damage1"],
+      [window.Characters[KARINA].id]: ["ask_hlong", "ask_hdied", "damage2"],
+      [window.Characters[ARYLHAN].id]: ["damage3"]
     },
   },
   [window.Characters[MRS_T].id]: {

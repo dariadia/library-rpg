@@ -36,6 +36,7 @@ class Question {
         ...config,
         team,
         name: this.enemy.name,
+        key: this.enemy.id,
         isPlayerControlled: team === "player"
       }, this)
       this.activeCombatants[team] = this.activeCombatants[team] || id
