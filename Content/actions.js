@@ -106,10 +106,25 @@ window.Actions = {
     ]
   },
   ask_hlong: {
-    name: "todo",
-    description: "todo",
+    name: "Ask how long she has been around here",
+    description: "That vest looks so 80s?..",
     success: [
-      { type: "textMessage", text: "TODO" },
+      { type: "textMessage", text: "So. Been around a long time?" },
+      { type: "textMessage", text: "....", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "...", character: window.Characters[KARINA], emotion: SCEPTIC },
+      { type: "textMessage", text: "Sigh. Fi-ine. Ten years.", character: window.Characters[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "Don't you rather want to know how we ended up in here in the first place?", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "We-e-ell. Yeah?" },
+      { type: "textMessage", text: "....", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "... of course, you do.", character: window.Characters[KARINA], emotion: SCEPTIC },
+      
+      {
+        type: "textMessage",
+        text: () => isRepeat(2),
+        cb: () => shouldGiveClue(1),
+      },
+      { type: "addStoryFlag", flag: window.Clues.ACHOKED },
+      { type: "stateChange", damage: 40 }
     ]
   },
   kadvice: {
