@@ -136,9 +136,8 @@ class OverworldEvent {
   }
 
   addStoryFlag(resolve) {
-    window.playerState.storyFlags[this.event.flag] = true
-    if (this.event.upSkill) 
-      playerState.addSkill(this.event.upSkill) 
+    window.playerState.storyFlags.push(this.event.flag)
+    if (this.event.upSkill) playerState.addSkill(this.event.upSkill) 
     resolve()
   }
 

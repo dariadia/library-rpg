@@ -7,7 +7,7 @@ class PlayerState {
       { actionId: "item_recoverHp", instanceId: "item2" },
       { actionId: "item_recoverHp", instanceId: "item3" },
     ]
-    this.storyFlags = {}
+    this.storyFlags = []
     this.clues = 0
   }
 
@@ -21,9 +21,7 @@ class PlayerState {
       maxXp: 100,
       status: null,
     }
-    if (this.lineup.length < 3) {
-      this.lineup.push(newId)
-    }
+    if (this.lineup.length < 3) this.lineup.push(newId)
     utils.emitEvent("LineupChanged")
   }
 

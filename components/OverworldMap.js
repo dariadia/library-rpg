@@ -167,7 +167,7 @@ class OverworldMap {
     const seenScenes = events.filter(item => item.type === "addStoryFlag")
       .map(item => item.flag)
     const isSeenScene = seenScenes
-      .filter(scene => window.playerState.storyFlags.hasOwnProperty(scene))
+      .filter(scene => window.playerState.storyFlags.includes(scene))
 
     if (isSeenScene.length) return
 
@@ -200,7 +200,7 @@ class OverworldMap {
 
       const relevantScenario = match.talking.find(scenario => {
         return (scenario.required || []).every(sf => {
-          return playerState.storyFlags[sf]
+          return playerState.storyFlags.includes(sf)
         })
       })
       relevantScenario && this.startCutscene(relevantScenario.events)
@@ -415,7 +415,7 @@ window.OverworldMaps = {
           {
             type: "textMessage", text: "Oh, dear, oh dear!", character:
             {
-              name: () => window.playerState.storyFlags[GREETED_BY_MRS_T]
+              name: () => window.playerState.storyFlags.includes(GREETED_BY_MRS_T)
                 ? CHARACTERS[MRS_T].name
                 : "another ghost???",
               avatar: CHARACTERS[MRS_T].avatar, emotion: UPSET
@@ -432,7 +432,7 @@ window.OverworldMaps = {
           {
             type: "textMessage", text: "Isn't the weather just lovely today?", character:
             {
-              name: () => window.playerState.storyFlags[GREETED_BY_MRS_T]
+              name: () => window.playerState.storyFlags.includes(GREETED_BY_MRS_T)
                 ? CHARACTERS[MRS_T].name
                 : "another ghost???",
               avatar: CHARACTERS[MRS_T].avatar
@@ -500,7 +500,7 @@ window.OverworldMaps = {
               { type: "walk", who: HERO, direction: "right" },
               { type: "walk", who: HERO, direction: "right" },
               {
-                type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"]
+                type: "textMessage", text: () => window.playerState.storyFlags.includes("INTRO:RAN_AWAY")
                   ? "... ugh, let's hope they're friendly and don't eat people."
                   : `Anyone in there? Helloooo!`
               },
@@ -612,7 +612,7 @@ window.OverworldMaps = {
         {
           type: "textMessage", text: "...", character:
           {
-            name: () => window.playerState.storyFlags[MET_STUDENTS]
+            name: () => window.playerState.storyFlags.includes(MET_STUDENTS)
               ? CHARACTERS[KARINA].name
               : "???",
             avatar: CHARACTERS[KARINA].avatar,
@@ -621,7 +621,7 @@ window.OverworldMaps = {
         {
           type: "textMessage", text: "...", character:
           {
-            name: () => window.playerState.storyFlags[MET_STUDENTS]
+            name: () => window.playerState.storyFlags.includes(MET_STUDENTS)
               ? CHARACTERS[KARINA].name
               : "???",
             avatar: CHARACTERS[KARINA].avatar,
@@ -630,7 +630,7 @@ window.OverworldMaps = {
         }, {
           type: "textMessage", text: "...", character:
           {
-            name: () => window.playerState.storyFlags[MET_STUDENTS]
+            name: () => window.playerState.storyFlags.includes(MET_STUDENTS)
               ? CHARACTERS[KARINA].name
               : "???",
             avatar: CHARACTERS[KARINA].avatar,
@@ -666,7 +666,7 @@ window.OverworldMaps = {
         {
           type: "textMessage", text: "You can talk to us, you know?", character:
           {
-            name: () => window.playerState.storyFlags[MET_STUDENTS]
+            name: () => window.playerState.storyFlags.includes(MET_STUDENTS)
               ? CHARACTERS[ARYLHAN].name
               : "a friendly guy",
             avatar: CHARACTERS[ARYLHAN].avatar,
@@ -675,7 +675,7 @@ window.OverworldMaps = {
         {
           type: "textMessage", text: "Please do! It's so-o-o boring in here.", character:
           {
-            name: () => window.playerState.storyFlags[MET_STUDENTS]
+            name: () => window.playerState.storyFlags.includes(MET_STUDENTS)
               ? CHARACTERS[ARYLHAN].name
               : "a friendly guy",
             avatar: CHARACTERS[ARYLHAN].avatar,
@@ -687,7 +687,7 @@ window.OverworldMaps = {
         {
           type: "textMessage", text: "How's it out there? Did we send more people into space?", character:
           {
-            name: () => window.playerState.storyFlags[MET_STUDENTS]
+            name: () => window.playerState.storyFlags.includes(MET_STUDENTS)
               ? CHARACTERS[ARYLHAN].name
               : "a friendly guy",
             avatar: CHARACTERS[ARYLHAN].avatar,
@@ -699,7 +699,7 @@ window.OverworldMaps = {
         {
           type: "textMessage", text: "Oh! Tell me about the latest USSR space program!", character:
           {
-            name: () => window.playerState.storyFlags[MET_STUDENTS]
+            name: () => window.playerState.storyFlags.includes(MET_STUDENTS)
               ? CHARACTERS[ARYLHAN].name
               : "a friendly guy",
             avatar: CHARACTERS[ARYLHAN].avatar,
@@ -742,7 +742,7 @@ window.OverworldMaps = {
         ]
       }],
       [utils.asGridCoord(7, 11)]: [{
-        events: () => window.playerState.storyFlags[MET_STUDENTS] ? [] : [
+        events: [
           { type: "addStoryFlag", flag: MET_STUDENTS },
           // { type: "textMessage", text: "Don't mind Mrs T, she's a bit–", character: { ...CHARACTERS[ARYLHAN], name: 'some ghost' } },
           // { type: "textMessage", text: "Unconventional. She is a bit unconventional.", character: { ...CHARACTERS[KARINA], name: 'another one' } },
@@ -752,7 +752,7 @@ window.OverworldMaps = {
           // { type: "textMessage", text: "Eccentric.", italics: true, character: { ...CHARACTERS[KARINA], name: '???' }, emotion: SCEPTIC },
           // { type: "textMessage", text: "That's what I said. Anyway. Hiya there!", character: { ...CHARACTERS[ARYLHAN], name: '???' } },
           // {
-          //   type: "textMessage", text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"]
+          //   type: "textMessage", text: () => window.playerState.storyFlags.includes("INTRO:RAN_AWAY")
           //     ? "... please tell me this is all but a weird dream."
           //     : `Hey. I'm ${window.playerState.hero.your_name}. So. Do you guys live here? Like, all the time?`
           // },
@@ -762,7 +762,7 @@ window.OverworldMaps = {
           // { type: "textMessage", text: "...", character: { ...CHARACTERS[KARINA], name: 'his not amused friend' }, emotion: SCEPTIC },
           // { type: "textMessage", text: () => `Oh, come on! At least ${window.playerState.hero.pronouns} ${window.playerState.hero.pronouns === 'they' ? 'speak' : 'speaks'} the same language we do.`, character: { ...CHARACTERS[ARYLHAN], name: '???' } },
           // {
-          //   type: "textMessage", emotion: SCEPTIC, text: () => window.playerState.storyFlags["INTRO:RAN_AWAY"]
+          //   type: "textMessage", emotion: SCEPTIC, text: () => window.playerState.storyFlags.includes("INTRO:RAN_AWAY")
           //     ? "... a blessing, indeed."
           //     : `So they're others?`
           // },

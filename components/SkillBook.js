@@ -31,8 +31,9 @@ class SkillBook extends GameObject {
   }
 
   update() {
-    this.sprite.currentAnimation = playerState.storyFlags[this.storyFlag]
-      ? "used-down"
-      : "unused-down"
+    this.sprite.currentAnimation =
+      playerState.storyFlags.includes(this.storyFlag)
+        ? "used-down"
+        : "unused-down"
   }
 }

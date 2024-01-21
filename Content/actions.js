@@ -3,10 +3,10 @@ const shouldGiveClue = (level) =>
     ? window.playerState.clues++
     : window.playerState.clues
 
-const isRepeat = (level) =>
-  window.playerState.clues < level
-    ? "You got a clue!"
-    : "Haven't you heard that somewhere before?"
+const isRepeat = (clue) =>
+  window.playerState.storyFlags.includes(clue)
+    ? "Haven't you heard that somewhere before?"
+    : "You got a clue!"
 
 const CLUES = 'CLUES'
 
@@ -76,7 +76,7 @@ window.Actions = {
     ]
   },
   ask_neck: {
-    name: "Ask about the bruise around her neck",
+    name: "Ask about her bruise",
     description: "You're observant so you notice the thin mark on her neck.",
     success: [
       { type: "textMessage", text: "Do you mind me asking what's with your neck?" },
@@ -106,7 +106,7 @@ window.Actions = {
     ]
   },
   ask_hlong: {
-    name: "Ask how long she has been around here",
+    name: "Ask about her time here",
     description: "That vest looks so 80s?..",
     success: [
       { type: "textMessage", text: "So. Been around a long time?" },
@@ -117,7 +117,7 @@ window.Actions = {
       { type: "textMessage", text: "We-e-ell. Yeah?" },
       { type: "textMessage", text: "....", character: window.Characters[KARINA] },
       { type: "textMessage", text: "... of course, you do.", character: window.Characters[KARINA], emotion: SCEPTIC },
-      
+
       {
         type: "textMessage",
         text: () => isRepeat(2),
@@ -128,8 +128,8 @@ window.Actions = {
     ]
   },
   kadvice: {
-    name: "todo",
-    description: "todo",
+    name: "Ask for advice",
+    description: "Maybe she could suggest something",
     success: [
       { type: "textMessage", text: "TODO" },
     ]
