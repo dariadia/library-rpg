@@ -1,5 +1,5 @@
 class PauseMenu {
-  constructor({progress, onComplete}) {
+  constructor({ progress, onComplete }) {
     this.progress = progress
     this.onComplete = onComplete
   }
@@ -7,13 +7,13 @@ class PauseMenu {
   getOptions(pageKey) {
     if (pageKey === "root") {
       const lineupSkills = playerState.lineup.map(id => {
-        const {skillId} = playerState.skills[id]
+        const { skillId } = playerState.skills[id]
         const base = Skills[skillId]
         return {
           label: base.name,
           description: base.description,
           handler: () => {
-            this.keyboardMenu.setOptions( this.getOptions(id) )
+            this.keyboardMenu.setOptions(this.getOptions(id))
           }
         }
       })
@@ -39,14 +39,14 @@ class PauseMenu {
     const unequipped = Object.keys(playerState.skills).filter(id => {
       return playerState.lineup.indexOf(id) === -1
     }).map(id => {
-      const {skillId} = playerState.skills[id]
+      const { skillId } = playerState.skills[id]
       const base = Skills[skillId]
       return {
         label: `Swap for ${base.name}`,
         description: base.description,
         handler: () => {
           playerState.swapLineup(pageKey, id)
-          this.keyboardMenu.setOptions( this.getOptions("root") )
+          this.keyboardMenu.setOptions(this.getOptions("root"))
         }
       }
     })
@@ -58,14 +58,14 @@ class PauseMenu {
         description: "Move this skill to the front of the list",
         handler: () => {
           playerState.moveToFront(pageKey)
-          this.keyboardMenu.setOptions( this.getOptions("root") )
+          this.keyboardMenu.setOptions(this.getOptions("root"))
         }
       },
       {
         label: "Back",
         description: "Back to root menu",
         handler: () => {
-          this.keyboardMenu.setOptions( this.getOptions("root") )
+          this.keyboardMenu.setOptions(this.getOptions("root"))
         }
       }
     ]
