@@ -13,15 +13,15 @@
   cursor: pointer;
 }
 
-.Prompt_actions > .KeyboardMenu {
+.Prompt_actions>.KeyboardMenu {
   top: 0;
 }
 
-.Prompt_actions > .KeyboardMenu > .option button {
+.Prompt_actions>.KeyboardMenu>.option button {
   padding: 0 25px 0 15px;
 }
 
-.Prompt_actions > .KeyboardMenu > .option button:focus::after{
+.Prompt_actions>.KeyboardMenu>.option button:focus::after {
   content: "➤";
   display: block;
   transform: rotate(180deg);
