@@ -4,16 +4,16 @@
   --radio-border: #484040;
   --dialog-background: #5e3e17;
   --menu-background: #5e3e17;
-  --keys-menu: rgba(94,62,23,0.4);
-  --menu-border-color: rgba(255,215,0,1);
-  --text-message-action: rgba(255,215,0,1);
-  --button-action: rgba(255,215,0,0.8);
+  --keys-menu: rgba(94, 62, 23, 0.4);
+  --menu-border-color: rgba(255, 215, 0, 1);
+  --text-message-action: rgba(255, 215, 0, 1);
+  --button-action: rgba(255, 215, 0, 0.8);
   --menu-font-color: #d6b575;
   --menu-selected-background: #36220b;
 }
 
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -23,18 +23,19 @@ body {
   overflow: hidden;
   font-family: 'Oldenburg', fantasy;
 }
+
 .how-to-play {
   position: absolute;
-  left:0; 
-  right:0;
+  left: 0;
+  right: 0;
   bottom: -4px;
-  text-align:center;
+  text-align: center;
   font-size: 14px;
   color: var(--menu-font-color);
 }
 
 .game-container {
-  position: relative; 
+  position: relative;
   background: var(--main);
   width: 352px;
   height: 100%;
@@ -47,7 +48,7 @@ body {
   image-rendering: pixelated;
 }
 
-input:focus-visible{
+input:focus-visible {
   outline: 1px solid var(--menu-border-color);
 }
 
@@ -55,8 +56,8 @@ input:focus-visible{
   .game-container {
     transform: scale(2.5) translateY(40%);
   }
+
   .game-container#mobile {
     transform: scale(1.9) translateY(25%);
   }
 }
-
