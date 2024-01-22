@@ -1,7 +1,7 @@
 .Hud {
   position: absolute;
-  left:2px;
-  top:10px;
+  left: 2px;
+  top: 10px;
   image-rendering: pixelated;
 }
 
@@ -11,5 +11,5 @@
 }
 
 .Hud .Combatant_type {
-  display:none;
+  display: none;
 }
