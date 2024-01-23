@@ -1,5 +1,5 @@
-const shouldGiveClue = (level) =>
-  window.playerState.clues === level
+const shouldGiveClue = (clue) =>
+  window.playerState.storyFlags.includes(clue)
     ? window.playerState.clues++
     : window.playerState.clues
 
@@ -14,6 +14,7 @@ window.Clues = {
   BOOKCASE: `${CLUES}:BOOKCASE`,
   FOOTSTEPS: `${CLUES}:FOOTSTEPS`,
   ACHOKED: `${CLUES}:ACHOKED`,
+  MURDERER: `${CLUES}:MURDERER`,
 }
 
 window.Actions = {
@@ -39,8 +40,8 @@ window.Actions = {
       { type: "textMessage", text: "Imagine being buried by that many books all at once!", character: window.window.Characters[MRS_T] },
       {
         type: "textMessage",
-        text: () => isRepeat(1),
-        cb: () => shouldGiveClue(0),
+        text: () => isRepeat(window.Clues.BOOKCASE),
+        cb: () => shouldGiveClue(window.Clues.BOOKCASE),
       },
       { type: "addStoryFlag", flag: window.Clues.BOOKCASE },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
@@ -58,8 +59,8 @@ window.Actions = {
       { type: "textMessage", text: "Haunting a library, can you imagine? ", character: window.Characters[MRS_T], emotion: "upset" },
       {
         type: "textMessage",
-        text: () => isRepeat(1),
-        cb: () => shouldGiveClue(0),
+        text: () => isRepeat(window.Clues.BOOKCASE),
+        cb: () => shouldGiveClue(window.Clues.BOOKCASE),
       },
       { type: "addStoryFlag", flag: window.Clues.BOOKCASE },
       { type: "stateChange", damage: 10 }
@@ -88,18 +89,20 @@ window.Actions = {
       { type: "textMessage", text: "See this necklace? It was my favourite. Apparently whoever came behind me liked it too.", character: window.Characters[KARINA], emotion: UPSET },
       { type: "textMessage", text: "We were studying, cheated the guard and stayed the night in the library. Then I went to the bathroom.", character: window.Characters[KARINA] },
       { type: "textMessage", text: "I heard footsteps. Remember? Footsteps, I didn't see them when they grabbed me by my necklace.", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "They went like this. Tap. Tap-tap. Tap. Tap-tap. Like walking with a limp. Or a cane. Or a broken leg.", character: window.Characters[KARINA] },
       {
         type: "textMessage",
-        text: () => isRepeat(2),
-        cb: () => shouldGiveClue(1),
+        text: () => isRepeat(window.Clues.FOOTSTEPS),
+        cb: () => shouldGiveClue(window.Clues.FOOTSTEPS),
       },
       { type: "addStoryFlag", flag: window.Clues.FOOTSTEPS },
       { type: "textMessage", text: "I struggled. Then choked. Then I woke up with my cold body on the floor and that one choking himself to death because he's allergic to nuts but grabbed my snacks.", character: window.Characters[KARINA] },
       { type: "textMessage", text: "Ugh. That idiot...", character: window.Characters[KARINA], emotion: UPSET },
+      { type: "stateChange", status: { type: "frustrated", expiresIn: 1 } },
       {
         type: "textMessage",
-        text: () => isRepeat(3),
-        cb: () => shouldGiveClue(2),
+        text: () => isRepeat(window.Clues.ACHOKED),
+        cb: () => shouldGiveClue(window.Clues.ACHOKED),
       },
       { type: "addStoryFlag", flag: window.Clues.ACHOKED },
       { type: "stateChange", damage: 40 }
@@ -112,33 +115,58 @@ window.Actions = {
       { type: "textMessage", text: "So. Been around a long time?" },
       { type: "textMessage", text: "....", character: window.Characters[KARINA] },
       { type: "textMessage", text: "...", character: window.Characters[KARINA], emotion: SCEPTIC },
+      { type: "stateChange", status: { type: "frustrated", expiresIn: 1 } },
       { type: "textMessage", text: "Sigh. Fi-ine. Ten years.", character: window.Characters[KARINA], emotion: UPSET },
       { type: "textMessage", text: "Don't you rather want to know how we ended up in here in the first place?", character: window.Characters[KARINA] },
-      { type: "textMessage", text: "We-e-ell. Yeah?" },
-      { type: "textMessage", text: "....", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "Well. Yeah?" },
+      { type: "textMessage", text: "...", character: window.Characters[KARINA] },
       { type: "textMessage", text: "... of course, you do.", character: window.Characters[KARINA], emotion: SCEPTIC },
-
+      { type: "textMessage", text: "We stayed the night here to study. Historical faculty, you know?", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "Oh, I'm actually – too. I mean. Me too, guess we studied at the same university." },
+      { type: "textMessage", text: "Whatever. *groans* I went to the bathroom somewhere in the middle of the night.", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "Then I heard footsteps coming from behind me. Just footsteps, I didn't see them. Whoever it was choked me to death.", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "They went like this. Tap. Tap-tap. Tap. Tap-tap. Like walking with a limp. Or a cane. Or a broken leg.", character: window.Characters[KARINA] },
       {
         type: "textMessage",
-        text: () => isRepeat(2),
-        cb: () => shouldGiveClue(1),
+        text: () => isRepeat(window.Clues.FOOTSTEPS),
+        cb: () => shouldGiveClue(window.Clues.FOOTSTEPS),
       },
-      { type: "addStoryFlag", flag: window.Clues.ACHOKED },
-      { type: "stateChange", damage: 40 }
+      { type: "addStoryFlag", flag: window.Clues.FOOTSTEPS },
+      { type: "stateChange", damage: 15 },
+      { type: "textMessage", text: "I might've heard something similar since then.", character: window.Characters[KARINA] },
     ]
   },
   kadvice: {
     name: "Ask for advice",
     description: "Maybe she could suggest something",
     success: [
-      { type: "textMessage", text: "TODO" },
+      { type: "textMessage", text: "Anything I need to know about this place? Like, maybe things I should and shouldn't do?" },
+      { type: "textMessage", text: "You want my advice?", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "...", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "Yeah?" },
+      { type: "textMessage", text: "Please?" },
+      { type: "stateChange", status: { type: "frustrated", expiresIn: 2 } },
+      { type: "textMessage", text: "Fine. Watch your back.", character: window.Characters[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "It's too much of a coincidence. We stay the night here? They found our bodies the next morning.", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "Laura hides in here during a night raid? They find her body.", character: window.Characters[KARINA], emotion: SCEPTIC },
+      { type: "textMessage", text: "Marie died before dawn, and Hans got shot in the night. While both uselessly don't remember much...", character: window.Characters[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "I – am – sure somebody walked up behind me. Then choked me to death.", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "The night and this place. Bad things happen here at night.", character: window.Characters[KARINA] },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.MURDERER),
+        cb: () => shouldGiveClue(window.Clues.MURDERER),
+      },
+      { type: "addStoryFlag", flag: window.Clues.MURDERER },
+      { type: "stateChange", damage: 5 },
+      { type: "textMessage", text: "Watch your back.", character: window.Characters[KARINA] },
     ]
   },
   ask_hdied: {
-    name: "todo",
-    description: "todo",
+    name: "Ask how she died",
+    description: "How many people died in this library anyway?",
     success: [
-      { type: "textMessage", text: "TODO" },
+      { type: "textMessage", text: "How did you die?" },
     ]
   },
   damage1: {
