@@ -105,6 +105,11 @@ class Combatant {
           { type: "textMessage", text: `${this.name} is upset with you and possibly doesn't want to talk to you anymore.` },
           { type: "stateChange", damage: 5 }
         ]
+      case "frustrated":
+        return [
+          { type: "textMessage", text: `${this.name} groans and sighs.` },
+          { type: "stateChange", damage: 10 }
+        ]
       default:
         return originalEvents
     }
