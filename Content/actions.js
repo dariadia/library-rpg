@@ -14,6 +14,7 @@ window.Clues = {
   BOOKCASE: `${CLUES}:BOOKCASE`,
   FOOTSTEPS: `${CLUES}:FOOTSTEPS`,
   ACHOKED: `${CLUES}:ACHOKED`,
+  MURDERER: `${CLUES}:MURDERER`,
 }
 
 window.Actions = {
@@ -117,7 +118,6 @@ window.Actions = {
       { type: "textMessage", text: "We-e-ell. Yeah?" },
       { type: "textMessage", text: "....", character: window.Characters[KARINA] },
       { type: "textMessage", text: "... of course, you do.", character: window.Characters[KARINA], emotion: SCEPTIC },
-
       {
         type: "textMessage",
         text: () => isRepeat(window.Clues.ACHOKED),
@@ -131,7 +131,25 @@ window.Actions = {
     name: "Ask for advice",
     description: "Maybe she could suggest something",
     success: [
-      { type: "textMessage", text: "TODO" },
+      { type: "textMessage", text: "Anything I need to know about this place? Like, maybe things I should and shouldn't do?" },
+      { type: "textMessage", text: "You want my advice?", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "...", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "Yeah?" },
+      { type: "textMessage", text: "Please?" },
+      { type: "textMessage", text: "Fine. Watch your back.", character: window.Characters[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "It's too much of a coincidence. We stay the night here? They found our bodies the next morning.", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "Laura hides in here during a night raid? They find her body.", character: window.Characters[KARINA], emotion: SCEPTIC },
+      { type: "textMessage", text: "Marie died before dawn, and Hans got shot in the night. While both uselessly don't remember much...", character: window.Characters[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "I – am – sure somebody walked up behind me. Then choked me to death.", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "The night and this place. Bad things happen here at night.", character: window.Characters[KARINA] },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.MURDERER),
+        cb: () => shouldGiveClue(window.Clues.MURDERER),
+      },
+      { type: "addStoryFlag", flag: window.Clues.MURDERER },
+      { type: "stateChange", damage: 25 },
+      { type: "textMessage", text: "Watch your back.", character: window.Characters[KARINA] },
     ]
   },
   ask_hdied: {
