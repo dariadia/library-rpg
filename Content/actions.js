@@ -163,10 +163,10 @@ window.Actions = {
     ]
   },
   ask_hdied: {
-    name: "todo",
-    description: "todo",
+    name: "Ask how she died",
+    description: "How many people died in this library anyway?",
     success: [
-      { type: "textMessage", text: "TODO" },
+      { type: "textMessage", text: "How did you die?" },
     ]
   },
   damage1: {

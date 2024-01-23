@@ -22,7 +22,7 @@ window.Skills = {
     actions: {
       [window.Characters[MRS_T].id]: ["ask_name", "ask_death_gen", "damage1"],
       [window.Characters[KARINA].id]: ["ask_neck", "ask_hlong", "kadvice", "damage2"],
-      [window.Characters[ARYLHAN].id]: ["damage2"]
+      [window.Characters[ARYLHAN].id]: ["damage3"]
     },
   },
   "0quick": {
@@ -34,7 +34,7 @@ window.Skills = {
     icon: "/images/icons/quick.png",
     actions: {
       [window.Characters[MRS_T].id]: ["ask_death", "ask_ghost", "damage1"],
-      [window.Characters[KARINA].id]: ["ask_hlong", "ask_hdied", "damage2"],
+      [window.Characters[KARINA].id]: ["ask_hdied", "ask_hlong", "damage2"],
       [window.Characters[ARYLHAN].id]: ["damage3"]
     },
   },
