@@ -1,5 +1,5 @@
-const shouldGiveClue = (level) =>
-  window.playerState.clues === level
+const shouldGiveClue = (clue) =>
+  window.playerState.storyFlags.includes(clue)
     ? window.playerState.clues++
     : window.playerState.clues
 
@@ -39,8 +39,8 @@ window.Actions = {
       { type: "textMessage", text: "Imagine being buried by that many books all at once!", character: window.window.Characters[MRS_T] },
       {
         type: "textMessage",
-        text: () => isRepeat(1),
-        cb: () => shouldGiveClue(0),
+        text: () => isRepeat(window.Clues.BOOKCASE),
+        cb: () => shouldGiveClue(window.Clues.BOOKCASE),
       },
       { type: "addStoryFlag", flag: window.Clues.BOOKCASE },
       { type: "stateChange", status: { type: "shocked", expiresIn: 2 } },
@@ -58,8 +58,8 @@ window.Actions = {
       { type: "textMessage", text: "Haunting a library, can you imagine? ", character: window.Characters[MRS_T], emotion: "upset" },
       {
         type: "textMessage",
-        text: () => isRepeat(1),
-        cb: () => shouldGiveClue(0),
+        text: () => isRepeat(window.Clues.BOOKCASE),
+        cb: () => shouldGiveClue(window.Clues.BOOKCASE),
       },
       { type: "addStoryFlag", flag: window.Clues.BOOKCASE },
       { type: "stateChange", damage: 10 }
@@ -90,16 +90,16 @@ window.Actions = {
       { type: "textMessage", text: "I heard footsteps. Remember? Footsteps, I didn't see them when they grabbed me by my necklace.", character: window.Characters[KARINA] },
       {
         type: "textMessage",
-        text: () => isRepeat(2),
-        cb: () => shouldGiveClue(1),
+        text: () => isRepeat(window.Clues.FOOTSTEPS),
+        cb: () => shouldGiveClue(window.Clues.FOOTSTEPS),
       },
       { type: "addStoryFlag", flag: window.Clues.FOOTSTEPS },
       { type: "textMessage", text: "I struggled. Then choked. Then I woke up with my cold body on the floor and that one choking himself to death because he's allergic to nuts but grabbed my snacks.", character: window.Characters[KARINA] },
       { type: "textMessage", text: "Ugh. That idiot...", character: window.Characters[KARINA], emotion: UPSET },
       {
         type: "textMessage",
-        text: () => isRepeat(3),
-        cb: () => shouldGiveClue(2),
+        text: () => isRepeat(window.Clues.ACHOKED),
+        cb: () => shouldGiveClue(window.Clues.ACHOKED),
       },
       { type: "addStoryFlag", flag: window.Clues.ACHOKED },
       { type: "stateChange", damage: 40 }
@@ -120,8 +120,8 @@ window.Actions = {
 
       {
         type: "textMessage",
-        text: () => isRepeat(2),
-        cb: () => shouldGiveClue(1),
+        text: () => isRepeat(window.Clues.ACHOKED),
+        cb: () => shouldGiveClue(window.Clues.ACHOKED),
       },
       { type: "addStoryFlag", flag: window.Clues.ACHOKED },
       { type: "stateChange", damage: 40 }
