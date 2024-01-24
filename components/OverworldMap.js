@@ -294,9 +294,9 @@ window.OverworldMaps = {
                   { type: "walk", who: HERO, direction: "down" },
                   {
                     type: "changeMap",
-                    map: "StorageRoom",
-                    x: utils.withGrid(7),
-                    y: utils.withGrid(12),
+                    map: "Hall",
+                    x: utils.withGrid(9),
+                    y: utils.withGrid(10),
                     direction: "down"
                   }
                 ]

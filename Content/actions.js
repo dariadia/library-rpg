@@ -164,9 +164,24 @@ window.Actions = {
   },
   ask_hdied: {
     name: "Ask how she died",
-    description: "How many people died in this library anyway?",
+    description: "How many people have died in this library anyway?",
     success: [
       { type: "textMessage", text: "How did you die?" },
+      { type: "textMessage", text: "You're quick to get straight to the point.", character: window.Characters[KARINA] },
+      { type: "stateChange", status: { type: "frustrated", expiresIn: 3 } },
+      { type: "textMessage", text: "Fine.", character: window.Characters[KARINA], emotion: UPSET },
+      { type: "textMessage", text: "We stayed the night to study, I went to the bathroom, somebody strangled me, the next day they found our bodies.", character: window.Characters[KARINA] },
+      { type: "textMessage", text: "Most of the rest would tell you a similar story, go ask Marie and Hans, or something.", character: window.Characters[KARINA], emotion: SCEPTIC },
+      { type: "textMessage", text: "The night and this place. Bad things happen here at night.", character: window.Characters[KARINA] },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.MURDERER),
+        cb: () => shouldGiveClue(window.Clues.MURDERER),
+      },
+      { type: "addStoryFlag", flag: window.Clues.MURDERER },
+      { type: "stateChange", damage: 10 },
+      { type: "textMessage", text: "Watch your back.", character: window.Characters[KARINA] },
+      { type: "stateChange", damage: 55 },
     ]
   },
   damage1: {
