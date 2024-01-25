@@ -22,7 +22,7 @@ window.Skills = {
     actions: {
       [window.Characters[MRS_T].id]: ["ask_name", "ask_death_gen", "damage1"],
       [window.Characters[KARINA].id]: ["ask_neck", "ask_hlong", "kadvice", "damage2"],
-      [window.Characters[ARYLHAN].id]: ["aunusual", "a_hdied", "damage3"]
+      [window.Characters[ARYLHAN].id]: ["aunusual", "ask_aboutk", "damage3"]
     },
   },
   "0quick": {

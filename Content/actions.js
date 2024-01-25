@@ -188,22 +188,46 @@ window.Actions = {
     name: "Ask if he saw anything odd",
     description: "This place has a suspiciously high death rate.",
     success: [
-      { type: "textMessage", text: "Hey. Did you perhaps notice anything unusual around here?" },
+      { type: "textMessage", text: "Hey. Did you - perhaps – notice anything unusual around here?" },
       { type: "textMessage", text: "Er, should I?", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
-      { type: "textMessage", text: "I mean...", character: window.Characters[ARYLHAN] },
+      { type: "textMessage", text: "I mean...", character: window.Characters[ARYLHAN], emotion: UPSET },
       { type: "stateChange", status: { type: "disoriented", expiresIn: 3 } },
+      { type: "textMessage", text: "Never believed in ghosts yet here I am.", character: window.Characters[ARYLHAN], emotion: UPSET },
+      { type: "textMessage", text: "Do you speak German? The rest don't get Russian. Or Karina could translate for you.", character: window.Characters[ARYLHAN] },
       { type: "stateChange", damage: 20 }
     ]
   },
   a_hdied: {
     name: "Ask how he died",
-    description: "",
+    description: "He looks intact.",
+    success: [
+      { type: "textMessage", text: "How did you die?" },
+      { type: "textMessage", text: "Well.", character: window.Characters[ARYLHAN], emotion: UPSET },
+      { type: "stateChange", status: { type: "sad", expiresIn: 1 } },
+      { type: "textMessage", text: "I choked? I guess. I have a food allergy, you see.", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "textMessage", text: "Karina was taking too long in the bathroom, so I went after her. She... she was...", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "stateChange", status: { type: "frustrated", expiresIn: 1 } },
+      { type: "textMessage", text: "She was on the floor. Still warm. I... I ran. I ran away, I saw one of our two thermos bottles on the table, and I grabbed it without thinking.", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "textMessage", text: "I wasn't mine, Karina's had nuts in it, I choked, and choked, and choked till I passed out.", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.ACHOKED),
+        cb: () => shouldGiveClue(window.Clues.ACHOKED),
+      },
+      { type: "addStoryFlag", flag: window.Clues.ACHOKED },
+      { type: "stateChange", damage: 20 },
+      { type: "textMessage", text: "They found us both the next morning...", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+    ]
+  },
+  ask_aboutk: {
+    name: "Ask about Karina",
+    description: "They're best friends, right?..",
     success: [
       { type: "textMessage", text: "" },
       { type: "textMessage", text: "", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
       { type: "textMessage", text: "", character: window.Characters[ARYLHAN] },
-      { type: "stateChange", status: { type: "disoriented", expiresIn: 3 } },
-      { type: "stateChange", damage: 20 }
+
+      { type: "stateChange", damage: 10 }
     ]
   },
   damage1: {
