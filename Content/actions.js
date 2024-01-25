@@ -13,6 +13,7 @@ const CLUES = 'CLUES'
 window.Clues = {
   BOOKCASE: `${CLUES}:BOOKCASE`,
   FOOTSTEPS: `${CLUES}:FOOTSTEPS`,
+  HEARS_FOOTSTEPS: `${CLUES}:HEARS_FOOTSTEPS`,
   ACHOKED: `${CLUES}:ACHOKED`,
   MURDERER: `${CLUES}:MURDERER`,
 }
@@ -134,6 +135,12 @@ window.Actions = {
       { type: "addStoryFlag", flag: window.Clues.FOOTSTEPS },
       { type: "stateChange", damage: 15 },
       { type: "textMessage", text: "I might've heard something similar since then.", character: window.Characters[KARINA] },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.HEARS_FOOTSTEPS),
+        cb: () => shouldGiveClue(window.Clues.HEARS_FOOTSTEPS),
+      },
+      { type: "addStoryFlag", flag: window.Clues.HEARS_FOOTSTEPS },
     ]
   },
   kadvice: {
@@ -162,7 +169,7 @@ window.Actions = {
       { type: "textMessage", text: "Watch your back.", character: window.Characters[KARINA] },
     ]
   },
-  ask_hdied: {
+  k_hdied: {
     name: "Ask how she died",
     description: "How many people have died in this library anyway?",
     success: [
@@ -182,6 +189,58 @@ window.Actions = {
       { type: "stateChange", damage: 10 },
       { type: "textMessage", text: "Watch your back.", character: window.Characters[KARINA] },
       { type: "stateChange", damage: 55 },
+    ]
+  },
+  aunusual: {
+    name: "Ask if he saw anything odd",
+    description: "This place has a suspiciously high death rate.",
+    success: [
+      { type: "textMessage", text: "Hey. Did you - perhaps – notice anything unusual around here?" },
+      { type: "textMessage", text: "Er, should I?", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "textMessage", text: "I mean...", character: window.Characters[ARYLHAN], emotion: UPSET },
+      { type: "stateChange", status: { type: "disoriented", expiresIn: 3 } },
+      { type: "textMessage", text: "Never believed in ghosts yet here I am.", character: window.Characters[ARYLHAN], emotion: UPSET },
+      { type: "textMessage", text: "Do you speak German? The rest don't get Russian. Or Karina could translate for you.", character: window.Characters[ARYLHAN] },
+      { type: "stateChange", damage: 20 },
+      { type: "textMessage", text: "Oh, wait! Sometimes I hear this weird noise: tap, tap-tap, tap. Like, footsteps or something.", character: window.Characters[ARYLHAN] },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.HEARS_FOOTSTEPS),
+        cb: () => shouldGiveClue(window.Clues.HEARS_FOOTSTEPS),
+      },
+      { type: "addStoryFlag", flag: window.Clues.HEARS_FOOTSTEPS },
+    ]
+  },
+  a_hdied: {
+    name: "Ask how he died",
+    description: "He looks intact.",
+    success: [
+      { type: "textMessage", text: "How did you die?" },
+      { type: "textMessage", text: "Well.", character: window.Characters[ARYLHAN], emotion: UPSET },
+      { type: "stateChange", status: { type: "sad", expiresIn: 1 } },
+      { type: "textMessage", text: "I choked? I guess. I have a food allergy, you see.", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "textMessage", text: "Karina was taking too long in the bathroom, so I went after her. She... she was...", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "stateChange", status: { type: "frustrated", expiresIn: 1 } },
+      { type: "textMessage", text: "She was on the floor. Still warm. I... I ran. I ran away, I saw one of our two thermos bottles on the table, and I grabbed it without thinking.", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "textMessage", text: "I wasn't mine, Karina's had nuts in it, I choked, and choked, and choked till I passed out.", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.ACHOKED),
+        cb: () => shouldGiveClue(window.Clues.ACHOKED),
+      },
+      { type: "addStoryFlag", flag: window.Clues.ACHOKED },
+      { type: "stateChange", damage: 20 },
+      { type: "textMessage", text: "They found us both the next morning...", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+    ]
+  },
+  ask_aboutk: {
+    name: "Ask about Karina",
+    description: "They're best friends, right?..",
+    success: [
+      { type: "textMessage", text: "What's Karina's deal?" },
+      { type: "textMessage", text: "Oh, her? Karina doesn't like talking to people. She's very nice once you get to know her. Like I do!", character: window.Characters[ARYLHAN] },
+      { type: "textMessage", text: "She doesn't show it but she cares. A lot, in fact.", character: window.Characters[ARYLHAN], emotion: UPSET },
+      { type: "stateChange", damage: 10 }
     ]
   },
   damage1: {
