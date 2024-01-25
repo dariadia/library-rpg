@@ -162,7 +162,7 @@ window.Actions = {
       { type: "textMessage", text: "Watch your back.", character: window.Characters[KARINA] },
     ]
   },
-  ask_hdied: {
+  k_hdied: {
     name: "Ask how she died",
     description: "How many people have died in this library anyway?",
     success: [
@@ -182,6 +182,28 @@ window.Actions = {
       { type: "stateChange", damage: 10 },
       { type: "textMessage", text: "Watch your back.", character: window.Characters[KARINA] },
       { type: "stateChange", damage: 55 },
+    ]
+  },
+  aunusual: {
+    name: "Ask if he saw anything odd",
+    description: "This place has a suspiciously high death rate.",
+    success: [
+      { type: "textMessage", text: "Hey. Did you perhaps notice anything unusual around here?" },
+      { type: "textMessage", text: "Er, should I?", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "textMessage", text: "I mean...", character: window.Characters[ARYLHAN] },
+      { type: "stateChange", status: { type: "disoriented", expiresIn: 3 } },
+      { type: "stateChange", damage: 20 }
+    ]
+  },
+  a_hdied: {
+    name: "Ask how he died",
+    description: "",
+    success: [
+      { type: "textMessage", text: "" },
+      { type: "textMessage", text: "", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
+      { type: "textMessage", text: "", character: window.Characters[ARYLHAN] },
+      { type: "stateChange", status: { type: "disoriented", expiresIn: 3 } },
+      { type: "stateChange", damage: 20 }
     ]
   },
   damage1: {
