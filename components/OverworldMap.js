@@ -90,7 +90,7 @@ const CHARACTERS = {
     skills: {
       "a": {
         skillId: ARYLHAN,
-        maxHp: 30,
+        maxHp: 40,
       }
     }
   },
