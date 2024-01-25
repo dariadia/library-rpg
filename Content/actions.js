@@ -13,6 +13,7 @@ const CLUES = 'CLUES'
 window.Clues = {
   BOOKCASE: `${CLUES}:BOOKCASE`,
   FOOTSTEPS: `${CLUES}:FOOTSTEPS`,
+  HEARS_FOOTSTEPS: `${CLUES}:HEARS_FOOTSTEPS`,
   ACHOKED: `${CLUES}:ACHOKED`,
   MURDERER: `${CLUES}:MURDERER`,
 }
@@ -134,6 +135,12 @@ window.Actions = {
       { type: "addStoryFlag", flag: window.Clues.FOOTSTEPS },
       { type: "stateChange", damage: 15 },
       { type: "textMessage", text: "I might've heard something similar since then.", character: window.Characters[KARINA] },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.HEARS_FOOTSTEPS),
+        cb: () => shouldGiveClue(window.Clues.HEARS_FOOTSTEPS),
+      },
+      { type: "addStoryFlag", flag: window.Clues.HEARS_FOOTSTEPS },
     ]
   },
   kadvice: {
@@ -194,7 +201,14 @@ window.Actions = {
       { type: "stateChange", status: { type: "disoriented", expiresIn: 3 } },
       { type: "textMessage", text: "Never believed in ghosts yet here I am.", character: window.Characters[ARYLHAN], emotion: UPSET },
       { type: "textMessage", text: "Do you speak German? The rest don't get Russian. Or Karina could translate for you.", character: window.Characters[ARYLHAN] },
-      { type: "stateChange", damage: 20 }
+      { type: "stateChange", damage: 20 },
+      { type: "textMessage", text: "Oh, wait! Sometimes I hear this weird noise: tap, tap-tap, tap. Like, footsteps or something.", character: window.Characters[ARYLHAN] },
+      {
+        type: "textMessage",
+        text: () => isRepeat(window.Clues.HEARS_FOOTSTEPS),
+        cb: () => shouldGiveClue(window.Clues.HEARS_FOOTSTEPS),
+      },
+      { type: "addStoryFlag", flag: window.Clues.HEARS_FOOTSTEPS },
     ]
   },
   a_hdied: {
@@ -223,10 +237,9 @@ window.Actions = {
     name: "Ask about Karina",
     description: "They're best friends, right?..",
     success: [
-      { type: "textMessage", text: "" },
-      { type: "textMessage", text: "", character: window.Characters[ARYLHAN], emotion: SCEPTIC },
-      { type: "textMessage", text: "", character: window.Characters[ARYLHAN] },
-
+      { type: "textMessage", text: "What's Karina's deal?" },
+      { type: "textMessage", text: "Oh, her? Karina doesn't like talking to people. She's very nice once you get to know her. Like I do!", character: window.Characters[ARYLHAN] },
+      { type: "textMessage", text: "She doesn't show it but she cares. A lot, in fact.", character: window.Characters[ARYLHAN], emotion: UPSET },
       { type: "stateChange", damage: 10 }
     ]
   },
