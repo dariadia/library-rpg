@@ -1,12 +1,9 @@
 class Question {
   constructor({ enemy, onComplete, arena }) {
-
     this.enemy = enemy
     this.onComplete = onComplete
     this.arena = arena
-
     this.combatants = {} // todo: player can choose "supporting" character to help them out. e.g. Ludwig or Rose 
-
     this.activeCombatants = {
       player: null,
       enemy: null,
@@ -16,7 +13,7 @@ class Question {
       this.addCombatant(id, "player", window.playerState.skills[id])
     })
     Object.keys(this.enemy.skills).forEach(key => {
-      this.addCombatant("e_"+key, "enemy", this.enemy.skills[key])
+      this.addCombatant("e_" + key, "enemy", this.enemy.skills[key])
     })
     this.items = []
     window.playerState.items.forEach(item => {
@@ -25,29 +22,26 @@ class Question {
         team: "player"
       })
     })
-
     this.usedInstanceIds = {}
-
   }
 
   addCombatant(id, team, config) {
-      this.combatants[id] = new Combatant({
-        ...Skills[config.skillId],
-        ...config,
-        team,
-        name: this.enemy.name,
-        key: this.enemy.id,
-        isPlayerControlled: team === "player"
-      }, this)
-      this.activeCombatants[team] = this.activeCombatants[team] || id
+    this.combatants[id] = new Combatant({
+      ...Skills[config.skillId],
+      ...config,
+      team,
+      name: this.enemy.name,
+      key: this.enemy.id,
+      isPlayerControlled: team === "player"
+    }, this)
+    this.activeCombatants[team] = this.activeCombatants[team] || id
   }
 
   createElement() {
     this.element = document.createElement("div")
     this.element.classList.add("Question")
-    if (this.arena) {
+    if (this.arena) 
       this.element.classList.add(this.arena)
-    }
 
     this.element.innerHTML = (`
     <div class="Question_hero">
@@ -62,7 +56,6 @@ class Question {
   init(container) {
     this.createElement()
     container.appendChild(this.element)
-
     this.playerTeam = new Team("player", "Hero")
     this.enemyTeam = new Team("enemy", "Bully")
 
@@ -89,7 +82,6 @@ class Question {
         })
       },
       onWinner: winner => {
-
         if (winner === "player") {
           const playerState = window.playerState
           Object.keys(playerState.skills).forEach(id => {
@@ -113,5 +105,4 @@ class Question {
     })
     this.turnCycle.init()
   }
-
 }

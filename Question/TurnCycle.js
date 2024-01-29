@@ -128,7 +128,5 @@ class TurnCycle {
       caster: { name: "You" }
     })
     this.turn()
-
   }
-
 }

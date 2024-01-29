@@ -9,9 +9,8 @@ class SubmissionMenu {
     items.forEach(item => {
       if (item.team === caster.team) {
         let existing = quantityMap[item.actionId]
-        if (existing) {
-          existing.quantity += 1
-        } else {
+        if (existing) existing.quantity += 1
+        else {
           quantityMap[item.actionId] = {
             actionId: item.actionId,
             quantity: 1,
@@ -24,7 +23,6 @@ class SubmissionMenu {
   }
 
   getPages() {
-
     const backOption = {
       label: "Go Back",
       description: "Return to view other options",
@@ -106,15 +104,11 @@ class SubmissionMenu {
 
   menuSubmitReplacement(replacement) {
     this.keyboardMenu?.end()
-    this.onComplete({
-      replacement
-    })
+    this.onComplete({ replacement })
   }
 
   menuSubmit(action, instanceId = null) {
-
     this.keyboardMenu?.end()
-
     this.onComplete({
       action,
       target: action.targetType === "friendly" ? this.caster : this.enemy,

@@ -28,11 +28,8 @@ class ReplacementMenu {
   }
 
   init(container) {
-
     if (this.replacements[0].isPlayerControlled) {
       this.showMenu(container)
-    } else {
-      this.decide()
-    }
+    } else this.decide()
   }
 }
