@@ -5,13 +5,13 @@ window.QuestionAnimations = {
     element.classList.add(animationClassName)
     element.addEventListener("animationend", () => {
       element.classList.remove(animationClassName)
-    }, { once:true })
+    }, { once: true })
     await utils.wait(100)
     onComplete()
   },
 
   async glob(event, onComplete) {
-    const {caster} = event
+    const { caster } = event
     let div = document.createElement("div")
     div.classList.add("glob-orb")
     div.classList.add(caster.team === "player" ? "question-glob-right" : "question-glob-left")
@@ -36,13 +36,11 @@ window.QuestionAnimations = {
     const movingClass = direction === 'forward' ? "walking-forward" : "walking-back"
     const div = document.querySelector(casterClass)
     div.classList.add(movingClass)
-    const animate = () => {
+    const animate = () =>
       div.classList.remove("walking-forward", "walking-back")
-    }
 
-    if (direction === 'backward') {
+    if (direction === 'backward')
       div.addEventListener("animationend", animate)
-    }
 
     await utils.wait(820)
     div.removeEventListener("animationend", animate)
